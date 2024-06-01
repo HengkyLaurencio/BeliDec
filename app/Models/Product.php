@@ -15,6 +15,7 @@ class Product extends Model
         'description',
         'price',
         'stock',
+        'shop_id'
     ];
 
     public function shop(): BelongsTo{

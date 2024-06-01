@@ -11,7 +11,8 @@ class Shop extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'owner_id'
     ];
 
     public function user(): BelongsTo {
