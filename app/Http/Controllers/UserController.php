@@ -15,7 +15,7 @@ class UserController extends Controller
         <title>Tes</title>
     </head>
     <body>
-        <h1>All Users</h1>
+        <h1>Get All Users</h1>
         <div>
             <table border="1">
                 <tr>
@@ -34,6 +34,25 @@ class UserController extends Controller
 
         echo '    </table>
         </div>
+    </body>
+</html>';
+    }
+
+    public function getUsers($id) {
+        $user = User::find($id);
+        if (!$user) {
+            return response('User not found', 404);
+        }
+        echo '<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tes</title>
+    </head>
+    <body>
+        <h1>Get User Details by ID</h1>
+        <p>ID: ' . $user->id . '</p>
+        <p>Username: ' . $user->username . '</p>
+        <p>Email: ' . $user->email . '</p>
     </body>
 </html>';
     }

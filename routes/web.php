@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/getUser', [UserController::class, 'getUser']);
+Route::get('/getUsers/{id}', [UserController::class, 'getUsers']);
