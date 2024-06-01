@@ -23,6 +23,7 @@ class UserController extends Controller
                             <th>Username</th>
                             <th>Email</th>
                             <th>Update</th>
+                            <th>Delete</th>
                         </tr>';
                 
                 foreach ($userData as $user) {
@@ -31,6 +32,13 @@ class UserController extends Controller
                             <td>' . $user->username . '</td>
                             <td>' . $user->email . '</td>
                             <td> <a href="' . route('editUser', ['user' => $user->id]) . '">Edit</a></td>
+                            <td> 
+                                <form method="post" action="'.route('deleteUser',['user'=>$user]).'">
+                                    <input type="hidden" name="_token" value="' . csrf_token() . '">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
                         </tr>';
                 }
 
@@ -94,6 +102,11 @@ class UserController extends Controller
         
         $user->update($userData);
     
-        return redirect()->route('getUser')->with('ok', 'User details updated successfully.');
+        return redirect(route('getUser'));
     }  
+
+    public function deleteUser (User $user) {
+        $user->delete();
+        return redirect(route('getUser'));
+    }
 }
