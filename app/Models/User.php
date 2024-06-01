@@ -19,4 +19,8 @@ class User extends Model
     public function shop() : HasOne {
         return $this->hasOne(Shop::class, 'id');
     }
+
+    public function cart() : HasOne {
+        return $this->hasOne(Cart::class, 'user_id');
+    }
 }
