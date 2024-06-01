@@ -18,6 +18,6 @@ class Product extends Model
     ];
 
     public function shop(): BelongsTo{
-        return $this->belongsTo(Shop::class, 'id');
+        return $this->belongsTo(Shop::class);
     }
 }

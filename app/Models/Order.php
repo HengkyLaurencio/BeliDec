@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Cart extends Model
+class Order extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id'
+        'user_id',
+        'total',
+        'status'
     ];
 
     public function user(): BelongsTo {
@@ -20,6 +22,6 @@ class Cart extends Model
     }
 
     public function products(): HasMany {
-        return $this->hasMany(CartItem::class);
+        return $this->hasMany(OrderItem::class);
     }
 }
