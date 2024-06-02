@@ -10,4 +10,6 @@ Route::get('/', function () {
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/register','register')->name('register');
     Route::post('/register', 'registerPost')->name('register.post');
+
+    Route::post('/login','loginPost')->name('login.post');
 });
