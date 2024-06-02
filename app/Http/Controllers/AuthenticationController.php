@@ -19,7 +19,7 @@ class AuthenticationController extends Controller
     {
         return view("login");
     }
-    public function registerPost(Request $request)
+    public function registerPost(Request $request): RedirectResponse
     {
         $request->validate([
             'username' => ['required', 'string', 'max:255'],
@@ -54,5 +54,13 @@ class AuthenticationController extends Controller
         return back()->withErrors([
             'email' => 'Email atau Password ada yang tidak sama!',
         ])->onlyInput('email');
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }
