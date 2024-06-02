@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->unsignedBigInteger('owner_id');
             $table->timestamps();
 
