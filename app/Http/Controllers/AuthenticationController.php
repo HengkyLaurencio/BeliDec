@@ -8,23 +8,23 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
 {
-    public function register(Request $request)
+    public function registerPost(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:8|',
+            'password' => 'required|string|min:8',
         ]);
 
-        $data['name'] = $request->name;
+        $data['username'] = $request->username;
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
         $user = User::create($data);
 
         if (!$user) {
-            return redirect(route('registration'))->with('error','Registration Failed, try again.');
+            return redirect(route('register'))->with('error', 'Registration Failed, try again.');
         }
 
-        return redirect(route('login'))->with('success','Registration Success, login to access application');
+        return redirect(route('login'))->with('success', 'Registration Success, login to access application');
     }
 }
