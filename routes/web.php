@@ -13,4 +13,5 @@ Route::get('/Product/{id}',  [ProductController::class, 'getProducts'])->name('g
 Route::get('/CreateProduct',  [ProductController::class, 'createProduct'])->name('createProduct');
 Route::post('/Simpan',  [ProductController::class, 'simpan'])->name('simpan');
 
-// Route::put('/Product/{id}/updateProduct', [ProductController::class, 'putProduct'])->name('updateProduct');
+Route::get('/editProduct/{product}',  [ProductController::class, 'editProduct'])->name('editProduct');
+Route::put('/updateProduct/{product}', [ProductController::class, 'updateProduct'])->name('updateProduct');
