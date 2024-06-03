@@ -25,6 +25,8 @@ class ProductController extends Controller
                             <th>Price</th>
                             <th>Stock</th>
                             <th>ShopID</th>
+                            <th>Update</th>
+                            <th>Delete</th>
                         </tr>';
                 
                 foreach ($productData as $product) {
@@ -35,6 +37,14 @@ class ProductController extends Controller
                             <td>' . $product->price . '</td>
                             <td>' . $product->stock . '</td>
                             <td>' . $product->shop_id . '</td>
+                            <td> <a href="' . route('editProduct', ['product' => $product->id]) . '">Edit</a></td>
+                            <td> 
+                                <form method="post" action="'.route('deleteProduct',['product'=>$product]).'">
+                                    <input type="hidden" name="_token" value="' . csrf_token() . '">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
                             </tr>';
                 }
                 echo '    </table>
@@ -201,6 +211,13 @@ class ProductController extends Controller
                 </form>
             </body>
         </html>';
+    }
+
+    public function deleteProduct (Product $product) {
+        
+        $product->delete();
+
+        return redirect()->route('getProduct');
     }
 
 }
