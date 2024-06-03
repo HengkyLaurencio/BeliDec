@@ -10,4 +10,7 @@ Route::get('/', function () {
 Route::get('/Product', [ProductController::class, 'getProduct'])->name('getProduct');
 Route::get('/Product/{id}',  [ProductController::class, 'getProducts'])->name('getProducts');
 
-Route::get('/Product/Create', [ProductController::class, 'createProduct'])->name('getProduct');
+Route::get('/CreateProduct',  [ProductController::class, 'createProduct'])->name('createProduct');
+Route::post('/Simpan',  [ProductController::class, 'simpan'])->name('simpan');
+
+// Route::put('/Product/{id}/updateProduct', [ProductController::class, 'putProduct'])->name('updateProduct');
