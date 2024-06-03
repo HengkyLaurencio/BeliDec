@@ -18,7 +18,8 @@ class ShopFactory extends Factory
     {
         return [
             'name'=> $this->faker->company,
-            'owner_id'=> User::factory()
+            'owner_id'=> User::factory(),
+            'description'=> $this->faker->text
         ];
     }
 }

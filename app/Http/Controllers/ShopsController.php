@@ -4,32 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class ShopsController extends Controller
 {
     public function registerShop()
     {
-        return view("registerShop");
+        return view("viewShop");
     }
 
     public function createShop(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'owner_id' => 'required|string',
-            'description' => 'required|string',
+        $shopData = $request->validate([
+            'shopName' => ['required', 'string'],
+            'ownerId' => ['required', 'integer'],
+            'Description' => ['required', 'string'],
         ]);
 
-        $data = new Shop();
-        $data['name'] = $request->name;
-        $data['owner_id'] = $request->owner_id;
-        $data['description'] = $request->description;
-        $shop = Shop::create($data);
+        $shop = Shop::create([
+            'name' => $shopData['shopName'],
+            'owner_id'=> $shopData['ownerId'],
+            'description' => $shopData['Description'],
+        ]);
 
         if (!$shop) {
-            return redirect(route('registerShop'))->with('error', 'Registration Failed, try again.');
+            return redirect()->route('registerShop')->with('error', 'Registration Failed, try again.');
         }
 
-        return redirect()->route('createShop')->with('success', 'Shop created successfully.');
+        return redirect()->route('registerShop')->with('success', 'Shop created successfully.');
     }
 }
