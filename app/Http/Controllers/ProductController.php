@@ -172,27 +172,27 @@ class ProductController extends Controller
                 
                     <div>
                     <label>Product Name</label>
-                    <input type="text" name="ProductName" placeholder="Product Name"'.$product->name.'">
+                    <input type="text" name="name" placeholder="Product Name"'.$product->name.'">
                     </div>
 
                     <div>
                     <label>Description</label>
-                    <input type="text" name="Description" placeholder="Description"'.$product->description.'">
+                    <input type="text" name="description" placeholder="Description"'.$product->description.'">
                     </div>
 
                     <div>
                     <label>Price</label>
-                    <input type="text" name="Price" placeholder="Price"'.$product->price.'">
+                    <input type="text" name="price" placeholder="Price"'.$product->price.'">
                     </div>
 
                     <div>
                     <label>Stock</label>
-                    <input type="text" name="Stock" placeholder="Stock"'.$product->stock.'">
+                    <input type="text" name="stock" placeholder="Stock"'.$product->stock.'">
                     </div>
 
                     <div>
                     <label>ShopId</label>
-                    <input type="text" name="ShopId" placeholder="ShopId"'.$product->shop_id.'">
+                    <input type="text" name="shop_id" placeholder="ShopId"'.$product->shop_id.'">
                     </div>
 
                     <div>
@@ -203,6 +203,4 @@ class ProductController extends Controller
         </html>';
     }
 
-   
-    
 }
