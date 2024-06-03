@@ -25,6 +25,8 @@ Route::put('/getUser/{user}/updateUser', [UserController::class, 'updateUser'])-
 Route::delete('/getUser/{user}/deleteUser', [UserController::class, 'deleteUser'])->name('deleteUser');
 
 Route::controller(ShopsController::class)->group(function () {
+    Route::get('/shop','getShops')->name('getShops');
+    Route::get('/shop/{id}', 'getShop')->name('getShop');
     Route::get('/shop/create', 'registerShop')->name('registerShop');
     Route::post('/shop/create', 'createShop')->name('createShop');
 });

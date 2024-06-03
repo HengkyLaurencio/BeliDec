@@ -10,7 +10,12 @@ class ShopsController extends Controller
 {
     public function registerShop()
     {
-        return view("viewShop");
+        return view("registerShop");
+    }
+
+    public function getShops()
+    {
+        return view("getShops");
     }
 
     public function createShop(Request $request)
@@ -32,5 +37,14 @@ class ShopsController extends Controller
         }
 
         return redirect()->route('registerShop')->with('success', 'Shop created successfully.');
+    }
+
+    public function getShop($id){
+        $shop = Shop::find($id);
+        if (!$shop) {
+            return response('shop not found', 404);
+        }
+
+        return view('getShop',compact('shop'));
     }
 }
