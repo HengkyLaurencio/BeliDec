@@ -13,10 +13,11 @@ class ShopsController extends Controller
         return view("registerShop");
     }
 
-    public function getShops()
+    public function getShop()
     {
-        return view("getShops");
+        return view("getShop");
     }
+
 
     public function createShop(Request $request)
     {
@@ -39,12 +40,34 @@ class ShopsController extends Controller
         return redirect()->route('registerShop')->with('success', 'Shop created successfully.');
     }
 
-    public function getShop($id){
+    public function getShops($id){
         $shop = Shop::find($id);
         if (!$shop) {
             return response('shop not found', 404);
         }
 
-        return view('getShop',compact('shop'));
+        return view('getShops',compact('shop'));
+    }
+
+    public function editShop($id)
+    {
+        $shop = Shop::find($id);
+        if (!$shop) {
+            return response('shop not found', 404);
+        }
+        return view('editShop',compact('shop'));
+    }
+
+    public function updateShop($id, Request $request)
+    {
+            $shop = shop::find($id);
+            $shopData = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'description' => ['required', 'string'],
+            ]);
+    
+            $shop->update($shopData);
+    
+            return redirect()->route('getshop')->with('success', 'Shop updated successfully.');
     }
 }
