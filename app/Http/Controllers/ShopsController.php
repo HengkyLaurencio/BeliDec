@@ -70,4 +70,18 @@ class ShopsController extends Controller
     
             return redirect()->route('getshop')->with('success', 'Shop updated successfully.');
     }
+
+    public function deleteShop($id)
+    {
+        $shop = shop::find($id);
+
+        return view('deleteView', compact('shop'));
+    }
+
+    public function removeShop($id) {
+        $shop = shop::find($id);
+        $shop->delete();
+
+        return redirect()->route('getShop');
+    }
 }

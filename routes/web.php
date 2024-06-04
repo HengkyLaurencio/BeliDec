@@ -31,4 +31,6 @@ Route::controller(ShopsController::class)->group(function () {
     Route::post('/shop/create', 'createShop')->name('createShop');
     Route::get('/shop/{id}/edit', 'editShop')->name('editShop');
     Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
+    Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
+    Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
 });
