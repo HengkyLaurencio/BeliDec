@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Shop extends Model
 {
@@ -12,7 +12,8 @@ class Shop extends Model
 
     protected $fillable = [
         'name',
-        'owner_id'
+        'owner_id',
+        'description',
     ];
 
     public function user(): BelongsTo {
