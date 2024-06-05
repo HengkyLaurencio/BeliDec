@@ -25,7 +25,16 @@ class AuthenticationController extends Controller
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
+            'confirmpassword' => ['required'],
         ]);
+
+        $password = $request->password;
+        $confirmpassword = $request->confirmpassword;
+
+        if($password != $confirmpassword) {
+            return redirect(route('register'))->with('error', 'Confirm Password , wrong !!');
+        };
+
 
         $data['username'] = $request->username;
         $data['email'] = $request->email;
