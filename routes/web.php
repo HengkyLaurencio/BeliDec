@@ -45,3 +45,10 @@ Route::post('/Simpan',  [ProductController::class, 'simpan'])->name('simpan');
 Route::get('/editProduct/{product}',  [ProductController::class, 'editProduct'])->name('editProduct');
 Route::put('/updateProduct/{product}', [ProductController::class, 'updateProduct'])->name('updateProduct');
 Route::delete('/deleteProduct/{product}', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
+
+//cart route
+Route::controller(CartController::class)->group(function () {
+    Route::get('/cart','getCart')->name('getCart');
+    Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
+    // Route::post('/cart/{cart_id}/{product_id}/{quantity}')
+});
