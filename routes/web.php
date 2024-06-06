@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 
 Route::get('/', function () {
@@ -50,5 +51,7 @@ Route::delete('/deleteProduct/{product}', [ProductController::class, 'deleteProd
 Route::controller(CartController::class)->group(function () {
     Route::get('/cart','getCart')->name('getCart');
     Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
-    // Route::post('/cart/{cart_id}/{product_id}/{quantity}')
+    Route::post('/cart/{cart_id}','putItem')->name('putItem');
+    Route::delete('/cart/{cart_id}','deleteItem')->name('deleteItem');
+
 });
