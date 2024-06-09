@@ -9,7 +9,7 @@ use App\Http\Controllers\ProductController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::controller(AuthenticationController::class)->group(function () {
