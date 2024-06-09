@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="{{ session('theme', 'light') === 'dark' ? 'dark' : '' }}">
 
 <head>
     <meta charset="UTF-8">
@@ -9,17 +9,20 @@
     <title>BeliDec</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 </head>
 
-<body>
-    <header class="bg-indigo-600 py-3 px-28 flex justify-between items-center">
-        <div class="flex items-center">
-            <div class="bg-indigo-100 rounded-full p-2 mr-5">
-                <span class="material-symbols-outlined">
-                    store
-                </span>
-            </div>
-            <h1 class="text-3xl text-white font-bold">BeliDec</h1>
+<body class="bg-white dark:bg-gray-700">
+    <header class="bg-indigo-600 py-3 px-28 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex-row items-center">
+            <a href="#" class="flex items-center">
+                <div class="bg-indigo-100 rounded-full p-2 mr-5">
+                    <span class="material-symbols-outlined">
+                        store
+                    </span>
+                </div>
+                <h1 class="text-3xl text-white font-bold">BeliDec</h1>
+            </a>
         </div>
         <div class="flex items-center">
             <div class="bg-indigo-200 rounded-full p-2 w-screen max-w-xl flex items-center">
@@ -30,13 +33,19 @@
             </div>
         </div>
         <div class="flex items-center space-x-4">
-            <div class="p-2">
-                <span class="material-symbols-outlined">
-                    dark_mode
-                </span>
+            <div class="p-2 cursor-pointer" id="theme-toggle">
+                @if(session('theme', 'light')==='light')
+                    <span class="material-symbols-outlined" id="theme-icon">
+                        dark_mode
+                    </span>
+                @elseif(session('theme', 'dark') === 'dark')
+                    <span class="material-symbols-outlined" id="theme-icon">
+                        light_mode
+                    </span>
+                @endif
             </div>
             <div class="p-2">
-                <a href="{{route('register')}}">
+                <a href="{{ route('register') }}">
                     <span class="material-symbols-outlined">
                         account_circle
                     </span>
@@ -49,7 +58,6 @@
             </div>
         </div>
     </header>
-
 </body>
 
 </html>
