@@ -16,10 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.classList.remove('dark');
             localStorage.setItem('theme', 'light');
             themeIcon.textContent = 'dark_mode';
+            cartList.classList.remove('dark:bg-gray-700');
+            cartList.classList.remove('dark:text-white');
         } else {
             document.documentElement.classList.add('dark');
             localStorage.setItem('theme', 'dark');
             themeIcon.textContent = 'light_mode';
+            cartList.classList.add('dark:bg-gray-700');
+            cartList.classList.add('dark:text-white');
         }
     });
     const categoryIcon = document.getElementById('category-icon');
@@ -43,4 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
     categoryMenu.addEventListener('mouseleave', hideDropdown);
     dropdownMenu.addEventListener('mouseenter', showDropdown);
     dropdownMenu.addEventListener('mouseleave', hideDropdown);
+
+    const cartIcon = document.getElementById('cart-icon');
+    const cartList = document.getElementById('cart-list');
+    const closeBtn = document.getElementById('close-btn');
+
+    cartIcon.addEventListener('click', function () {
+        cartList.classList.remove('right-[-700px]');
+        cartList.classList.add('right-0');
+    });
+
+    closeBtn.addEventListener('click', function () {
+        cartList.classList.remove('right-0');
+        cartList.classList.add('right-[-700px]');
+    });
 });

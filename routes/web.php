@@ -13,6 +13,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/home', function () {
+    return view('home');
+});
+
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
     Route::post('/register', 'registerPost')->name('register.post');

@@ -5,8 +5,8 @@
 
 <body class="bg-white dark:bg-gray-700">
     @include('layouts.header')
-    <main>
-        testttt
+    <main class="px-28 py-4">
+        <p>test</p>
     </main>
     @include('layouts.footer')
 </body>
