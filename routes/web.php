@@ -10,7 +10,11 @@ use App\Http\Controllers\CartController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+
+Route::get('/home', function () {
+    return view('home');
 });
 
 Route::controller(AuthenticationController::class)->group(function () {
