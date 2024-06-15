@@ -22,7 +22,7 @@
             <span class="material-symbols-outlined cursor-pointer" id="category-icon">
                 category
             </span>
-            <div class="absolute hidden bg-white text-black dark:bg-gray-800 dark:text-white shadow-lg rounded-md mt-2 w-32 text-center" id="dropdown-menu">
+            <div class="absolute hidden bg-white text-black dark:bg-gray-700 dark:text-white shadow-lg rounded-md mt-2 w-32 text-center" id="dropdown-menu">
                 <ul>
                     <li><a href="#" class="block p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md">Category 1</a></li>
                     <li><a href="#" class="block p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md">Category 2</a></li>
@@ -71,7 +71,7 @@
             @endauth
             @endif
         </div>
-        <div id="cart-list" class="fixed right-[-700px] top-0 h-full w-2/6 bg-white shadow-lg transition-all duration-300 z-50">
+        <div id="cart-list" class="fixed right-[-700px] top-0 h-full w-2/6 bg-white dark:bg-gray-700 dark:text-white shadow-lg transition-all duration-300 z-50">
             <div class="p-5 flex justify-between items-center border-b">
                 <h2 class="text-2xl font-semibold">Shopping Cart</h2>
                 <span class="material-symbols-outlined cursor-pointer" id="close-btn">
