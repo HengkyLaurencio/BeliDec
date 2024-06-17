@@ -14,4 +14,12 @@ class OrderController extends Controller
             echo $order . '<br>';
         }
     }
+
+    public function getOrders($id){
+        $orderData = Order::find($id);
+        if (!$orderData) {
+            return response('Data not found', 404);
+        }
+        return view();
+    }
 }

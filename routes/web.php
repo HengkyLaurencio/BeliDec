@@ -61,5 +61,5 @@ Route::controller(CartController::class)->group(function () {
 
 Route::controller(OrderController::class)->group(function () {
     Route::get('/order','getOrder')->name('getOrder');
-    
+    Route::get('/order/{id}', 'getOrders')->name('getOrders');
 });
