@@ -63,4 +63,5 @@ Route::controller(OrderController::class)->group(function () {
     Route::get('/order','getOrder')->name('getOrder');
     Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
     Route::post('/order/create','createOrder')->name('createOrder');
+    Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
 });

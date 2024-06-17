@@ -50,4 +50,15 @@ class OrderController extends Controller
         
         return redirect();
     }
+
+    public function deleteOrder (Request $request){
+        $orderData = OrderItem::where('order_id', $request->order_id)
+                    ->where('product_id', $request->product_id)
+                    ->first();
+        
+        if ($orderData){
+            $orderData->delete();
+            return redirect();
+        }
+    }
 }
