@@ -32,7 +32,7 @@ class AuthenticationController extends Controller
         $confirmpassword = $request->confirmpassword;
 
         if($password != $confirmpassword) {
-            return redirect(route('register'))->with('error', 'Confirm Password , wrong !!');
+            return redirect(route('register'))->withInput()->with('error', 'Confirm Password , wrong !!');
         };
 
 
@@ -42,7 +42,7 @@ class AuthenticationController extends Controller
         $user = User::create($data);
 
         if (!$user) {
-            return redirect(route('register'))->with('error', 'Registration Failed, try again.');
+            return redirect(route('register'))->withInput()->with('error', 'Registration Failed, try again.');
         }
 
         return redirect(route('login'))->with('success', 'Registration Success, login to access application');
@@ -57,7 +57,7 @@ class AuthenticationController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('home');
+            return redirect()->intended(route('getProduct'));
         }
 
         return back()->withErrors([

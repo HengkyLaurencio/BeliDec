@@ -7,7 +7,7 @@ use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
-
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('home');
@@ -57,5 +57,13 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
     Route::post('/cart/{cart_id}','putItem')->name('putItem');
     Route::delete('/cart/{cart_id}','deleteItem')->name('deleteItem');
+});
 
+Route::controller(OrderController::class)->group(function () {
+    Route::get('/order','getOrder')->name('getOrder');
+    Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
+    Route::post('/order/create/{order_id}','createOrder')->name('createOrder');
+    Route::get('/order/{id}/edit', 'editOrder')->name('editOrder');
+    Route::put('/order/{id}/update', 'updateOrder')->name('updateShop');
+    Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
 });
