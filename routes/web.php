@@ -62,6 +62,8 @@ Route::controller(CartController::class)->group(function () {
 Route::controller(OrderController::class)->group(function () {
     Route::get('/order','getOrder')->name('getOrder');
     Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
-    Route::post('/order/create','createOrder')->name('createOrder');
+    Route::post('/order/create/{order_id}','createOrder')->name('createOrder');
+    Route::get('/order/{id}/edit', 'editOrder')->name('editOrder');
+    Route::put('/order/{id}/update', 'updateOrder')->name('updateShop');
     Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
 });

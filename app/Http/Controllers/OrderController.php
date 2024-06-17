@@ -17,7 +17,7 @@ class OrderController extends Controller
     }
 
     public function getOrders($id){
-        $orderData = Order::find($id);
+        $orderData = OrderItem::find($id);
         if (!$orderData) {
             return response('Data not found', 404);
         }
@@ -25,7 +25,7 @@ class OrderController extends Controller
     }
 
     public function createOrder(Request $request) {
-        $order = Order::find($request->cart_id);
+        $order = Order::find($request->order_id);
         $product = Product::find($request->product_id);
 
         if (!$order){
@@ -48,6 +48,27 @@ class OrderController extends Controller
             'price' => ['required', 'integer'],
         ]);
         
+        return redirect();
+    }
+
+    public function editOrder($id) {
+        $order = OrderItem::find($id);
+        if (!$order) {
+            return response('Order not found', 404);
+        }
+        return view();
+    }
+
+    public function updateOrder($id, Request $request) {
+        $orderItem = OrderItem::find($id);
+        $orderData = $request->validate([
+            'product_id' => ['required', 'string'],
+            'quantity' => ['required', 'integer'],
+            'price' => ['required', 'integer'],
+        ]);
+
+        $orderItem->update($orderData);
+
         return redirect();
     }
 
