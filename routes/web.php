@@ -69,7 +69,3 @@ Route::controller(OrderController::class)->group(function () {
     Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
 });
 
-Route::controller(ReviewController::class)->group(function() {
-    Route::get('/reviews', 'index') -> name('index');
-    Route::get('/reviews/{order_item_id}', 'getReview') -> name('getReview');
-});
