@@ -10,7 +10,7 @@ class ShopsController extends Controller
 {
     public function registerShop()
     {
-        return view("registerShop");
+        return view("createShop");
     }
 
     public function getShop()
@@ -42,12 +42,12 @@ class ShopsController extends Controller
     }
 
     public function getShops($id){
-        $shop = Shop::find($id);
-        if (!$shop) {
+        $shopData = Shop::find($id);
+        if (!$shopData) {
             return response('shop not found', 404);
         }
 
-        return view('getShops',compact('shop'));
+        return view('shop',compact('shopData'));
     }
 
     public function editShop($id)
