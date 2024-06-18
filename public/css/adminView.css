@@ -1,0 +1,50 @@
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.user-table th, .user-table td {
+    padding: 12px 15px;
+    border: 2px solid #bbbbbb;
+}
+
+.user-table th {
+    background-color: #e5e4e4;
+    text-align: left;
+}
+
+.user-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.user-table a {
+    color: #3490dc;
+}
+
+.user-table input[type="submit"] {
+    background-color: #e3342f;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.user-table input[type="submit"]:hover {
+    background-color: #cc1f1a;
+}
+
+.user-table input[type="submit"].update {
+    background-color: #2ecc71; /* Green color */
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.user-table input[type="submit"].update:hover {
+    background-color: #27ae60; /* Darker green on hover */
+}
