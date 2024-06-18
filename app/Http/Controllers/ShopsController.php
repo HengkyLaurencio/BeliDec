@@ -15,7 +15,8 @@ class ShopsController extends Controller
 
     public function getShop()
     {
-        return view("getShop");
+        $shopData = Shop::all();     
+        return view('shop', compact('shopData'));
     }
 
 
