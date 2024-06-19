@@ -23,7 +23,7 @@ class AuthenticationController extends Controller
     {
         $request->validate([
             'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'unique:users'],
+            'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string', 'min:8'],
             'confirmpassword' => ['required'],
         ]);
@@ -31,10 +31,13 @@ class AuthenticationController extends Controller
         $password = $request->password;
         $confirmpassword = $request->confirmpassword;
 
-        if($password != $confirmpassword) {
-            return redirect(route('register'))->withInput()->with('error', 'Confirm Password , wrong !!');
-        };
+        if(User::where('email', $request->email)) {
+            return redirect()->back()->with('emailError', 'This email is already exist.')->withInput();
+        }
 
+        if($password != $confirmpassword) {
+            return redirect()->back()->with('confirmError', 'The password confirmation does not match.')->withInput();
+        };
 
         $data['username'] = $request->username;
         $data['email'] = $request->email;
