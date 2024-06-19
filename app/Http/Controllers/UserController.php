@@ -21,7 +21,7 @@ class UserController extends Controller
     }
 
     public function editUser(User $user){
-        return view('adminView.editUser', compact('user'));
+        return view('adminView.editUser',['user'=>$user]);
     }
 
     public function updateUser(User $user, Request $request){
