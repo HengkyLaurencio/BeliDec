@@ -2,13 +2,15 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShopsController;
-use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AuthenticationController;
 
 Route::get('/', function () {
     return view('home');
@@ -35,9 +37,9 @@ Route::delete('/getUser/{user}/deleteUser', [UserController::class, 'deleteUser'
 
 Route::controller(ShopsController::class)->group(function () {
     Route::get('/shop','getShop')->name('getShop');
-    Route::get('/shop/{id}', 'getShops')->name('getShops');
     Route::get('/shop/create', 'registerShop')->name('registerShop');
     Route::post('/shop/create', 'createShop')->name('createShop');
+    Route::get('/shop/{id}', 'getShops')->name('getShops');
     Route::get('/shop/{id}/edit', 'editShop')->name('editShop');
     Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
     Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
@@ -74,5 +76,4 @@ Route::controller(ReviewController::class)->group(function() {
     Route::get('/reviews/{order_item_id}', 'getReview') -> name('getReview');
     Route::post('/reviews/{order_item_id}', 'createReview') -> name('createReview');
     Route::delete('/reviews/{order_item_id}', 'deleteReview') -> name('deleteReview');
-
 });
