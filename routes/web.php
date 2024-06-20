@@ -54,10 +54,10 @@ Route::delete('/deleteProduct/{product}', [ProductController::class, 'deleteProd
 
 //cart route
 Route::controller(CartController::class)->group(function () {
-    Route::get('/cart','getCart')->name('getCart');
+    Route::get('/cart','index')->name('getCart');
     Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
     Route::post('/cart/{cart_id}','putItem')->name('putItem');
-    Route::delete('/cart/{cart_id}','deleteItem')->name('deleteItem');
+    Route::delete('/cart/{cart_id}/{product_id}','deleteItem')->name('deleteItem');
 });
 
 Route::controller(OrderController::class)->group(function () {

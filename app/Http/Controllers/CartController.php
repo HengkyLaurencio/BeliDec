@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function index(){
+        $carts = Cart::latest()->paginate(10);
+        return view('cart', compact ('carts'));
+    }
 
     public function getCart(){
         $cartData = Cart::all();
@@ -19,7 +23,9 @@ class CartController extends Controller
     }
 
     public function getCartItems($cart_id){
-        $cartItemsData = CartItem::all();
+        $cartItemsData = CartItem::where('cart_id', $cart_id)
+        ->with('product')
+        ->get();
         $exists = CartItem::where('cart_id', $cart_id)->exists();
 
         //cek availability
@@ -27,18 +33,19 @@ class CartController extends Controller
             return redirect(route('getProduct'))->with('error', 'CartItems doesnt exist!');
         }
 
-        foreach ($cartItemsData as $cartItems){
-            if ($cartItems->cart_id == $cart_id){
-                echo $cartItems.'<br>';
-            }
-        }
+        // foreach ($cartItemsData as $cartItems){
+        //     echo $cartItems . '<br>';
+        // }
+        
+        return view('cart', compact ('cartItemsData'));
+
     }
     
     public function putItem(Request $request)
     {
         $cart = Cart::find($request->cart_id);
         $product = Product::find($request->product_id);
-
+        
         if (!$cart){
             $cart = Cart::create();
         }
@@ -65,11 +72,14 @@ class CartController extends Controller
     public function deleteItem (Request $request){
 
     $cartItem = CartItem::where('cart_id', $request->cart_id)
-                ->where('product_id', $request->product_id);
-    
-    if ($cartItem){
+                ->where('product_id', $request->product_id)
+                ->first();
+
+    if ($cartItem) {
         $cartItem->delete();
-        return redirect(route('getCartItems($request->cart_id)'))->with('success', 'Success, Item deleted!');
+        return redirect()->back()->with('success', 'Success, Item deleted!'); // Menggunakan redirect()->back() untuk kembali ke halaman sebelumnya
+    } else {
+        return redirect()->back()->with('error', 'Failed to delete item.'); // Memberikan pesan error jika item tidak ditemukan
     }
     
     
