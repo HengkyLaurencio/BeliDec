@@ -47,7 +47,7 @@ class CartController extends Controller
             return redirect(route('getProduct'))->with('error', 'Stock less than items quantity!');
         }
 
-        $cart->items()->create([
+        $cart->products()->create([
             'product_id' => $request->product_id,
             'quantity' => $request->quantity,
         ]);
@@ -65,8 +65,7 @@ class CartController extends Controller
     public function deleteItem (Request $request){
 
     $cartItem = CartItem::where('cart_id', $request->cart_id)
-                ->where('product_id', $request->product_id)
-                ->first();
+                ->where('product_id', $request->product_id);
     
     if ($cartItem){
         $cartItem->delete();
