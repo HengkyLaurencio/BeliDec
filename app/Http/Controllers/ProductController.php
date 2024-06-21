@@ -17,37 +17,7 @@ class ProductController extends Controller
         if (!$product) {
             return response('Product not found');
         }
-        echo '<!DOCTYPE html>
-        <html>
-            <head>
-                <title>Tes</title>
-            </head>
-            <body>
-
-                <h1>Get Product By ID</h1>
-                <div>
-                    <table border="1">
-                        <tr>
-                            <th>ID</th>
-                            <th>Product</th>
-                            <th>Desc</th>
-                            <th>Price</th>
-                            <th>Stock</th>
-                            <th>ShopID</th>
-                        </tr>';
-                    
-                       echo '<tr>
-                            <td>' . $product->id . '</td>
-                            <td>' . $product->name . '</td>
-                            <td>' . $product->description . '</td>
-                            <td>' . $product->price . '</td>
-                            <td>' . $product->stock . '</td>
-                            <td>' . $product->shop_id . '</td>
-                        </tr>';
-		    '</table>
-                </div>
-            </body>
-        </html>';
+        return view('getProduct', ['product' => $product]);
     }
 
     public function simpan(Request $request) {

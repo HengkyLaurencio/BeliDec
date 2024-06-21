@@ -20,7 +20,6 @@
             <table class="w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
                 <thead class="bg-gray-200 dark:bg-gray-700">
                     <tr>
-                        <th class="px-6 py-4 text-left border-r border-gray-300">Product ID</th>
                         <th class="px-6 py-4 text-left border-r border-gray-300">Product Name</th>
                         <th class="px-6 py-4 text-left border-r border-gray-300">Description</th>
                         <th class="px-6 py-4 text-left border-r border-gray-300">Price</th>
@@ -29,16 +28,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($productData as $product)
                     <tr class ="bg">
-                        <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->id}}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->name}}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->description }}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->price }}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->stock }}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->shop_id }}</td>
                     </tr>
-                    @endforeach
                 </tbody>
         </table>            
     </main>
