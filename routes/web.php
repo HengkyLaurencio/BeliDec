@@ -44,8 +44,8 @@ Route::controller(ShopsController::class)->group(function () {
     Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
 });
 
-Route::get('/Product', [ProductController::class, 'getProduct'])->name('getProduct');
-Route::get('/Product/{id}',  [ProductController::class, 'getProducts'])->name('getProducts');
+Route::get('/product', [ProductController::class, 'getProducts'])->name('getProduct');
+Route::get('/product/{id}',  [ProductController::class, 'getProduct'])->name('getProducts');
 Route::get('/CreateProduct',  [ProductController::class, 'createProduct'])->name('createProduct');
 Route::post('/Simpan',  [ProductController::class, 'simpan'])->name('simpan');
 Route::get('/editProduct/{product}',  [ProductController::class, 'editProduct'])->name('editProduct');

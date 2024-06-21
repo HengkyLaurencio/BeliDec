@@ -7,53 +7,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function getProduct() {
+    public function getProducts() {
         $productData = Product::all();
-        echo '<!DOCTYPE html>
-        <html>
-            <head>
-                <title>Tes</title>
-            </head>
-            <body>
-                <h1></h1>
-                <div>
-                    <table border="1">
-                        <tr>
-                            <th>ID</th>
-                            <th>Product</th>
-                            <th>Desc</th>
-                            <th>Price</th>
-                            <th>Stock</th>
-                            <th>ShopID</th>
-                            <th>Update</th>
-                            <th>Delete</th>
-                        </tr>';
-                
-                foreach ($productData as $product) {
-                    echo '<tr>
-                            <td>' . $product->id . '</td>
-                            <td>' . $product->name . '</td>
-                            <td>' . $product->description . '</td>
-                            <td>' . $product->price . '</td>
-                            <td>' . $product->stock . '</td>
-                            <td>' . $product->shop_id . '</td>
-                            <td> <a href="' . route('editProduct', ['product' => $product->id]) . '">Edit</a></td>
-                            <td> 
-                                <form method="post" action="'.route('deleteProduct',['product'=>$product]).'">
-                                    <input type="hidden" name="_token" value="' . csrf_token() . '">
-                                    <input type="hidden" name="_method" value="delete">
-                                    <input type="submit" value="Delete">
-                                </form>
-                            </td>
-                            </tr>';
-                }
-                echo '    </table>
-                </div>
-            </body>
-        </html>';
+        return view('getProducts', ['productData' => $productData]);
     }
 
-    public function getProducts($id){
+    public function getProduct($id){
         $product = Product::find($id);
         if (!$product) {
             return response('Product not found');
