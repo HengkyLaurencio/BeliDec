@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($productData as $product)
+                    @foreach ($productData -> sortBy('id') as $product)
                     <tr class ="bg">
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->id}}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->name}}</td>

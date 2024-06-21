@@ -37,7 +37,7 @@ class ProductController extends Controller
             'shop_id' => $productData['ShopId'],
         ]);
     
-        return redirect()->route('getProduct');
+        return redirect()->route('getProducts');
     }
     
     public function createProduct(Product $product, Request $request){
@@ -94,52 +94,13 @@ class ProductController extends Controller
         ]);
 
         $product->update($productData);
+        return redirect(route('getProduct'))->with('success', 'Success, Item added into Cart!');
 
-        return redirect()->route('getProduct');
 
     }
 
     public function editProduct(Product $product, Request $request){
-        return '
-        <html>
-        <head><title>Tes</title>
-        <body>
-            <h1>Update Product Details</h1>
-            <form method="post" action="'.route('updateProduct', ['product' => $product->id]) .'">
-                <input type="hidden" name="_token" value="' . csrf_token() . '">
-                <input type="hidden" name="_method" value="put">
-                
-                    <div>
-                    <label>Product Name</label>
-                    <input type="text" name="name" placeholder="Product Name"'.$product->name.'">
-                    </div>
-
-                    <div>
-                    <label>Description</label>
-                    <input type="text" name="description" placeholder="Description"'.$product->description.'">
-                    </div>
-
-                    <div>
-                    <label>Price</label>
-                    <input type="text" name="price" placeholder="Price"'.$product->price.'">
-                    </div>
-
-                    <div>
-                    <label>Stock</label>
-                    <input type="text" name="stock" placeholder="Stock"'.$product->stock.'">
-                    </div>
-
-                    <div>
-                    <label>ShopId</label>
-                    <input type="text" name="shop_id" placeholder="ShopId"'.$product->shop_id.'">
-                    </div>
-
-                    <div>
-                    <input type="submit" value="Update Product Data">
-                    </div>
-                </form>
-            </body>
-        </html>';
+        return view('updateProduct', ['product' => $product]);
     }
 
     public function deleteProduct (Product $product) {
