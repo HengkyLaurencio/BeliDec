@@ -4,7 +4,7 @@
                 <a href="#">
                     <h2 class="text-2xl font-bold mb-2">BeliDec</h2>
                 </a>
-                <p class="text-gray-800">Place for shooping.</p>
+                <p class="text-gray-800">Place for shopping.</p>
             </div>
             <div class="flex flex-col md:flex-row items-center md:space-x-6">
                 <div class="flex flex-col text-center md:text-left px-12">
