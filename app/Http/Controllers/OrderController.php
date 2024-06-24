@@ -13,4 +13,12 @@ class OrderController extends Controller
         $orderData = Order::all();
         return view ('order.getOrder',['orderData'=>$orderData]);
     }
+
+    public function getOrders($id) {
+        $order = OrderItem::find($id);
+        if (!$order) {
+            return response('Order not found', 404);
+        }
+        return view ('order.getOrders',['order'=>$order]);
+    }
 }
