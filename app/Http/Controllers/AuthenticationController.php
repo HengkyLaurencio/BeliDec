@@ -30,8 +30,8 @@ class AuthenticationController extends Controller
 
         $password = $request->password;
         $confirmpassword = $request->confirmpassword;
-
-        if(User::where('email', $request->email)) {
+        
+        if(User::where('email', $request->email)->exists()) {
             return redirect()->back()->with('emailError', 'This email is already exist.')->withInput();
         }
 
