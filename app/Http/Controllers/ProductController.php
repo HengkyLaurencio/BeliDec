@@ -95,8 +95,6 @@ class ProductController extends Controller
 
         $product->update($productData);
         return redirect(route('getProduct'))->with('success', 'Success, Item added into Cart!');
-
-
     }
 
     public function editProduct(Product $product, Request $request){
@@ -106,7 +104,6 @@ class ProductController extends Controller
     public function deleteProduct (Product $product) {
         
         $product->delete();
-
         return redirect()->route('getProduct');
     }
 
