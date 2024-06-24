@@ -4,10 +4,9 @@
     @include('layouts.head')
 </head>
 <body class="bg-white dark:bg-gray-700">
-    {{ $user }}
     @include('layouts.header')
     <main class="px-8 py-4">
-        <form method="post" action="{{ route('updateUser', ['user' => $user->id]) }}" class="user-table">
+        <form method="post" action="{{ route('updateUser', ['user' => $user->id]) }}">
             @csrf
             @method('put')
             <table class="w-full border-collapse border border-gray-300 dark:border-gray-600">
