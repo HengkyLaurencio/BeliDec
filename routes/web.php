@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Route::get('/Product', [ProductController::class, 'getProduct'])->name('getProduct');
 Route::get('/Product/{id}',  [ProductController::class, 'getProducts'])->name('getProducts');
 Route::get('/CreateProduct',  [ProductController::class, 'createProduct'])->name('createProduct');
@@ -86,6 +87,8 @@ Route::controller(ReviewController::class)->group(function() {
     Route::post('/reviews/{order_item_id}', 'createReview') -> name('createReview');
     Route::delete('/reviews/{order_item_id}', 'deleteReview') -> name('deleteReview');
 =======
+=======
+>>>>>>> 43595ced43d624e4f59c0988934dac99f98562d0
     Route::controller(CartController::class)->group(function () {
         Route::get('/cart','index')->name('getCart');
         Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
@@ -108,5 +111,8 @@ Route::controller(ReviewController::class)->group(function() {
         Route::post('/reviews/{order_item_id}', 'createReview') -> name('createReview');
         Route::delete('/reviews/{order_item_id}', 'deleteReview') -> name('deleteReview');
     });
+<<<<<<< HEAD
 >>>>>>> 1cd2703de705bfba82fc59aa740973db57c9cfbf
+=======
+>>>>>>> 43595ced43d624e4f59c0988934dac99f98562d0
 });
