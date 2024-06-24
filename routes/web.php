@@ -31,18 +31,6 @@ Route::get('/getUser/{user}/editUser', [UserController::class, 'editUser'])->nam
 Route::put('/getUser/{user}/updateUser', [UserController::class, 'updateUser'])->name('updateUser');
 Route::delete('/getUser/{user}/deleteUser', [UserController::class, 'deleteUser'])->name('deleteUser');
 
-
-Route::controller(ShopsController::class)->group(function () {
-    Route::get('/shop','getShop')->name('getShop');
-    Route::get('/shop/create', 'registerShop')->name('registerShop');
-    Route::post('/shop/create', 'createShop')->name('createShop');
-    Route::get('/shop/{id}', 'getShops')->name('getShops');
-    Route::get('/shop/{id}/edit', 'editShop')->name('editShop');    
-    Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
-    Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
-    Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
-});
-
 Route::get('/Product', [ProductController::class, 'getProduct'])->name('getProduct');
 Route::get('/Product/{id}',  [ProductController::class, 'getProducts'])->name('getProducts');
 Route::get('/CreateProduct',  [ProductController::class, 'createProduct'])->name('createProduct');
@@ -66,4 +54,15 @@ Route::controller(OrderController::class)->group(function () {
     Route::get('/order/{id}/edit', 'editOrder')->name('editOrder');
     Route::put('/order/{id}/update', 'updateOrder')->name('updateShop');
     Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
+});
+
+Route::controller(ShopsController::class)->group(function () {
+    Route::get('/shop','getShop')->name('getShop');
+    Route::get('/shop/create', 'registerShop')->name('registerShop');
+    Route::post('/shop/create', 'createShop')->name('createShop');
+    Route::get('/shop/{id}', 'getShops')->name('getShops');
+    Route::get('/shop/{id}/edit', 'editShop')->name('editShop');    
+    Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
+    Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
+    Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
 });
