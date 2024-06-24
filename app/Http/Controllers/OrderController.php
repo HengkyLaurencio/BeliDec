@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\Product;
 
 use Illuminate\Http\Request;
 
@@ -20,5 +19,10 @@ class OrderController extends Controller
             return response('Order not found', 404);
         }
         return view ('order.getOrders',['order'=>$order]);
+    }
+
+    public function deleteOrder (Order $order) {
+        $order->delete();
+        return redirect(route('getOrder'));
     }
 }

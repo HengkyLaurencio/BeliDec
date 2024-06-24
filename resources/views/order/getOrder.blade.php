@@ -30,8 +30,8 @@
                         <th class="px-6 py-4 text-left border-r border-gray-300 dark:border-gray-600">Username</th>
                         <th class="px-6 py-4 text-left border-r border-gray-300 dark:border-gray-600">Total</th>
                         <th class="px-6 py-4 text-left border-r border-gray-300 dark:border-gray-600">Status</th>
-                        {{-- <th class="px-6 py-4">Edit</th>
-                        <th class="px-6 py-4">Delete</th> --}}
+                        {{-- <th class="px-6 py-4">Edit</th> --}}
+                        <th class="px-6 py-4">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,16 +43,16 @@
                         <td class="border-r border-gray-300 dark:border-gray-600 px-6 py-4">{{ $order->status }}</td>
                         {{-- <td class="px-6 py-4 text-center">
                             <a href="{{ route('editUser', ['user' => $user->id]) }}" class="text-blue-500 dark:text-blue-300">Edit</a>
-                        </td>
+                        </td> --}}
                         <td class="px-6 py-4 text-center">
-                            <form method="post" action="{{ route('deleteUser', ['user' => $user]) }}">
+                            <form method="post" action="{{ route('deleteOrder', ['order' => $order]) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-500 text-white dark:text-black px-6 py-2">
                                     Delete
                                 </button>
                             </form>
-                        </td> --}}
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
