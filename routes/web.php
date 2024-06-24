@@ -63,6 +63,8 @@ Route::controller(CartController::class)->group(function () {
 Route::controller(OrderController::class)->group(function () {
     Route::get('/getOrder','getOrder')->name('getOrder');
     Route::get('/getOrders/{id}','getOrders')->name('getOrders');
+    Route::get('/getOrder/{order}/editOrder', 'editOrder')->name('editOrder');
+    Route::put('/getOrder/{order}/updateOrder', 'updateOrder')->name('updateOrder');
     Route::delete('/getOrder/{order}/delete', 'deleteOrder')->name('deleteOrder');
 });
 

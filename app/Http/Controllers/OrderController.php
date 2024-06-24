@@ -21,6 +21,20 @@ class OrderController extends Controller
         return view ('order.getOrders',['order'=>$order]);
     }
 
+    public function editOrder(Order $order){
+        return view('order.editOrder',['order'=>$order]);
+    }
+
+    public function updateOrder(Order $order, Request $request){
+        $validatedData = $request->validate([
+            'status' => 'required|string',
+        ]);
+        
+        $order->update($validatedData);
+    
+        return redirect()->route('getOrder');
+    }
+
     public function deleteOrder (Order $order) {
         $order->delete();
         return redirect(route('getOrder'));

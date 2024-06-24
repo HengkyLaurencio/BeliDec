@@ -30,7 +30,7 @@
                         <th class="px-6 py-4 text-left border-r border-gray-300 dark:border-gray-600">Username</th>
                         <th class="px-6 py-4 text-left border-r border-gray-300 dark:border-gray-600">Total</th>
                         <th class="px-6 py-4 text-left border-r border-gray-300 dark:border-gray-600">Status</th>
-                        {{-- <th class="px-6 py-4">Edit</th> --}}
+                        <th class="px-6 py-4">Edit</th>
                         <th class="px-6 py-4">Delete</th>
                     </tr>
                 </thead>
@@ -41,9 +41,9 @@
                         <td class="border-r border-gray-300 dark:border-gray-600 px-6 py-4">{{ $order->user->username }}</td>
                         <td class="border-r border-gray-300 dark:border-gray-600 px-6 py-4">{{ $order->total }}</td>
                         <td class="border-r border-gray-300 dark:border-gray-600 px-6 py-4">{{ $order->status }}</td>
-                        {{-- <td class="px-6 py-4 text-center">
-                            <a href="{{ route('editUser', ['user' => $user->id]) }}" class="text-blue-500 dark:text-blue-300">Edit</a>
-                        </td> --}}
+                        <td class="px-6 py-4 text-center">
+                            <a href="{{ route('editOrder', ['order' => $order->id]) }}" class="text-blue-500 dark:text-blue-300">Edit</a>
+                        </td>
                         <td class="px-6 py-4 text-center">
                             <form method="post" action="{{ route('deleteOrder', ['order' => $order]) }}">
                                 @csrf
