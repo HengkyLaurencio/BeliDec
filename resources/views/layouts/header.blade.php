@@ -59,17 +59,13 @@
             @endif
         </div>
         <div class="p-2">
-            @if (Request::is('/'))
+        @if (request()->segment(2) !== null) 
+            
             <span class="material-symbols-outlined cursor-pointer" id="cart-icon">
                 shopping_cart
             </span>
-            @else
-            @auth
-            <span class="material-symbols-outlined cursor-pointer" id="cart-icon">
-                shopping_cart
-            </span>
-            @endauth
-            @endif
+        @endif
+            
         </div>
         <div id="cart-list" class="fixed right-[-700px] top-0 h-full w-2/6 bg-white shadow-lg transition-all duration-300 z-50">
             <div class="p-5 flex justify-between items-center border-b">
@@ -79,7 +75,11 @@
                 </span>
             </div>
             <div class="p-4" id="cart-items">
+            @if (request()->segment(2) !== null) 
+                @include ('layouts.cartHeader')
+            @endif
             </div>
+            
         </div>
     </div>
 </header>

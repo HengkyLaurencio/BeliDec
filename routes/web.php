@@ -56,6 +56,7 @@ Route::delete('/deleteProduct/{product}', [ProductController::class, 'deleteProd
 Route::controller(CartController::class)->group(function () {
     Route::get('/cart','index')->name('getCart');
     Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
+    Route::get('/home/{cart_id}','getCartItemsHeader')->name('getCartItems');
     Route::post('/cart/{cart_id}','putItem')->name('putItem');
     Route::delete('/cart/{cart_id}/{product_id}','deleteItem')->name('deleteItem');
 });
