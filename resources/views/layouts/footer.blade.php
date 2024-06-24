@@ -1,10 +1,10 @@
-<footer class="bg-indigo-400 py-6 px-8 mt-8">
+<footer class="bg-primary-100 py-6 px-8 mt-8">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
             <div class="text-center md:text-left mb-4 pl-12 md:mb-0">
                 <a href="#">
                     <h2 class="text-2xl font-bold mb-2">BeliDec</h2>
                 </a>
-                <p class="text-gray-800">Place for shooping.</p>
+                <p class="text-gray-800">Place for shopping.</p>
             </div>
             <div class="flex flex-col md:flex-row items-center md:space-x-6">
                 <div class="flex flex-col text-center md:text-left px-12">

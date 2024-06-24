@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ShopsController extends Controller
 {
 
-    public function getShop()
+    public function getShop(Request $request)
     {
         $shopData = Shop::all();     
         return view('shop', ['shopData' => $shopData]); 
