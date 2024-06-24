@@ -37,7 +37,7 @@ Route::controller(ShopsController::class)->group(function () {
     Route::get('/shop/create', 'registerShop')->name('registerShop');
     Route::post('/shop/create', 'createShop')->name('createShop');
     Route::get('/shop/{id}', 'getShops')->name('getShops');
-    Route::get('/shop/{id}/edit', 'editShop')->name('editShop');
+    Route::get('/shop/{id}/edit', 'editShop')->name('editShop');    
     Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
     Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
     Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
@@ -59,11 +59,11 @@ Route::controller(CartController::class)->group(function () {
     Route::delete('/cart/{cart_id}','deleteItem')->name('deleteItem');
 });
 
-Route::controller(OrderController::class)->group(function () {
-    Route::get('/order','getOrder')->name('getOrder');
-    Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
-    Route::post('/order/create/{order_id}','createOrder')->name('createOrder');
-    Route::get('/order/{id}/edit', 'editOrder')->name('editOrder');
-    Route::put('/order/{id}/update', 'updateOrder')->name('updateShop');
-    Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
-});
+// Route::controller(OrderController::class)->group(function () {
+//     Route::get('/order','getOrder')->name('getOrder');
+//     Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
+//     Route::post('/order/create/{order_id}','createOrder')->name('createOrder');
+//     Route::get('/order/{id}/edit', 'editOrder')->name('editOrder');
+//     Route::put('/order/{id}/update', 'updateOrder')->name('updateShop');
+//     Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
+// });

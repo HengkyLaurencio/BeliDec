@@ -61,15 +61,15 @@ class ShopsController extends Controller
 
     public function updateShop($id, Request $request)
     {
-            $shop = Shop::find($id);
-            $shopData = $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'description' => ['required', 'string'],
-            ]);
+        $shop = Shop::find($id);
+        $shopData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+        ]);
     
-            $shop->update($shopData);
+        $shop->update($shopData);
     
-            return redirect()->route('getshops')->with('success', 'Shop updated successfully.');
+        return redirect()->route('getShop')->with('success', 'Shop updated successfully.');
     }
 
     public function deleteShop($id)
