@@ -67,12 +67,7 @@
                     close
                 </span>
             </div>
-            <div class="p-4" id="cart-items">
-            @if (request()->segment(2) !== null) 
-                @include ('layouts.cartHeader')
-            @endif
-            </div>
-            
+
         </div>
     </div>
 </header>

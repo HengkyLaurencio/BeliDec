@@ -41,7 +41,7 @@ class ShopsController extends Controller
         if (!$shopData) {
             return response('shop not found', 404);
         }
-        return view('shop', ['shopData' => $shopData]);
+        return view('shopid', ['shopData' => $shopData]);
     }
 
     public function editShop($id)
