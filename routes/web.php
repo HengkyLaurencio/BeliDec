@@ -46,11 +46,11 @@ Route::controller(ShopsController::class)->group(function () {
 
 Route::get('/product', [ProductController::class, 'getProducts'])->name('getProduct');
 Route::get('/product/{id}',  [ProductController::class, 'getProduct'])->name('getProducts');
-Route::get('/CreateProduct',  [ProductController::class, 'createProduct'])->name('createProduct');
-Route::post('/Simpan',  [ProductController::class, 'simpan'])->name('simpan');
-Route::get('/editProduct/{product}',  [ProductController::class, 'editProduct'])->name('editProduct');
-Route::put('/updateProduct/{product}', [ProductController::class, 'updateProduct'])->name('updateProduct');
-Route::delete('/deleteProduct/{product}', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
+Route::get('/createproduct',  [ProductController::class, 'createProduct'])->name('createProduct');
+Route::post('/newproduct',  [ProductController::class, 'newProduct'])->name('newProduct');
+Route::get('/editproduct/{product}',  [ProductController::class, 'editProduct'])->name('editProduct');
+Route::put('/updateproduct/{product}', [ProductController::class, 'updateProduct'])->name('updateProduct');
+Route::delete('/deleteproduct/{product}', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
 
 //cart route
 Route::controller(CartController::class)->group(function () {

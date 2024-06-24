@@ -12,13 +12,13 @@
 </head>
 
 
-<body class="bg-white dark:bg-blue-700">
+<body class="bg-primary-400 dark:bg-primary-dark">
     @include('layouts.header')
 
     <main class="px-6 md:px-12 lg:px-24 xl:px-48 py-4">
         <div class="overflow-x-auto">
-            <table class="w-full bg-white dark:bg-white shadow-lg rounded-lg overflow-hidden">
-                <thead class="bg-gray-200 dark:bg-gray-700">    
+            <table class="w-full bg-white dark:bg-dark shadow-lg rounded-lg overflow-hidden">
+                <thead class="bg-primary-dark dark:bg-primary-dark">    
                     <tr>
                         <th class="px-6 py-4 text-left border-r border-gray-300">Product ID</th>
                         <th class="px-6 py-4 text-left border-r border-gray-300">Product Name</th>

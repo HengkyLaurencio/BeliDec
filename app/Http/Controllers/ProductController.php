@@ -20,68 +20,26 @@ class ProductController extends Controller
         return view('getProduct', ['product' => $product]);
     }
 
-    public function simpan(Request $request) {
+    public function newProduct (Request $request) {
         $productData = $request->validate([
             'productName' => ['required', 'string'],
             'Description' => ['required', 'string'],
             'Price' => ['required', 'decimal:2'],
             'Stock' => ['required', 'integer'],
-            'ShopId' => ['required', 'integer'],
         ]);
     
-        $newProduct = Product::create([
+        $newData = Product::create([
             'name' => $productData['productName'],
             'description' => $productData['Description'],
             'price' => $productData['Price'],
             'stock' => $productData['Stock'],
-            'shop_id' => $productData['ShopId'],
         ]);
     
         return redirect()->route('getProducts');
     }
     
     public function createProduct(Product $product, Request $request){
-        return '
-        <html>
-            <head><title>Tes</title>
-            <body>
-            <h1>Create Product</h1>
-                <form method="post" action="'.route('simpan').'">
-                    <input type="hidden" name="_token" value="' . csrf_token() . '">
-
-                    <div>
-                    <label>Product Name</label>
-                    <input type="text" name="productName" placeholder="Product Name">
-                    </div>
-
-                    <div>
-                    <label>Description</label>
-                    <input type="text" name="Description" placeholder="Description">
-                    </div>
-
-                    <div>
-                    <label>Price</label>
-                    <input type="text" name="Price" placeholder="Price">
-                    </div>
-
-                    <div>
-                    <label>Stock</label>
-                    <input type="text" name="Stock" placeholder="Stock">
-                    </div>
-
-                    <div>
-                    <label>ShopId</label>
-                    <input type="text" name="ShopId" placeholder="ShopId">
-                    </div>
-
-                    <div>
-                    <input type="submit" value="Create Product">
-                    </div>
-
-                </form>
-            </body>
-        </html>
-        ';
+        return view('createProduct', ['product' => $product]);
     }
 
     public function updateProduct(Product $product, Request $request){
