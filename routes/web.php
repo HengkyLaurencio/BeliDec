@@ -9,6 +9,7 @@ use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\ProductController;;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Middleware\ValidateIsAdmin;
 
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
@@ -21,7 +22,7 @@ Route::controller(AuthenticationController::class)->group(function () {
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/', function () {
         return view('home');
-    });
+    })->name('home');
 
     Route::controller(ShopsController::class)->group(function () {
         Route::get('/shop','getShop')->name('getShop');
@@ -34,14 +35,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
     });
 
-    Route::get('/home', function () {
-        return route("/");
-    });
-
-    // Route::get('/home', [AuthenticationController::class, 'test']);
-
     Route::controller(UserController::class)->group(function() {
-        Route::get('/getUser', 'getUser')->name('getUser');
+        Route::get('/getUser', 'getUser')->name('getUser')->middleware(ValidateIsAdmin::class);
         Route::get('/getUsers/{id}', 'getUsers');
         Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
         Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
