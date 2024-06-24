@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 
 class ShopsController extends Controller
 {
@@ -12,7 +11,7 @@ class ShopsController extends Controller
     public function getShop()
     {
         $shopData = Shop::all();     
-        return view('shop', compact('shopData'));
+        return view('shop', ['shopData' => $shopData]); 
     }
 
     public function registerShop()
@@ -23,22 +22,18 @@ class ShopsController extends Controller
     public function createShop(Request $request)
     {
         $shopData = $request->validate([
-            'shopName' => ['required', 'string'],
-            'ownerId' => ['required', 'integer'],
-            'Description' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'owner_id' => ['required', 'integer'],
+            'description' => ['required', 'string'],
         ]);
 
-        $shop = Shop::create([
-            'name' => $shopData['shopName'],
-            'owner_id'=> $shopData['ownerId'],
-            'description' => $shopData['Description'],
-        ]);
+        $shop = Shop::create($shopData);
 
         if (!$shop) {
             return redirect()->route('registerShop')->with('error', 'Registration Failed, try again.');
         }
 
-        return redirect()->route('registerShop')->with('success', 'Shop created successfully.');
+        return redirect()->route('getShop')->with('success', 'Shop created successfully.');
     }
 
     public function getShops($id){
@@ -46,8 +41,7 @@ class ShopsController extends Controller
         if (!$shopData) {
             return response('shop not found', 404);
         }
-
-        return view('shop',compact('shopData'));
+        return view('shop', ['shopData' => $shopData]);
     }
 
     public function editShop($id)
@@ -56,7 +50,8 @@ class ShopsController extends Controller
         if (!$shopData) {
             return response('shop not found', 404);
         }
-        return view('updateShops',compact('shopData'));
+        
+        return view('updateShops', ['shopData' => $shopData]);
     }
 
     public function updateShop($id, Request $request)
@@ -76,13 +71,13 @@ class ShopsController extends Controller
     {
         $shop = shop::find($id);
 
-        return view('deleteShop', compact('shop'));
+        return view('deleteShop', ['shop' => $shop]);
     }
 
     public function removeShop($id) {
         $shop = shop::find($id);
         $shop->delete();
 
-        return redirect()->route('getShop');
+        return redirect()->route('getShop')->with('success', 'Shop successfully deleted.');
     }
 }
