@@ -63,9 +63,7 @@ class AuthenticationController extends Controller
             return redirect()->intended(route('getProduct'));
         }
 
-        return back()->withErrors([
-            'email' => 'Email atau Password ada yang tidak sama!',
-        ])->onlyInput('email');
+        return redirect()->back()->with('error', 'Incorrect Email or Password.')->withInput();
     }
 
     public function logout(Request $request): RedirectResponse
