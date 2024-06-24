@@ -36,7 +36,8 @@ class ShopsController extends Controller
         return redirect()->route('getShop')->with('success', 'Shop created successfully.');
     }
 
-    public function getShops($id){
+    public function getShops($id)
+    {
         $shopData = Shop::find($id);
         if (!$shopData) {
             return response('shop not found', 404);

@@ -9,15 +9,15 @@
     @include('layouts.header')
     <main class="px-1 py-9 flex justify-center items-center min-h-scren ">
         <div class="w-full max-w-xl">
-        @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <form method="POST" action="{{ route('createShop') }}" class="product-table dark:text-text-100">
             @csrf
             @method('POST')
@@ -30,7 +30,7 @@
                 <label for="name" class="mb-3 block text-base font-medium text-[#07074D] dark:text-[#FFFFFF]">
                     Create Shop Name
                 </label>
-                <input type="text" name="name" id="name" placeholder="Enter The Product Name" value="{{ old('name') }}"
+                <input type="text" name="name" id="name" placeholder="Enter Shop Name" value="{{ old('name') }}"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
             </div>
 
@@ -38,7 +38,7 @@
                 <label for="owner_id" class="mb-3 block text-base font-medium text-[#07074D] dark:text-[#FFFFFF]">
                     Insert Owner ID
                 </label>
-                <input type="decimal" name="owner_id" id="owner_id" placeholder="Insert Owner ID" value="{{ old ('owner_id') }}"
+                <input type="number" name="owner_id" id="owner_id" placeholder="Insert Owner ID" value="{{ old ('owner_id') }}"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
             </div>
 

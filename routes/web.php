@@ -4,12 +4,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ShopsController;
-use App\Http\Controllers\ProductController;;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\AuthenticationController;
 use App\Http\Middleware\ValidateIsAdmin;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShopsController;;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthenticationController;
 
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
@@ -23,17 +23,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/', function () {
         return view('home');
     })->name('home');
-
-    Route::controller(ShopsController::class)->group(function () {
-        Route::get('/shop','getShop')->name('getShop');
-        Route::get('/shop/create', 'registerShop')->name('registerShop');
-        Route::post('/shop/create', 'createShop')->name('createShop');
-        Route::get('/shop/{id}', 'getShops')->name('getShops');
-        Route::get('/shop/{id}/edit', 'editShop')->name('editShop');
-        Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
-        Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
-        Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
-    });
 
     Route::controller(UserController::class)->group(function() {
         Route::get('/getUser', 'getUser')->name('getUser')->middleware(ValidateIsAdmin::class);
@@ -74,5 +63,16 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/reviews/{order_item_id}', 'getReview') -> name('getReview');
         Route::post('/reviews/{order_item_id}', 'createReview') -> name('createReview');
         Route::delete('/reviews/{order_item_id}', 'deleteReview') -> name('deleteReview');
+    });
+
+    Route::controller(ShopsController::class)->group(function () {
+        Route::get('/shop','getShop')->name('getShop');
+        Route::get('/shop/create', 'registerShop')->name('registerShop');
+        Route::post('/shop/create', 'createShop')->name('createShop');
+        Route::get('/shop/{id}', 'getShops')->name('getShops');
+        Route::get('/shop/{id}/edit', 'editShop')->name('editShop');
+        Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
+        Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
+        Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
     });
 });
