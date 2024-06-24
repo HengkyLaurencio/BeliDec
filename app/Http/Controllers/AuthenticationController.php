@@ -59,7 +59,8 @@ class AuthenticationController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            $userId = User::where('email', $request->email)->value('id');
+            $request->session() ->put('user_id', $userId);
             return redirect()->intended(route('getProduct'));
         }
 

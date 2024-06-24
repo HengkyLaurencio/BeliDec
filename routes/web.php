@@ -35,8 +35,10 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::get('/home', function () {
-        return view('home');
+        return route("/");
     });
+
+    // Route::get('/home', [AuthenticationController::class, 'test']);
 
     Route::controller(UserController::class)->group(function() {
         Route::get('/getUser', 'getUser')->name('getUser');
