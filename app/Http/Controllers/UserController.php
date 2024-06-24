@@ -25,13 +25,17 @@ class UserController extends Controller
     }
 
     public function updateUser(User $user, Request $request){
-        $userData = $request->validate([
-            'username' => 'required',
-            'email' => 'required|email',
+        $validatedData = $request->validate([
+            'username' => 'required|min:3|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'is_admin' => 'required|boolean'
         ]);
-        $user->update($userData);
-        return redirect()->route('getUser');
+        
+        $user->update($validatedData);
+    
+        return redirect()->route('getUser')->with('success', 'User updated successfully!');
     }
+    
 
     public function deleteUser (User $user) {
         $user->delete();

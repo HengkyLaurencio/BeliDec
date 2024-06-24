@@ -4,6 +4,7 @@
     @include('layouts.head')
 </head>
 <body class="bg-white dark:bg-gray-700">
+    {{ $user }}
     @include('layouts.header')
     <main class="px-8 py-4">
         <form method="post" action="{{ route('updateUser', ['user' => $user->id]) }}" class="user-table">
@@ -32,6 +33,14 @@
                         <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">
                             <input type="text" name="email" placeholder="New Email" value="{{ old('email') }}"
                                 class="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-500">
+                        </td>
+                    </tr>
+                    <tr class="border border-gray-300 dark:border-gray-600">
+                        <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Admin</td>
+                        <td class="border border-gray-300 dark:border-gray-600 px-4 py-2"> {{ $user->is_admin ? "True" : "False" }} </td>
+                        <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">
+                            <input type="hidden" name="is_admin" value="0">
+                            <input type="checkbox" name="is_admin" value="1" {{ old('is_admin', $user->is_admin) ? 'checked' : '' }}>
                         </td>
                     </tr>
                     <tr>

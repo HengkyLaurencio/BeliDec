@@ -68,3 +68,10 @@ Route::controller(OrderController::class)->group(function () {
     Route::put('/order/{id}/update', 'updateOrder')->name('updateShop');
     Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
 });
+
+Route::controller(ReviewController::class)->group(function() {
+    Route::get('/reviews', 'index') -> name('index');
+    Route::get('/reviews/{order_item_id}', 'getReview') -> name('getReview');
+    Route::post('/reviews/{order_item_id}', 'createReview') -> name('createReview');
+    Route::delete('/reviews/{order_item_id}', 'deleteReview') -> name('deleteReview');
+});
