@@ -64,9 +64,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/order','getOrder')->name('getOrder');
         Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
         Route::post('/order/create/{order_id}','createOrder')->name('createOrder');
-        Route::get('/order/{id}/edit', 'editOrder')->name('editOrder');
-        Route::put('/order/{id}/update', 'updateOrder')->name('updateShop');
-        Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
+        Route::get('/order/{order}/edit', 'editOrder')->name('editOrder');
+        Route::put('/order/{order}/update', 'updateOrder')->name('updateOrder');
+        Route::delete('/order/{order}','deleteOrder')->name('deleteOrder');
     });
     
     Route::controller(ReviewController::class)->group(function() {
