@@ -10,7 +10,7 @@
 <body class="bg-white dark:bg-gray-800">
     @include('layouts.header')
     <main class="container mx-auto px-4 py-8">
-    @if (isset($cartItemsData) && !$cartItemsData == null)
+        @if (isset($cartItemsData) && !$cartItemsData == null)
         <div class="container mx-auto p-4">
         <h1 class="text-2xl font-bold mb-6 text-center dark:text-gray-300">Cart</h1>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">

@@ -8,7 +8,7 @@
         </a>
     </div>
     <div class="mx-8 px-4 rounded-xl hover:bg-primary-600">
-        <a href="{{ route('getProduct') }}" class="flex flex-col justify-center">
+        <a href="{{ route('getProducts') }}" class="flex flex-col justify-center">
             <span class="material-symbols-outlined text-4xl flex justify-center">
                 inventory_2
             </span>

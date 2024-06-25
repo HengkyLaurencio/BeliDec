@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function() {
         return view('home');
     })->name('home');
 
-    Route::controller(ShopsController::class)->group(function () {
+    Route::controller(ProductController::class)->group(function () {
         Route::get('/product', 'getProducts')->name('getProducts');
         Route::get('/product/{id}', 'getProduct')->name('getProduct');
         Route::get('/createproduct', 'createProduct')->name('createProduct');
@@ -52,16 +52,6 @@ Route::group(['middleware' => ['auth']], function() {
         Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
         Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
     });
-    
-    Route::controller(ProductController::class)->group(function() {
-        Route::get('/Product', 'getProduct')->name('getProduct');        
-        Route::get('/Product/{id}', 'getProducts')->name('getProducts');
-        Route::get('/CreateProduct', 'createProduct')->name('createProduct');
-        Route::post('/Simpan', 'simpan')->name('simpan');
-        Route::get('/editProduct/{product}', 'editProduct')->name('editProduct');
-        Route::put('/updateProduct/{product}', 'updateProduct')->name('updateProduct');
-        Route::delete('/deleteProduct/{product}', 'deleteProduct')->name('deleteProduct');
-    });
 
     Route::controller(CartController::class)->group(function () {
         Route::get('/cart','index')->name('getCart');
@@ -74,9 +64,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/order','getOrder')->name('getOrder');
         Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
         Route::post('/order/create/{order_id}','createOrder')->name('createOrder');
-        Route::get('/order/{id}/edit', 'editOrder')->name('editOrder');
-        Route::put('/order/{id}/update', 'updateOrder')->name('updateShop');
-        Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
+        Route::get('/order/{order}/edit', 'editOrder')->name('editOrder');
+        Route::put('/order/{order}/update', 'updateOrder')->name('updateOrder');
+        Route::delete('/order/{order}','deleteOrder')->name('deleteOrder');
     });
     
     Route::controller(ReviewController::class)->group(function() {
