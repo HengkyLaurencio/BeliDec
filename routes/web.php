@@ -51,7 +51,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(OrderController::class)->group(function () {
         Route::post('/order/create', 'createOrder')->name('createOrder.post');
-        Route::get('/order', 'getOrder')->name('getOrder');
+        Route::get('/admin/order','getOrder')->name('getOrder')->middleware(ValidateIsAdmin::class);
+        Route::get('/order','viewOrder')->name('viewOrder');
         Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
         Route::get('/order/{order}/edit', 'editOrder')->name('editOrder');
         Route::put('/order/{order}/update', 'updateOrder')->name('updateOrder');
