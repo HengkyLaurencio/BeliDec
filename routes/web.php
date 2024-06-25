@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
         Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
     });
-
+  
     Route::controller(UserController::class)->group(function() {
         Route::get('/getUser', 'getUser')->name('getUser')->middleware(ValidateIsAdmin::class);
         Route::get('/getUsers/{id}', 'getUsers');
