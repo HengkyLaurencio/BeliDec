@@ -1,27 +1,24 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\ProductController;;
-
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Middleware\ValidateIsAdmin;
 
-    Route::controller(AuthenticationController::class)->group(function () {
-        Route::get('/register', 'register')->name('register');
-        Route::post('/register', 'registerPost')->name('register.post');
-        Route::get('/login', 'login')->name('login');
-        Route::post('/login', 'loginPost')->name('login.post');
-        Route::get('/logout', 'logout')->name('logout');
-    });
+Route::controller(AuthenticationController::class)->group(function () {
+    Route::get('/register', 'register')->name('register');
+    Route::post('/register', 'registerPost')->name('register.post');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/login', 'loginPost')->name('login.post');
+    Route::get('/logout', 'logout')->name('logout');
+});
 
 Route::group(['middleware' => ['auth']], function () {
-
     Route::get('/', function () {
         return view('home');
     })->name('home');
@@ -53,6 +50,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
         Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
         Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
+        Route::get('/getBalance', [UserController::class, 'getBalance']);
+        Route::get('/updateBalance', [UserController::class, 'viewUpdateBalance']);
+        Route::post('/updateBalanceNom', [UserController::class, 'updateBalance'])->name('balance.update');
     });
 
     Route::controller(CartController::class)->group(function () {
