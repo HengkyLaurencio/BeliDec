@@ -12,7 +12,7 @@ class OrderController extends Controller
 {
     public function getOrder()
     {
-        $orderData = Order::all();
+        $orderData = Order::paginate(10);
         return view('order.getOrder', ['orderData' => $orderData]);
     }
     public function getOrders($id)

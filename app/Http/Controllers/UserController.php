@@ -8,7 +8,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function getUser() {
-        $userData = User::all();
+        $userData = User::paginate(10);
         return view ('adminView.getUser',['userData'=>$userData]);
     }
 

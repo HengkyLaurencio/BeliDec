@@ -23,20 +23,15 @@
                         <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ $order->total }}</td>
                         <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ $order->status }}</td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">
-                            <input type="text" name="status" placeholder="Status" class="w-200 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-500">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td><button type="submit" class="px-4 py-2 bg-blue-500 text-black">Update Order Data</button></td>
-                    </tr>
                 </tbody>
             </table>
+            <br>
+            <div class="text-end flex flex-row justify-end mb-44">
+                <input type="text" name="status" placeholder="New Status" class="w-200 mx-28 px-8 py-1 border border-gray-300 dark:border-gray-600 rounded-md ">
+                <button type="submit" class="bg-primary-1100 text-[#050303] dark:text-black px-6 py-2 border rounded-md">
+                    <b>Update User Data</b>
+                </button>
+            </div>
         </form>
     </main>
     @include('layouts.footer')
