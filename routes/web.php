@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function() {
         return view('home');
     })->name('home');
 
-    Route::controller(ShopsController::class)->group(function () {
+    Route::controller(ProductController::class)->group(function () {
         Route::get('/product', 'getProducts')->name('getProducts');
         Route::get('/product/{id}', 'getProduct')->name('getProduct');
         Route::get('/createproduct', 'createProduct')->name('createProduct');
@@ -51,16 +51,6 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
         Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
         Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
-    });
-    
-    Route::controller(ProductController::class)->group(function() {
-        Route::get('/Product', 'getProduct')->name('getProduct');        
-        Route::get('/Product/{id}', 'getProducts')->name('getProducts');
-        Route::get('/CreateProduct', 'createProduct')->name('createProduct');
-        Route::post('/Simpan', 'simpan')->name('simpan');
-        Route::get('/editProduct/{product}', 'editProduct')->name('editProduct');
-        Route::put('/updateProduct/{product}', 'updateProduct')->name('updateProduct');
-        Route::delete('/deleteProduct/{product}', 'deleteProduct')->name('deleteProduct');
     });
 
     Route::controller(CartController::class)->group(function () {
