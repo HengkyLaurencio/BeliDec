@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::controller(UserController::class)->group(function () {
-        Route::get('/getUser', 'getUser')->name('getUser')->middleware(ValidateIsAdmin::class);
+        Route::get('/getUser', 'getUser')->name('getUser'); //->middleware(ValidateIsAdmin::class);
         Route::get('/getUser/{id}', 'getUsers')->name('getUsers');
         Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
         Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
