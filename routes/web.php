@@ -44,15 +44,15 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::controller(CartController::class)->group(function () {
-        Route::get('/cart', 'index')->name('getCart');
-        Route::get('/cart/{cart_id}', 'getCartItems')->name('getCartItems');
+        Route::get('/cart','getCartItems')->name('getCartItems');
         Route::post('/cart/{cart_id}', 'putItem')->name('putItem');
         Route::delete('/cart/{cart_id}/{product_id}', 'deleteItem')->name('deleteItem');
     });
 
     Route::controller(OrderController::class)->group(function () {
         Route::post('/order/create', 'createOrder')->name('createOrder.post');
-        Route::get('/order', 'getOrder')->name('getOrder');
+        Route::get('/admin/order','getOrder')->name('getOrder')->middleware(ValidateIsAdmin::class);
+        Route::get('/order','viewOrder')->name('viewOrder');
         Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
         Route::get('/order/{order}/edit', 'editOrder')->name('editOrder');
         Route::put('/order/{order}/update', 'updateOrder')->name('updateOrder');

@@ -1,6 +1,6 @@
 <header class="bg-primary-100 py-3 px-28 flex justify-between items-center sticky top-0 z-50">
     <div class="flex-row items-center">
-        <a href="#" class="flex items-center">
+        <a href="{{ route ('home')}}" class="flex items-center">
             <div class="bg-primary-400 rounded-full p-2 mr-5">
                 <span class="material-symbols-outlined dark:text-text-200">
                     store
@@ -8,7 +8,7 @@
             </div>
             <h1 class="text-3xl text-white font-bold">BeliDec</h1>
         </a>
-    </div>
+    </div>  
     <div class="flex items-center">
         <form action="{{ route('register') }}" method="GET"
             class="bg-primary-500 rounded-full p-2 w-screen max-w-xl flex items-center">
@@ -61,7 +61,7 @@
             @endif
         </div>
         <div class="p-2">
-            @if (request()->segment(2) !== null)
+        @if (isset($cartItemsData) && !$cartItemsData==null)
                 <span class="material-symbols-outlined cursor-pointer" id="cart-icon">
                     shopping_cart
                 </span>
@@ -76,9 +76,7 @@
                 </span>
             </div>
             <div class="p-4" id="cart-items">
-                @if (request()->segment(2) !== null)
                     @include ('layouts.cartHeader')
-                @endif
             </div>
         </div>
     </div>
