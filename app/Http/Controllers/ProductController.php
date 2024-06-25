@@ -12,6 +12,11 @@ class ProductController extends Controller
         return view('getProducts', ['productData' => $productData]);
     }
 
+    public function productsUser(){
+        $productData = Product::all();
+        return view('userProducts', ['productData' => $productData]);
+    }
+
     public function getProduct($id){
         $product = Product::find($id);
         if (!$product) {
