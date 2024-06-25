@@ -56,7 +56,7 @@
                 </div>
                 <div>
                     <button type="submit"
-                        class="flex w-full justify-center rounded-md bg-primary-1200 px-3 py-1.5 text-sm font-semibold leading-6 text-text-100 shadow-sm hover:bg-primary-1300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+                        class="flex w-full justify-center rounded-md bg-primary-1300 px-3 py-1.5 text-sm font-semibold leading-6 text-text-100 shadow-sm hover:bg-primary-1400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
                 </div>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             </form>
