@@ -13,7 +13,7 @@ class ProductController extends Controller
     }
 
     public function productsUser(){
-        $productData = Product::all();
+        $productData = Product::paginate(12);
         return view('userProducts', ['productData' => $productData]);
     }
 

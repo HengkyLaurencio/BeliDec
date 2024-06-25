@@ -30,7 +30,17 @@
     @endforeach
       <!-- More products... -->
     </div>  
-
+    <div>
+            {{ $productData->links() }}
+        </div>
+        <div>
+            <!-- Custom Next Page Button -->
+            @if ($productData->hasMorePages())
+                <a href="{{ $productData->nextPageUrl() }}">
+                   
+                </a>
+            @endif
+        </div>
     </main>
     @include('layouts.footer')
 </body>
