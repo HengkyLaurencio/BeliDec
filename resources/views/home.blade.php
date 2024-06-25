@@ -5,8 +5,8 @@
 
 <body class="bg-white dark:bg-primary-dark dark:text-text-dark">
     @include('layouts.header')
-    <main class="px-28 py-4">
-        <p>test</p>
+    @include('layouts.menu')
+    <main class="px-28">
     </main>
     @include('layouts.footer')
 </body>
