@@ -25,6 +25,16 @@ Route::group(['middleware' => ['auth']], function() {
     })->name('home');
 
     Route::controller(ShopsController::class)->group(function () {
+        Route::get('/product', 'getProducts')->name('getProducts');
+        Route::get('/product/{id}', 'getProduct')->name('getProduct');
+        Route::get('/createproduct', 'createProduct')->name('createProduct');
+        Route::post('/newproduct', 'newProduct')->name('newProduct');
+        Route::get('/editproduct/{product}', 'editProduct')->name('editProduct');
+        Route::put('/updateproduct/{product}', 'updateProduct')->name('updateProduct');
+        Route::delete('/deleteproduct/{product}', 'deleteProduct')->name('deleteProduct');
+    });
+
+    Route::controller(ShopsController::class)->group(function () {
         Route::get('/shop','getShop')->name('getShop');
         Route::get('/shop/create', 'registerShop')->name('registerShop');
         Route::post('/shop/create', 'createShop')->name('createShop');
