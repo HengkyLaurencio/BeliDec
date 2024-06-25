@@ -45,12 +45,13 @@ class AuthenticationController extends Controller
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
         $user = User::create($data);
-        $cart = Cart::create([$user->user_id]);
+        $users = auth()->user();
+        $createCart = Cart::firstOrCreate(['user_id' => $users->id]);
 
         if (!$user) {
             return redirect(route('register'))->withInput()->with('error', 'Registration Failed, try again.');
         }
-        if (!$cart){
+        if (!$createCart){
             return redirect(route('register'))->withInput()->with('error', 'Cart Failed, try again.');
         }
 
@@ -67,7 +68,7 @@ class AuthenticationController extends Controller
         if (Auth::attempt($credentials)) {
             $userId = User::where('email', $request->email)->value('id');
             $request->session() ->put('user_id', $userId);
-            return redirect()->intended(route('getProduct'));
+            return redirect()->intended(route('home'));
         }
 
         return redirect()->back()->with('error', 'Incorrect Email or Password.')->withInput();

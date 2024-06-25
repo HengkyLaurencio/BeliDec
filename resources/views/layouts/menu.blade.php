@@ -24,7 +24,7 @@
         </a>
     </div>
     <div class="mx-8 px-4 rounded-xl hover:bg-primary-600">
-        <a href="{{ route('getCart') }}" class="flex flex-col justify-center">
+        <a href="{{ route('getCartItems') }}" class="flex flex-col justify-center">
             <span class="material-symbols-outlined text-4xl flex justify-center">
                 shopping_cart
             </span>

@@ -14,7 +14,7 @@ class CartController extends Controller
         $cartItemsData = CartItem::where('cart_id', $request->cart_id)
         ->with('product')
         ->get();
-        echo "hai <br> $request->user_id";
+
         $carts = Cart::latest()->paginate(10);
         return view('cart', compact ('carts'));
     }
@@ -26,7 +26,15 @@ class CartController extends Controller
     //     }
     // }
 
-    public function getCartItems($cart_id){
+    public function getCartItems(){
+        $user = auth()->user();
+        $cart = Cart::firstOrCreate(['user_id' => $user->id]);
+        $cart_id = $cart->id;
+
+        
+        if (!$cart_id) {
+            return redirect(route('getProducts'))->with('error', 'CartItems doesnt exist!');
+        }
 
         $cartItemsData = CartItem::where('cart_id', $cart_id)
         ->with('product')
@@ -35,7 +43,7 @@ class CartController extends Controller
 
         //cek availability
         if (!$exists) {
-            return redirect(route('getProduct'))->with('error', 'CartItems doesnt exist!');
+            return redirect(route('getProducts'))->with('error', 'CartItems doesnt exist!');
         }
 
         // foreach ($cartItemsData as $cartItems){
@@ -66,12 +74,22 @@ class CartController extends Controller
     
     public function putItem(Request $request)
     {
-        $cart = CartItem::find($request->cart_id);
+        $user_id = auth()->user()->id;
+        $cart = Cart::firstOrCreate(
+            ['user_id' => $user_id]
+        );
         $product = Product::find($request->product_id);
+        //$createCart = Cart::create(['user_id' => $user_id,]);
         
-        if (!$cart){
-            $cart = Cart::create();
-        }
+        // if(!$createCart){
+        //     return redirect(route('getProduct'))->with('error', 'CartItems doesnt exist!');
+        // }
+
+        // if (!$cart){
+        //     $cart = Cart::create([
+        //         'user_id' => $user_id,
+        //     ]);
+        // }
 
         if ($product->stock < $request->quantity){
             return redirect(route('getProduct'))->with('error', 'Stock less than items quantity!');

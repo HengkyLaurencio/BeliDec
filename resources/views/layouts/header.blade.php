@@ -61,7 +61,7 @@
             @endif
         </div>
         <div class="p-2">
-            @if (request()->segment(2) !== null)
+        @if (isset($cartItemsData) && !$cartItemsData==null)
                 <span class="material-symbols-outlined cursor-pointer" id="cart-icon">
                     shopping_cart
                 </span>
@@ -76,9 +76,7 @@
                 </span>
             </div>
             <div class="p-4" id="cart-items">
-                @if (request()->segment(2) !== null)
                     @include ('layouts.cartHeader')
-                @endif
             </div>
         </div>
     </div>

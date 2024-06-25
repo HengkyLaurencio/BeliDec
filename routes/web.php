@@ -54,9 +54,9 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::controller(CartController::class)->group(function () {
-        Route::get('/cart','index')->name('getCart');
-        Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
-        Route::post('/cart/{cart_id}','putItem')->name('putItem');
+        Route::get('/cart','getCartItems')->name('getCartItems');
+        //Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
+        Route::post('/cart','putItem')->name('putItem');
         Route::delete('/cart/{cart_id}/{product_id}','deleteItem')->name('deleteItem');
     });
     
