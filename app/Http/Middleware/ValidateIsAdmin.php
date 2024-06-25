@@ -18,7 +18,7 @@ class ValidateIsAdmin
     {
         $userId = $request->session()->get('user_id');
         if(!User::find($userId)->is_admin) {
-            return redirect('');
+            return abort(403);
         }
         return $next($request);
     }
