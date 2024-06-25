@@ -10,19 +10,32 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index(){
+    public function index(Request $request){    
+        $cartItemsData = CartItem::where('cart_id', $request->cart_id)
+        ->with('product')
+        ->get();
+
         $carts = Cart::latest()->paginate(10);
         return view('cart', compact ('carts'));
     }
 
-    public function getCart(){
-        $cartData = Cart::all();
-        foreach ($cartData as $cart){
-            echo $cart . '<br>';
-        }
-    }
+    // public function getCart(){
+    //     $cartData = Cart::all();
+    //     foreach ($cartData as $cart){
+    //         echo $cart . '<br>';
+    //     }
+    // }
 
-    public function getCartItems($cart_id){
+    public function getCartItems(){
+        $user = auth()->user();
+        $cart = Cart::firstOrCreate(['user_id' => $user->id]);
+        $cart_id = $cart->id;
+
+        
+        if (!$cart_id) {
+            return redirect(route('getProducts'))->with('error', 'CartItems doesnt exist!');
+        }
+
         $cartItemsData = CartItem::where('cart_id', $cart_id)
         ->with('product')
         ->get();
@@ -30,15 +43,14 @@ class CartController extends Controller
 
         //cek availability
         if (!$exists) {
-            return redirect(route('getProduct'))->with('error', 'CartItems doesnt exist!');
+            return redirect(route('getProducts'))->with('error', 'CartItems doesnt exist!');
         }
 
         // foreach ($cartItemsData as $cartItems){
         //     echo $cartItems . '<br>';
         // }
         
-         return view('cart', compact ('cartItemsData'));
-
+        return view('cart', compact ('cartItemsData'));
 
         }
     public function getCartItemsHeader($cart_id){
@@ -62,12 +74,22 @@ class CartController extends Controller
     
     public function putItem(Request $request)
     {
-        $cart = Cart::find($request->cart_id);
+        $user_id = auth()->user()->id;
+        $cart = Cart::firstOrCreate(
+            ['user_id' => $user_id]
+        );
         $product = Product::find($request->product_id);
+        //$createCart = Cart::create(['user_id' => $user_id,]);
         
-        if (!$cart){
-            $cart = Cart::create();
-        }
+        // if(!$createCart){
+        //     return redirect(route('getProduct'))->with('error', 'CartItems doesnt exist!');
+        // }
+
+        // if (!$cart){
+        //     $cart = Cart::create([
+        //         'user_id' => $user_id,
+        //     ]);
+        // }
 
         if ($product->stock < $request->quantity){
             return redirect(route('getProduct'))->with('error', 'Stock less than items quantity!');

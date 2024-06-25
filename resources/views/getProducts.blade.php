@@ -28,9 +28,11 @@
                         <th class="px-6 py-4 text-center border-r border-gray-300">ShopID</th>
                         <th class="px-6 py-4 text-center border-r border-gray-300">Edit</th>
                         <th class="px-6 py-4">Delete</th>
+                        <th class="px-6 py-4">Add to Cart</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {{auth()->user()->id}}
                     @foreach ($productData -> sortBy('id') as $product)
                     <tr class ="bg-primary-400 dark:bg-primary-1000">
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->id}}</td>
@@ -53,6 +55,17 @@
                                 </button>
                             </form>
                         </td>
+                        
+                    <td class="px-6 py-4">
+                        <form method="post" action="{{ route('putItem', ['cart_id' => $product->cart_id, 'product_id' => $product->id]) }}">
+                            @csrf
+                            @method('POST')
+                            <input type="number" name="quantity" id="quantity" min="1" value="1" class="border rounded px-2 py-1">
+                            <button type="submit" class="bg-red-500 text-white dark:text-black px-6 py-2">
+                                Add to Cart
+                            </button>
+                        </form>
+                    </td>
                     </tr>
                     @endforeach
                 </tbody>
