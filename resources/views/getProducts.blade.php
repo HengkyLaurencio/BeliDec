@@ -3,12 +3,12 @@
 
 
 <head>
-@include('layouts.head')    
+@include('layouts.head')
     <style>
             .bg {
-                background-color: #f1f1f1; 
+                background-color: #f1f1f1;
             }
-        </style>    
+        </style>
 </head>
 
 
@@ -18,7 +18,7 @@
     <main class="px-6 md:px-12 lg:px-24 xl:px-48 py-4">
         <div class="overflow-x-auto">
             <table class="w-full bg-primary-dark dark:bg-primary-100 shadow-lg rounded-lg overflow-hidden">
-                <thead class="bg-primary-600 dark:bg-primary-200">    
+                <thead class="bg-primary-600 dark:bg-primary-200">
                     <tr>
                         <th class="px-6 py-4 text-center border-r border-gray-300">Product ID</th>
                         <th class="px-6 py-4 text-center border-r border-gray-300">Product Name</th>
@@ -55,9 +55,9 @@
                                 </button>
                             </form>
                         </td>
-                        
+
                     <td class="px-6 py-4">
-                        <form method="post" action="{{ route('putItem', ['cart_id' => $product->cart_id, 'product_id' => $product->id]) }}">
+                        <<form method="post" action="{{ route('putItem') }}">
                             @csrf
                             @method('POST')
                             <input type="number" name="quantity" id="quantity" min="1" value="1" class="border rounded px-2 py-1">
@@ -69,7 +69,7 @@
                     </tr>
                     @endforeach
                 </tbody>
-        </table>            
+        </table>
     </main>
 
     @include('layouts.footer')
