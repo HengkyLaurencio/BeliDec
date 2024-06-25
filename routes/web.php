@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ShopsController;
-use App\Http\Controllers\ProductController;;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\AuthenticationController;
 use App\Http\Middleware\ValidateIsAdmin;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShopsController;;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthenticationController;
 
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
@@ -72,9 +72,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/shop/create', 'createShop')->name('createShop');
         Route::get('/shop/history','getHistory')->name('getHistory');
         Route::get('/shop/{id}', 'getShops')->name('getShops');
-        Route::get('/shop/{id}/edit', 'editShop')->name('editShop');
-        Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
-        Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
-        Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
+        Route::get('/shop/{shop}/edit', 'editShop')->name('editShop');
+        Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
+        Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
     });
 });
