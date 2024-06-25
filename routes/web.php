@@ -63,42 +63,6 @@ Route::group(['middleware' => ['auth']], function() {
         Route::delete('/deleteProduct/{product}', 'deleteProduct')->name('deleteProduct');
     });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-Route::get('/Product', [ProductController::class, 'getProduct'])->name('getProduct');
-Route::get('/Product/{id}',  [ProductController::class, 'getProducts'])->name('getProducts');
-Route::get('/CreateProduct',  [ProductController::class, 'createProduct'])->name('createProduct');
-Route::post('/Simpan',  [ProductController::class, 'simpan'])->name('simpan');
-Route::get('/editProduct/{product}',  [ProductController::class, 'editProduct'])->name('editProduct');
-Route::put('/updateProduct/{product}', [ProductController::class, 'updateProduct'])->name('updateProduct');
-Route::delete('/deleteProduct/{product}', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
-
-//cart route
-Route::controller(CartController::class)->group(function () {
-    Route::get('/cart','index')->name('getCart');
-    Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
-    Route::get('/home/{cart_id}','getCartItemsHeader')->name('getCartItems');
-    Route::post('/cart/{cart_id}','putItem')->name('putItem');
-    Route::delete('/cart/{cart_id}/{product_id}','deleteItem')->name('deleteItem');
-});
-
-Route::controller(OrderController::class)->group(function () {
-    Route::get('/order','getOrder')->name('getOrder');
-    Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
-    Route::post('/order/create/{order_id}','createOrder')->name('createOrder');
-    Route::get('/order/{id}/edit', 'editOrder')->name('editOrder');
-    Route::put('/order/{id}/update', 'updateOrder')->name('updateShop');
-    Route::delete('/order/{order_id}','deleteOrder')->name('deleteOrder');
-});
-
-Route::controller(ReviewController::class)->group(function() {
-    Route::get('/reviews', 'index') -> name('index');
-    Route::get('/reviews/{order_item_id}', 'getReview') -> name('getReview');
-    Route::post('/reviews/{order_item_id}', 'createReview') -> name('createReview');
-    Route::delete('/reviews/{order_item_id}', 'deleteReview') -> name('deleteReview');
-=======
-=======
->>>>>>> 43595ced43d624e4f59c0988934dac99f98562d0
     Route::controller(CartController::class)->group(function () {
         Route::get('/cart','index')->name('getCart');
         Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
@@ -121,8 +85,4 @@ Route::controller(ReviewController::class)->group(function() {
         Route::post('/reviews/{order_item_id}', 'createReview') -> name('createReview');
         Route::delete('/reviews/{order_item_id}', 'deleteReview') -> name('deleteReview');
     });
-<<<<<<< HEAD
->>>>>>> 1cd2703de705bfba82fc59aa740973db57c9cfbf
-=======
->>>>>>> 43595ced43d624e4f59c0988934dac99f98562d0
 });

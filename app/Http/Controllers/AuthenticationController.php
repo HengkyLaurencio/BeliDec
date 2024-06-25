@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use PDO;
 
 class AuthenticationController extends Controller
 {
@@ -43,9 +45,13 @@ class AuthenticationController extends Controller
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
         $user = User::create($data);
+        $cart = Cart::create([$user->user_id]);
 
         if (!$user) {
             return redirect(route('register'))->withInput()->with('error', 'Registration Failed, try again.');
+        }
+        if (!$cart){
+            return redirect(route('register'))->withInput()->with('error', 'Cart Failed, try again.');
         }
 
         return redirect(route('login'))->with('success', 'Registration Success, login to access application');

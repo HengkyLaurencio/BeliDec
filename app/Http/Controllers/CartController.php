@@ -10,19 +10,24 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index(){
+    public function index(Request $request){    
+        $cartItemsData = CartItem::where('cart_id', $request->cart_id)
+        ->with('product')
+        ->get();
+        echo "hai <br> $request->user_id";
         $carts = Cart::latest()->paginate(10);
         return view('cart', compact ('carts'));
     }
 
-    public function getCart(){
-        $cartData = Cart::all();
-        foreach ($cartData as $cart){
-            echo $cart . '<br>';
-        }
-    }
+    // public function getCart(){
+    //     $cartData = Cart::all();
+    //     foreach ($cartData as $cart){
+    //         echo $cart . '<br>';
+    //     }
+    // }
 
     public function getCartItems($cart_id){
+
         $cartItemsData = CartItem::where('cart_id', $cart_id)
         ->with('product')
         ->get();
@@ -37,8 +42,7 @@ class CartController extends Controller
         //     echo $cartItems . '<br>';
         // }
         
-         return view('cart', compact ('cartItemsData'));
-
+        return view('cart', compact ('cartItemsData'));
 
         }
     public function getCartItemsHeader($cart_id){
@@ -62,7 +66,7 @@ class CartController extends Controller
     
     public function putItem(Request $request)
     {
-        $cart = Cart::find($request->cart_id);
+        $cart = CartItem::find($request->cart_id);
         $product = Product::find($request->product_id);
         
         if (!$cart){
