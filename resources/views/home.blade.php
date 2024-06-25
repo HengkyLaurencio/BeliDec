@@ -3,7 +3,7 @@
 
 @include('layouts.head')
 
-<body class="bg-white dark:bg-gray-700">
+<body class="bg-white dark:bg-primary-dark dark:text-text-dark">
     @include('layouts.header')
     <main class="px-28 py-4">
         <p>test</p>

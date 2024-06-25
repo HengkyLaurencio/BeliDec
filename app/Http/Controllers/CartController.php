@@ -37,7 +37,26 @@ class CartController extends Controller
         //     echo $cartItems . '<br>';
         // }
         
-        return view('cart', compact ('cartItemsData'));
+         return view('cart', compact ('cartItemsData'));
+
+
+        }
+    public function getCartItemsHeader($cart_id){
+        $cartItemsData = CartItem::where('cart_id', $cart_id)
+        ->with('product')
+        ->get();
+        $exists = CartItem::where('cart_id', $cart_id)->exists();
+
+        //cek availability
+        if (!$exists) {
+            return redirect(route('getProduct'))->with('error', 'CartItems doesnt exist!');
+        }
+
+        // foreach ($cartItemsData as $cartItems){
+        //     echo $cartItems . '<br>';
+        // }
+        
+         return view('home', compact ('cartItemsData'));
 
     }
     
