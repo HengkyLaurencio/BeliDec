@@ -56,6 +56,18 @@
                 </tbody>
             </table>            
         </div>
+        <br>
+        <div>
+            {{ $userData->links() }}
+        </div>
+        <div>
+            <!-- Custom Next Page Button -->
+            @if ($userData->hasMorePages())
+                <a href="{{ $userData->nextPageUrl() }}">
+                   
+                </a>
+            @endif
+        </div>
     </main>
 
     @include('layouts.footer')
