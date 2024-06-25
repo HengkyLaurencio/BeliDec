@@ -1,5 +1,5 @@
 resources/views/layouts/cartHeader.blade.php
-@if ($cartItemsData instanceof \Illuminate\Database\Eloquent\Collection)
+@if (isset($cartItemsData) && !$cartItemsData == null)
     <div class="p-4 space-y-4">
         @php
             $total = 0;
