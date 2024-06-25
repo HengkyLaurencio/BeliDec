@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 
 class ShopsController extends Controller
 {
 
-    public function getShop(Request $request)
+    public function getShop()
     {
         $shopData = Shop::all();     
         return view('shop', ['shopData' => $shopData]); 
     }
+
 
     public function registerShop()
     {
@@ -21,11 +23,16 @@ class ShopsController extends Controller
 
     public function createShop(Request $request)
     {
-        $shopData = $request->validate([
+        $userId = $request->session()->get('user_id');
+        
+        $request->validate([
             'name' => ['required', 'string'],
-            'owner_id' => ['required', 'integer'],
             'description' => ['required', 'string'],
         ]);
+
+        $shopData['name'] = $request->name;
+        $shopData['owner_id'] = $userId;
+        $shopData['description'] = $request->description;   
 
         $shop = Shop::create($shopData);
 
@@ -36,12 +43,30 @@ class ShopsController extends Controller
         return redirect()->route('getShop')->with('success', 'Shop created successfully.');
     }
 
-    public function getShops($id){
+    public function getShops($id)
+    {
         $shopData = Shop::find($id);
         if (!$shopData) {
             return response('shop not found', 404);
         }
-        return view('shop', ['shopData' => $shopData]);
+        return view('shopid', ['shopData' => $shopData]);
+    }
+
+    public function getHistory(Request $request)
+    {
+        $userId = $request->session()->get('user_id');
+        $shopId = Shop::where('owner_id', $userId)->value('id');
+
+        $orderDatas = OrderItem::all();
+        $filteredOrderData = [];
+
+        foreach($orderDatas as $orderData) {
+            if($orderData->product->shop_id == $shopId) {
+                $filteredOrderData[] = $orderData;
+            }
+        }
+
+        return view('getHistory', ['orderData' => $filteredOrderData]);
     }
 
     public function editShop($id)

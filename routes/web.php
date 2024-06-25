@@ -19,6 +19,7 @@ Route::controller(AuthenticationController::class)->group(function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
+
     Route::get('/', function () {
         return view('home');
     })->name('home');
@@ -33,26 +34,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/deleteproduct/{product}', 'deleteProduct')->name('deleteProduct');
     });
 
-    Route::controller(ShopsController::class)->group(function () {
-        Route::get('/shop', 'getShop')->name('getShop');
-        Route::get('/shop/create', 'registerShop')->name('registerShop');
-        Route::post('/shop/create', 'createShop')->name('createShop');
-        Route::get('/shop/{id}', 'getShops')->name('getShops');
-        Route::get('/shop/{id}/edit', 'editShop')->name('editShop');
-        Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
-        Route::get('/shop/{id}/delete', 'deleteShop')->name('deleteShop');
-        Route::delete('/shop/{id}/delete', 'removeShop')->name('removeShop');
-    });
-
     Route::controller(UserController::class)->group(function () {
         Route::get('/getUser', 'getUser')->name('getUser')->middleware(ValidateIsAdmin::class);
         Route::get('/getUser/{id}', 'getUsers')->name('getUsers');
         Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
         Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
         Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
-        Route::get('/getBalance', [UserController::class, 'getBalance']);
-        Route::get('/updateBalance', [UserController::class, 'viewUpdateBalance']);
-        Route::post('/updateBalanceNom', [UserController::class, 'updateBalance'])->name('balance.update');
     });
 
     Route::controller(CartController::class)->group(function () {
@@ -77,5 +64,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/reviews/{order_item_id}', 'getReview')->name('getReview');
         Route::post('/reviews/{order_item_id}', 'createReview')->name('createReview');
         Route::delete('/reviews/{order_item_id}', 'deleteReview')->name('deleteReview');
+    });
+  
+    Route::controller(ShopsController::class)->group(function () {
+        Route::get('/shop','getShop')->name('getShop');
+        Route::get('/shop/create', 'registerShop')->name('registerShop');
+        Route::post('/shop/create', 'createShop')->name('createShop');
+        Route::get('/shop/history','getHistory')->name('getHistory');
+        Route::get('/shop/{id}', 'getShops')->name('getShops');
+        Route::get('/shop/{id}/edit', 'editShop')->name('editShop');
+        Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
+        Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
+        Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
     });
 });
