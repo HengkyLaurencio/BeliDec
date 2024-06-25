@@ -18,21 +18,21 @@
     <main class="px-6 md:px-12 lg:px-24 xl:px-48 py-4">
         <div class="overflow-x-auto">
             <table class="w-full bg-primary-dark dark:bg-primary-100 shadow-lg rounded-lg overflow-hidden">
-                <thead class="bg-primary-200 dark:bg-gray">    
+                <thead class="bg-primary-600 dark:bg-primary-200">    
                     <tr>
-                        <th class="px-6 py-4 text-left border-r border-gray-300">Product ID</th>
-                        <th class="px-6 py-4 text-left border-r border-gray-300">Product Name</th>
-                        <th class="px-6 py-4 text-left border-r border-gray-300">Description</th>
-                        <th class="px-6 py-4 text-left border-r border-gray-300">Price</th>
-                        <th class="px-6 py-4 text-left border-r border-gray-300">Stock</th>
-                        <th class="px-6 py-4 text-left border-r border-gray-300">ShopID</th>
-                        <th class="px-6 py-4">Edit</th>
+                        <th class="px-6 py-4 text-center border-r border-gray-300">Product ID</th>
+                        <th class="px-6 py-4 text-center border-r border-gray-300">Product Name</th>
+                        <th class="px-6 py-4 text-center border-r border-gray-300">Description</th>
+                        <th class="px-6 py-4 text-center border-r border-gray-300">Price</th>
+                        <th class="px-6 py-4 text-center border-r border-gray-300">Stock</th>
+                        <th class="px-6 py-4 text-center border-r border-gray-300">ShopID</th>
+                        <th class="px-6 py-4 text-center border-r border-gray-300">Edit</th>
                         <th class="px-6 py-4">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($productData -> sortBy('id') as $product)
-                    <tr class ="bg-primary-400 dark:bg-primary-100">
+                    <tr class ="bg-primary-400 dark:bg-primary-1000">
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->id}}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->name}}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->description }}</td>
@@ -40,11 +40,11 @@
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->stock }}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->shop_id }}</td>
 
-                        <td class="px-6 py-4 text-center">
+                        <td class="px-6 py-4 text-center border-r border-gray-300">
                             <a href="{{ route('editProduct', ['product' => $product->id]) }}" class="bg-white-800 text-white-500 dark:text-white-300 px-6 py-2">Edit</a>
                         </td>
 
-                        <td class="px-6 py-4 text-center">
+                        <td class="px-6 py-4">
                             <form method="post" action="{{ route('deleteProduct', ['product' => $product]) }}">
                                 @csrf
                                 @method('DELETE')
