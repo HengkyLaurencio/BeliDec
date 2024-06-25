@@ -1,50 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" class="{{ session('theme', 'light') === 'dark' ? 'dark' : '' }}">
 
+@include('layouts.head')
 
-<head>
-@include('layouts.head')    
-    <style>
-            .bg {
-                background-color: #f1f1f1; 
-            }
-        </style>    
-</head>
-
-
-<body class="bg-primary-400 dark:bg-primary-dark">
+<body class="bg-white dark:bg-primary-dark dark:text-text-dark">
     @include('layouts.header')
+    
+    @include('layouts.menu')
+    <main class="px-28">
+    @foreach ($productData -> sortBy('id') as $product)
+    <div class="mt-6 grid grid-cols-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+          <img src="https://www.waktushop.com/wp-content/uploads/2023/03/9286-1.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="#">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                {{$product -> name}}
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">{{$product -> description}}</p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">{{$product -> price}}</p>
+        </div>
+      </div>
+    @endforeach
+      <!-- More products... -->
+    </div>  
 
-    <main class="px-6 md:px-12 lg:px-24 xl:px-48 py-4">
-        <div class="overflow-x-auto">
-            <table class="w-full bg-primary-dark dark:bg-primary-100 shadow-lg rounded-lg overflow-hidden">
-                <thead class="bg-primary-600 dark:bg-primary-200">    
-                    <tr>
-                        <th class="px-6 py-4 text-center border-r border-gray-300">Product ID</th>
-                        <th class="px-6 py-4 text-center border-r border-gray-300">Product Name</th>
-                        <th class="px-6 py-4 text-center border-r border-gray-300">Description</th>
-                        <th class="px-6 py-4 text-center border-r border-gray-300">Price</th>
-                        <th class="px-6 py-4 text-center border-r border-gray-300">Stock</th>
-                        <th class="px-6 py-4 text-center">ShopID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($productData -> sortBy('id') as $product)
-                    <tr class ="bg-primary-400 dark:bg-primary-1000">
-                        <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->id}}</td>
-                        <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->name}}</td>
-                        <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->description }}</td>
-                        <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->price }}</td>
-                        <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->stock }}</td>
-                        <td class="px-6 py-4 text-center">{{ $product->shop_id }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-        </table>            
     </main>
-
     @include('layouts.footer')
-
 </body>
 
 </html>
