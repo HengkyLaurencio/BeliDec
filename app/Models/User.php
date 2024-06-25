@@ -18,7 +18,8 @@ class User extends Model implements AuthenticatableContract
         'username',
         'email',
         'password',
-        'is_admin'
+        'is_admin',
+        'balance'
     ];
 
     public function shop() : HasOne {

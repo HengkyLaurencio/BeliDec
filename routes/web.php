@@ -20,7 +20,7 @@ Route::controller(AuthenticationController::class)->group(function () {
 });
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/', function () {
+    Route::get('/', function () { 
         return view('home');
     })->name('home');
 
@@ -51,6 +51,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
         Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
         Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
+        Route::get('/getBalance', [UserController::class, 'getBalance']);
+        Route::get('/updateBalance', [UserController::class, 'viewUpdateBalance']);
+        Route::post('/updateBalanceNom', [UserController::class, 'updateBalance'])->name('balance.update');
     });
     
     Route::controller(ProductController::class)->group(function() {
