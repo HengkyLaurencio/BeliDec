@@ -61,7 +61,7 @@ class AuthenticationController extends Controller
         if (Auth::attempt($credentials)) {
             $userId = User::where('email', $request->email)->value('id');
             $request->session() ->put('user_id', $userId);
-            return redirect()->intended(route('getProduct'));
+            return redirect()->intended(route('home'));
         }
 
         return redirect()->back()->with('error', 'Incorrect Email or Password.')->withInput();
