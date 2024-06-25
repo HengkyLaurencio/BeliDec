@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function() {
         return view('home');
     })->name('home');
 
-    Route::controller(ShopsController::class)->group(function () {
+    Route::controller(ProductController::class)->group(function () {
         Route::get('/product', 'getProducts')->name('getProducts');
         Route::get('/product/{id}', 'getProduct')->name('getProduct');
         Route::get('/createproduct', 'createProduct')->name('createProduct');
