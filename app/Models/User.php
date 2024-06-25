@@ -17,7 +17,9 @@ class User extends Model implements AuthenticatableContract
     protected $fillable = [
         'username',
         'email',
-        'password'
+        'password',
+        'is_admin',
+        'balance'
     ];
 
     public function shop() : HasOne {

@@ -1,10 +1,9 @@
-resources/views/layouts/cartHeader.blade.php
-@if ($cartItemsData instanceof \Illuminate\Database\Eloquent\Collection)
+@if (isset($cartItemsData) && !$cartItemsData==null)
     <div class="p-4 space-y-4">
         @php
             $total = 0;
         @endphp
-        @foreach($cartItemsData as $item)
+        @foreach ($cartItemsData as $item)
             <div class="flex items-center justify-between p-4 border-b border-gray-200">
                 <div class="flex items-center">
                     <div class="ml-4">
@@ -13,7 +12,9 @@ resources/views/layouts/cartHeader.blade.php
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <form action="{{ route('deleteItem', ['cart_id' => $item->cart_id, 'product_id' => $item->product->id]) }}" method="post">
+                    <form
+                        action="{{ route('deleteItem', ['cart_id' => $item->cart_id, 'product_id' => $item->product->id]) }}"
+                        method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-500">Remove</button>
