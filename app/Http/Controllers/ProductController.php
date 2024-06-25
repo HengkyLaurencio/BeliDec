@@ -26,6 +26,7 @@ class ProductController extends Controller
             'Description' => ['required', 'string'],
             'Price' => ['required', 'decimal:2'],
             'Stock' => ['required', 'integer'],
+            'shopID' => ['required', 'integer']
         ]);
     
         $newData = Product::create([
@@ -33,6 +34,7 @@ class ProductController extends Controller
             'description' => $productData['Description'],
             'price' => $productData['Price'],
             'stock' => $productData['Stock'],
+            'shop_id'=> $productData['shopID']
         ]);
     
         return redirect()->route('getProducts');
@@ -47,8 +49,7 @@ class ProductController extends Controller
             'name' => 'required | string',
             'description' => 'required | string',
             'price' => 'required | decimal:2',
-            'stock' => 'required | integer',
-            'shop_id' => 'required | integer',
+            'stock' => 'required | integer'
         ]);
 
         $product->update($productData);

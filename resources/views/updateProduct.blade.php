@@ -54,15 +54,6 @@
                         </td>
                     </tr>
 
-                    <tr class="border border-gray-300 dark:border-gray-600">
-                        <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">ShopID</td>
-                        <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ $product->shop_id }}</td>
-                        <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">
-                            <input type="text" name="shop_id" placeholder="New ShopID" value="{{ old('shop_id') }}"
-                                class="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-500">
-                        </td>
-                    </tr>
-
                     <tr>
                         <td></td>
                         <td></td>

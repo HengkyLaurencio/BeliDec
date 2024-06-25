@@ -8,7 +8,7 @@
             .bg {
                 background-color: #f1f1f1; 
             }
-        </style>
+        </style>    
 </head>
 
 
@@ -17,8 +17,8 @@
 
     <main class="px-6 md:px-12 lg:px-24 xl:px-48 py-4">
         <div class="overflow-x-auto">
-            <table class="w-full bg-white dark:bg-dark shadow-lg rounded-lg overflow-hidden">
-                <thead class="bg-primary-dark dark:bg-primary-dark">    
+            <table class="w-full bg-primary-dark dark:bg-primary-100 shadow-lg rounded-lg overflow-hidden">
+                <thead class="bg-primary-200 dark:bg-gray">    
                     <tr>
                         <th class="px-6 py-4 text-left border-r border-gray-300">Product ID</th>
                         <th class="px-6 py-4 text-left border-r border-gray-300">Product Name</th>
@@ -32,7 +32,7 @@
                 </thead>
                 <tbody>
                     @foreach ($productData -> sortBy('id') as $product)
-                    <tr class ="bg">
+                    <tr class ="bg-primary-400 dark:bg-primary-100">
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->id}}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->name}}</td>
                         <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $product->description }}</td>
