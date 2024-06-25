@@ -10,25 +10,25 @@
     </style>
 </head>
 
-<body class="bg-primary-400 dark:bg-primary-dark">
+<body class="bg-white dark:bg-gray-700">
 
     @include('layouts.header')
 
     <main class="px-6 md:px-12 lg:px-24 xl:px-48 py-4">
         <div class="overflow-x-auto">
             <table class="w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
-                <thead class="bg-primary-600 dark:bg-primary-900">
+                <thead class="bg-gray-200 dark:bg-gray-700">
                     <tr>
-                        <th class="px-6 py-4 text-left border-r border-b">ID</th>
-                        <th class="px-6 py-4 text-left border-r border-b">Username</th>
-                        <th class="px-6 py-4 text-left border-b">Email</th>
+                        <th class="px-6 py-4 text-left border-r border-gray-300">Product Name</th>
+                        <th class="px-6 py-4 text-left border-r border-gray-300">Quantity</th>
+                        <th class="px-6 py-4 text-left border-r border-gray-300">Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class ="bg">
-                        <td class="border-r px-6 py-4">{{ $user->id }}</td>
-                        <td class="border-r px-6 py-4">{{ $user->username }}</td>
-                        <td class="px-6 py-4">{{ $user->email }}</td>
+                        <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $order->product->name }}</td>
+                        <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $order->quantity }}</td>
+                        <td class="border-r border-gray-300 px-6 py-4 text-center">{{ $order->price }}</td>
                     </tr>
                 </tbody>
             </table>            
