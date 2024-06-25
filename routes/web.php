@@ -52,16 +52,6 @@ Route::group(['middleware' => ['auth']], function() {
         Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
         Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
     });
-    
-    Route::controller(ProductController::class)->group(function() {
-        Route::get('/Product', 'getProduct')->name('getProduct');        
-        Route::get('/Product/{id}', 'getProducts')->name('getProducts');
-        Route::get('/CreateProduct', 'createProduct')->name('createProduct');
-        Route::post('/Simpan', 'simpan')->name('simpan');
-        Route::get('/editProduct/{product}', 'editProduct')->name('editProduct');
-        Route::put('/updateProduct/{product}', 'updateProduct')->name('updateProduct');
-        Route::delete('/deleteProduct/{product}', 'deleteProduct')->name('deleteProduct');
-    });
 
     Route::controller(CartController::class)->group(function () {
         Route::get('/cart','index')->name('getCart');
