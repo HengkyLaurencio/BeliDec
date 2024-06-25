@@ -45,12 +45,13 @@ class AuthenticationController extends Controller
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
         $user = User::create($data);
-        $users = auth()->user();
-        $createCart = Cart::firstOrCreate(['user_id' => $users->id]);
 
         if (!$user) {
             return redirect(route('register'))->withInput()->with('error', 'Registration Failed, try again.');
         }
+
+        $createCart = Cart::create(['user_id' => $user->id]);
+
         if (!$createCart){
             return redirect(route('register'))->withInput()->with('error', 'Cart Failed, try again.');
         }
