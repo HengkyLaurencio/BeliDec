@@ -12,9 +12,6 @@
       background-color: #282222;
     }
 
-    table {
-      width: 150%; 
-    }
   </style>
 </head>
 
@@ -26,19 +23,17 @@
       <table class="w-full bg-white dark:bg-primary-dark dark:text-text-dark">
         <thead class="bg-primary-200 dark:bg-gray">
           <tr>
-            <th class="px-6 py-4 text-left dark:text-center">Product Name</th>
-            <th class="px-6 py-4 text-left dark:text-center">Status</th>
+            <th class="px-6 py-4 text-center dark:text-center">Product Name</th>
+            <th class="px-6 py-4 text-center dark:text-center">Status</th>
           </tr>
         </thead>
         <tbody>
-          <table>
             @foreach ($orderData as $index => $order)
             <tr class="{{ $index % 2 == 0 ? 'bg-even' : '' }} hover:bg-gray-100 dark:hover:bg-gray-600">
                 <td class="px-6 py-4 text-left">{{ $order->product->name }}</td>
                 <td class="px-6 py-4 text-left">{{ $order->order->status }}</td>
             </tr>
             @endforeach
-        </table>
         </tbody>
       </table>
     </div>

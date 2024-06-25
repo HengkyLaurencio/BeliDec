@@ -28,7 +28,7 @@
           <tr>
             <th class="px-6 py-4 text-center dark:text-center">Name</th>
             <th class="px-6 py-4 text-center dark:text-center">Owner Name</th>
-            <th class="px-6 py-4 text-center dark:text-center">Owner ID</th>
+            <th class="px-6 py-4 text-center dark:text-center">Shop ID</th>
             <th class="px-6 py-4 text-center dark:text-center">Description</th>
           </tr>
         </thead>
