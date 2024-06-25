@@ -57,7 +57,7 @@
                         </td>
 
                     <td class="px-6 py-4">
-                        <<form method="post" action="{{ route('putItem') }}">
+                        <form method="post" action="{{ route('putItem', ['cart_id' => $product->cart_id, 'product_id' => $product->id]) }}">
                             @csrf
                             @method('POST')
                             <input type="number" name="quantity" id="quantity" min="1" value="1" class="border rounded px-2 py-1">

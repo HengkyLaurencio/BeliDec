@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index(Request $request){    
+    public function index(Request $request){
         $cartItemsData = CartItem::where('cart_id', $request->cart_id)
         ->with('product')
         ->get();
@@ -31,7 +31,7 @@ class CartController extends Controller
         $cart = Cart::firstOrCreate(['user_id' => $user->id]);
         $cart_id = $cart->id;
 
-        
+
         if (!$cart_id) {
             return redirect(route('getProducts'))->with('error', 'CartItems doesnt exist!');
         }
@@ -49,7 +49,7 @@ class CartController extends Controller
         // foreach ($cartItemsData as $cartItems){
         //     echo $cartItems . '<br>';
         // }
-        
+
         return view('cart', compact ('cartItemsData'));
 
         }
@@ -67,20 +67,23 @@ class CartController extends Controller
         // foreach ($cartItemsData as $cartItems){
         //     echo $cartItems . '<br>';
         // }
-        
+
          return view('home', compact ('cartItemsData'));
 
     }
-    
+
     public function putItem(Request $request)
     {
         $user_id = auth()->user()->id;
         $cart = Cart::firstOrCreate(
             ['user_id' => $user_id]
         );
+
         $product = Product::find($request->product_id);
+
+        // dd ($product);
         //$createCart = Cart::create(['user_id' => $user_id,]);
-        
+
         // if(!$createCart){
         //     return redirect(route('getProduct'))->with('error', 'CartItems doesnt exist!');
         // }
@@ -89,6 +92,10 @@ class CartController extends Controller
         //     $cart = Cart::create([
         //         'user_id' => $user_id,
         //     ]);
+        // }
+
+        // if ($product === null) {
+        //     return redirect(route('getProduct'))->with('error', 'Product not found!');
         // }
 
         if ($product->stock < $request->quantity){
@@ -105,10 +112,10 @@ class CartController extends Controller
             'product_id' => ['required', 'string'],
             'quantity' => ['required', 'integer'],
         ]);
-        
+
         return redirect(route('getProduct'))->with('success', 'Success, Item added into Cart!');
 
-    }   
+    }
 
     public function deleteItem (Request $request){
 
@@ -122,10 +129,10 @@ class CartController extends Controller
     } else {
         return redirect()->back()->with('error', 'Failed to delete item.'); // Memberikan pesan error jika item tidak ditemukan
     }
-    
-    
+
+
     }
-    
+
 
 
 
