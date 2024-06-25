@@ -8,8 +8,8 @@
     
     @include('layouts.menu')
     <main class="px-28">
-    @foreach ($productData -> sortBy('id') as $product)
     <div class="mt-6 grid grid-cols-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    @foreach ($productData -> sortBy('id') as $product)
         <div class="group relative">
         <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
           <img src="https://www.waktushop.com/wp-content/uploads/2023/03/9286-1.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
@@ -30,7 +30,17 @@
     @endforeach
       <!-- More products... -->
     </div>  
-
+    <div>
+            {{ $productData->links() }}
+        </div>
+        <div>
+            <!-- Custom Next Page Button -->
+            @if ($productData->hasMorePages())
+                <a href="{{ $productData->nextPageUrl() }}">
+                   
+                </a>
+            @endif
+        </div>
     </main>
     @include('layouts.footer')
 </body>
