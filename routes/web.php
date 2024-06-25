@@ -12,15 +12,16 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Middleware\ValidateIsAdmin;
 
-Route::controller(AuthenticationController::class)->group(function () {
-    Route::get('/register', 'register')->name('register');
-    Route::post('/register', 'registerPost')->name('register.post');
-    Route::get('/login', 'login')->name('login');
-    Route::post('/login', 'loginPost')->name('login.post');
-    Route::get('/logout', 'logout')->name('logout');
-});
+    Route::controller(AuthenticationController::class)->group(function () {
+        Route::get('/register', 'register')->name('register');
+        Route::post('/register', 'registerPost')->name('register.post');
+        Route::get('/login', 'login')->name('login');
+        Route::post('/login', 'loginPost')->name('login.post');
+        Route::get('/logout', 'logout')->name('logout');
+    });
 
 Route::group(['middleware' => ['auth']], function () {
+
     Route::get('/', function () {
         return view('home');
     })->name('home');
@@ -48,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(UserController::class)->group(function () {
         Route::get('/getUser', 'getUser')->name('getUser')->middleware(ValidateIsAdmin::class);
-        Route::get('/getUsers/{id}', 'getUsers');
+        Route::get('/getUser/{id}', 'getUsers')->name('getUsers');
         Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
         Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
         Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
