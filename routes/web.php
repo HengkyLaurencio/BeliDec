@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\ProductController;;
+
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Middleware\ValidateIsAdmin;
@@ -19,7 +20,7 @@ Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/logout', 'logout')->name('logout');
 });
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {
         return view('home');
     })->name('home');
@@ -35,17 +36,17 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::controller(ShopsController::class)->group(function () {
-        Route::get('/shop','getShop')->name('getShop');
+        Route::get('/shop', 'getShop')->name('getShop');
         Route::get('/shop/create', 'registerShop')->name('registerShop');
         Route::post('/shop/create', 'createShop')->name('createShop');
         Route::get('/shop/{id}', 'getShops')->name('getShops');
         Route::get('/shop/{id}/edit', 'editShop')->name('editShop');
         Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
-        Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
-        Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
+        Route::get('/shop/{id}/delete', 'deleteShop')->name('deleteShop');
+        Route::delete('/shop/{id}/delete', 'removeShop')->name('removeShop');
     });
-  
-    Route::controller(UserController::class)->group(function() {
+
+    Route::controller(UserController::class)->group(function () {
         Route::get('/getUser', 'getUser')->name('getUser')->middleware(ValidateIsAdmin::class);
         Route::get('/getUsers/{id}', 'getUsers');
         Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
@@ -54,25 +55,26 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::controller(CartController::class)->group(function () {
-        Route::get('/cart','index')->name('getCart');
-        Route::get('/cart/{cart_id}','getCartItems')->name('getCartItems');
-        Route::post('/cart/{cart_id}','putItem')->name('putItem');
-        Route::delete('/cart/{cart_id}/{product_id}','deleteItem')->name('deleteItem');
+        Route::get('/cart', 'index')->name('getCart');
+        Route::get('/cart/{cart_id}', 'getCartItems')->name('getCartItems');
+        Route::post('/cart/{cart_id}', 'putItem')->name('putItem');
+        Route::delete('/cart/{cart_id}/{product_id}', 'deleteItem')->name('deleteItem');
     });
-    
+
     Route::controller(OrderController::class)->group(function () {
-        Route::get('/order','getOrder')->name('getOrder');
+        Route::post('/order/create', 'createOrder')->name('createOrder.post');
+        Route::get('/order', 'getOrder')->name('getOrder');
         Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
-        Route::post('/order/create/{order_id}','createOrder')->name('createOrder');
+        Route::post('/order/create/{order_id}', 'createOrder')->name('createOrder');
         Route::get('/order/{order}/edit', 'editOrder')->name('editOrder');
         Route::put('/order/{order}/update', 'updateOrder')->name('updateOrder');
-        Route::delete('/order/{order}','deleteOrder')->name('deleteOrder');
+        Route::delete('/order/{order}', 'deleteOrder')->name('deleteOrder');
     });
-    
-    Route::controller(ReviewController::class)->group(function() {
-        Route::get('/reviews', 'index') -> name('index');
-        Route::get('/reviews/{order_item_id}', 'getReview') -> name('getReview');
-        Route::post('/reviews/{order_item_id}', 'createReview') -> name('createReview');
-        Route::delete('/reviews/{order_item_id}', 'deleteReview') -> name('deleteReview');
+
+    Route::controller(ReviewController::class)->group(function () {
+        Route::get('/reviews', 'index')->name('index');
+        Route::get('/reviews/{order_item_id}', 'getReview')->name('getReview');
+        Route::post('/reviews/{order_item_id}', 'createReview')->name('createReview');
+        Route::delete('/reviews/{order_item_id}', 'deleteReview')->name('deleteReview');
     });
 });
