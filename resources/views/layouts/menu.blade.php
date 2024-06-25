@@ -32,7 +32,7 @@
         </a>
     </div>
     <div class="mx-8 px-4 rounded-xl hover:bg-primary-600">
-        <a href="{{ route('getOrder') }}" class="flex flex-col justify-center">
+        <a href="{{ route('viewOrder') }}" class="flex flex-col justify-center">
             <span class="material-symbols-outlined text-4xl flex justify-center">
                 list_alt
             </span>
