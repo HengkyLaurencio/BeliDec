@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function getProducts() {
-        $productData = Product::all();
+        $productData = Product::paginate(10);
         return view('getProducts', ['productData' => $productData]);
     }
 
