@@ -26,21 +26,18 @@
       <table class="w-full bg-white dark:bg-primary-dark dark:text-text-dark">
         <thead class="bg-primary-200 dark:bg-gray">
           <tr>
-            <th class="px-6 py-4 text-center dark:text-center">Name</th>
-            <th class="px-6 py-4 text-center dark:text-center">Owner Name</th>
-            <th class="px-6 py-4 text-center dark:text-center">Shop ID</th>
-            <th class="px-6 py-4 text-center dark:text-center">Description</th>
+            <th class="px-6 py-4 text-left dark:text-center">Name</th>
+            <th class="px-6 py-4 text-left dark:text-center">Owner Name</th>
+            <th class="px-6 py-4 text-left dark:text-center">Owner ID</th>
+            <th class="px-6 py-4 text-left dark:text-center">Description</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($shopData as $index => $shop)
-          <tr class="{{ $index % 2 == 0 ? 'bg-even' : '' }} hover:bg-gray-100 dark:hover:bg-gray-600">
-            <td class="px-6 py-4 text-center">{{ $shop->name }}</td>
-            <td class="px-6 py-4 text-center">{{ $shop->user->username }}</td>
-            <td class="px-6 py-4 text-center">{{ $shop->owner_id }}</td>
-            <td class="px-6 py-4 text-left">{{ $shop->description }}</td>
+            <td class="px-6 py-4 text-left">{{ $shopData->name }}</td>
+            <td class="px-6 py-4 text-left">{{ $shopData->user->username }}</td>
+            <td class="px-6 py-4 text-left">{{ $shopData->owner_id }}</td>
+            <td class="px-6 py-4 text-left">{{ $shopData->description }}</td>
           </tr>
-          @endforeach
         </tbody>
       </table>
     </div>

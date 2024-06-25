@@ -3,7 +3,7 @@
         @php
             $total = 0;
         @endphp
-        @foreach($cartItemsData as $item)   
+        @foreach ($cartItemsData as $item)
             <div class="flex items-center justify-between p-4 border-b border-gray-200">
                 <div class="flex items-center">
                     <div class="ml-4">
@@ -12,7 +12,9 @@
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <form action="{{ route('deleteItem', ['cart_id' => $item->cart_id, 'product_id' => $item->product->id]) }}" method="post">
+                    <form
+                        action="{{ route('deleteItem', ['cart_id' => $item->cart_id, 'product_id' => $item->product->id]) }}"
+                        method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-500">Remove</button>
