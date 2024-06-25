@@ -1,6 +1,6 @@
 <header class="bg-primary-100 py-3 px-28 flex justify-between items-center sticky top-0 z-50">
     <div class="flex-row items-center">
-        <a href="{{ route ('home')}}" class="flex items-center">
+        <a href="{{ route('home') }}" class="flex items-center">
             <div class="bg-primary-400 rounded-full p-2 mr-5">
                 <span class="material-symbols-outlined dark:text-text-200">
                     store
@@ -8,7 +8,7 @@
             </div>
             <h1 class="text-3xl text-white font-bold">BeliDec</h1>
         </a>
-    </div>  
+    </div>
     <div class="flex items-center">
         <form action="{{ route('register') }}" method="GET"
             class="bg-primary-500 rounded-full p-2 w-screen max-w-xl flex items-center">
@@ -24,7 +24,7 @@
             <span class="material-symbols-outlined cursor-pointer" id="category-icon">
                 category
             </span>
-            <div class="absolute hidden bg-primary-500 text-text-200 dark:bg-primary-500 dark:text-text-200 shadow-lg rounded-md mt-2 w-32 text-center"
+            <div class="absolute hidden bg-primary-500 text-sm text-text-200 dark:bg-primary-500 dark:text-text-200 shadow-lg rounded-md mt-2 w-28 text-center"
                 id="dropdown-menu">
                 <ul>
                     <li><a href="#"
@@ -44,24 +44,35 @@
             </span>
         </div>
         <div class="p-2">
-            @if (Request::is('/'))
+            @if (Auth::guest())
                 <a href="{{ route('register') }}">
                     <span class="material-symbols-outlined">
                         account_circle
                     </span>
                 </a>
             @else
-                @auth
-                    <a href="{{ route('login') }}">
-                        <span class="material-symbols-outlined">
-                            account_circle
-                        </span>
-                    </a>
-                @endauth
+                <div class="relative p-2 " id="account-menu">
+                    <span class="material-symbols-outlined cursor-pointer" id="account-icon">
+                        account_circle
+                    </span>
+                    <div class="absolute hidden bg-primary-500 text-text-200 text-sm dark:bg-primary-500 dark:text-text-200 shadow-lg rounded-md mt-2 w-32 text-center"
+                        id="dropdown-account-menu">
+                        <ul>
+                            <li><a href="{{route('changepassword')}}"
+                                    class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">Change
+                                    Password
+                                </a>
+                            </li>
+                            <li><a href="{{ route('logout') }}"
+                                    class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             @endif
         </div>
         <div class="p-2">
-        @if (isset($cartItemsData) && !$cartItemsData==null)
+            @if (isset($cartItemsData) && !$cartItemsData == null)
                 <span class="material-symbols-outlined cursor-pointer" id="cart-icon">
                     shopping_cart
                 </span>
@@ -76,7 +87,7 @@
                 </span>
             </div>
             <div class="p-4" id="cart-items">
-                    @include ('layouts.cartHeader')
+                @include ('layouts.cartHeader')
             </div>
         </div>
     </div>

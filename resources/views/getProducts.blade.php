@@ -3,12 +3,12 @@
 
 
 <head>
-@include('layouts.head')    
+@include('layouts.head')
     <style>
             .bg {
-                background-color: #f1f1f1; 
+                background-color: #f1f1f1;
             }
-        </style>    
+        </style>
 </head>
 
 
@@ -54,7 +54,7 @@
                                 </button>
                             </form>
                         </td>
-                        
+
                     <td class="px-6 py-4">
                         <form method="post" action="{{ route('putItem', ['cart_id' => $product->cart_id, 'product_id' => $product->id]) }}">
                             @csrf

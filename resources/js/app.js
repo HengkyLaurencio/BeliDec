@@ -20,27 +20,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const categoryIcon = document.getElementById('category-icon');
     const dropdownMenu = document.getElementById('dropdown-menu');
+    const dropdownAccountMenu = document.getElementById('dropdown-account-menu');
     const categoryMenu = document.getElementById('category-menu');
+    const accountMenu = document.getElementById('account-menu');
 
     let hideDropdownTimeout;
 
-    const showDropdown = () => {
+    const showDropdown = (menu) => {
         clearTimeout(hideDropdownTimeout);
-        dropdownMenu.classList.remove('hidden');
+        if (menu === 'category' && dropdownMenu) {
+            dropdownMenu.classList.remove('hidden');
+        } else if (menu === 'account' && dropdownAccountMenu) {
+            dropdownAccountMenu.classList.remove('hidden');
+        }
     };
 
     const hideDropdown = () => {
         hideDropdownTimeout = setTimeout(() => {
-            dropdownMenu.classList.add('hidden');
+            if (dropdownMenu) dropdownMenu.classList.add('hidden');
+            if (dropdownAccountMenu) dropdownAccountMenu.classList.add('hidden');
         }, 300);
     };
 
-    categoryIcon.addEventListener('mouseenter', showDropdown);
-    categoryMenu.addEventListener('mouseleave', hideDropdown);
-    dropdownMenu.addEventListener('mouseenter', showDropdown);
-    dropdownMenu.addEventListener('mouseleave', hideDropdown);
+    if (categoryMenu) {
+        categoryMenu.addEventListener('mouseenter', () => showDropdown('category'));
+        categoryMenu.addEventListener('mouseleave', hideDropdown);
+    }
+
+    if (accountMenu) {
+        accountMenu.addEventListener('mouseenter', () => showDropdown('account'));
+        accountMenu.addEventListener('mouseleave', hideDropdown);
+    }
 
     const cartIcon = document.getElementById('cart-icon');
     const cartList = document.getElementById('cart-list');

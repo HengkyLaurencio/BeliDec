@@ -15,6 +15,8 @@ Route::controller(AuthenticationController::class)->group(function () {
     Route::post('/register', 'registerPost')->name('register.post');
     Route::get('/login', 'login')->name('login');
     Route::post('/login', 'loginPost')->name('login.post');
+    Route::get('/changepassword', 'changepassword')->name('changepassword');
+    Route::post('/changepassword', 'changepasswordPost')->name('changepassword.post');
     Route::get('/logout', 'logout')->name('logout');
 });
 
@@ -45,7 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(CartController::class)->group(function () {
         Route::get('/cart','getCartItems')->name('getCartItems');
-        Route::post('/cart/{cart_id}', 'putItem')->name('putItem');
+        Route::post('/cart', 'putItem')->name('putItem');
         Route::delete('/cart/{cart_id}/{product_id}', 'deleteItem')->name('deleteItem');
     });
 
@@ -65,7 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/reviews/{order_item_id}', 'createReview')->name('createReview');
         Route::delete('/reviews/{order_item_id}', 'deleteReview')->name('deleteReview');
     });
-  
+
     Route::controller(ShopsController::class)->group(function () {
         Route::get('/shop','getShop')->name('getShop');
         Route::get('/shop/create', 'registerShop')->name('registerShop');
