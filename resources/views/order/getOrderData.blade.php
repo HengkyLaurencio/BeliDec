@@ -30,7 +30,7 @@
                         <th class="px-6 py-4 text-left border-r border-b">Total</th>
                         <th class="px-6 py-4 text-left border-r border-b">Status</th>
                         <th class="px-6 py-4 text-center border-r border-b">View Order</th>
-                        <th class="px-6 py-4 border-b">Delete</th>
+                        <th class="px-6 py-4 border-b">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +42,7 @@
                         <td class="border-r border-b px-6 py-4 text-center">
                             <a href="{{ route('getOrders', ['order_id' => $order->id]) }}">View</a>
                         </td>
+                        @if ($order->status ===  "Awaiting Payment")
                         <td class="px-6 py-4 text-center border-b">
                             <form method="post" action="{{ route('deleteOrder', ['order' => $order]) }}">
                                 @csrf
@@ -51,6 +52,10 @@
                                 </button>
                             </form>
                         </td>
+                        
+
+                
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

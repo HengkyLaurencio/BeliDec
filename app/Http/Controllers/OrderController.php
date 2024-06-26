@@ -19,11 +19,11 @@ class OrderController extends Controller
 
     public function getOrders($id)
     {
-        $order = OrderItem::find($id);
-        if (!$order) {
+        $orders = OrderItem::where('order_id',$id)->get();
+        if (!$orders) {
             return response('Order not found', 404);
         }
-        return view('order.getOrders', ['order' => $order]);
+        return view('order.getOrders', compact('orders'));
     }
 
     public function createOrder(Request $request)
@@ -90,13 +90,12 @@ class OrderController extends Controller
     public function deleteOrder(Order $order)
     {
         $order->delete();
-        return redirect(route('getOrder'));
+        return redirect()->back();
     }
 
     public function viewOrder(Request $request)
     {
         $userId = $request->session()->get('user_id');
-
         $orderData = Order::where(['user_id' => $userId])->paginate(10);
         return view('order.getOrderData', ['orderData' => $orderData]);
     }
