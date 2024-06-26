@@ -47,14 +47,14 @@
                                 class="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-500">
                         </td>
                     </tr>
-
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td><button type="submit" class="px-4 py-2 bg-blue-500 text-white">Update Product Data</button></td>
-                    </tr>
                 </tbody>
             </table>
+            <br>
+            <div class="text-end flex flex-row justify-end mb-72">
+                <button type="submit" class="bg-primary-1100 text-[#050303] dark:text-black px-6 py-2 border rounded-md">
+                    <b>Update Product Data</b>
+                </button>
+            </div>
         </form>
     </main>
 </x-admin-template>

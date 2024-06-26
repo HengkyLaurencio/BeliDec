@@ -57,7 +57,7 @@ class ProductController extends Controller
             'stock' => 'required | integer'
         ]);
         $product->update($productData);
-        return redirect()->back()->with('success', 'Success, Item added into Cart!');
+        return redirect()->back()->with('success', 'Item Updated Successfully');
     }
 
     public function adminEditProduct(Product $product, Request $request){
@@ -71,7 +71,7 @@ class ProductController extends Controller
     public function deleteProduct (Product $product) {
         
         $product->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Delete successfully');
     }
 
 }
