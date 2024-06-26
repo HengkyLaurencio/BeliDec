@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Shop;
 
 use Illuminate\Http\Request;
 
@@ -31,18 +32,20 @@ class ProductController extends Controller
             'Description' => ['required', 'string'],
             'Price' => ['required', 'decimal:2'],
             'Stock' => ['required', 'integer'],
-            'shopID' => ['required', 'integer']
         ]);
-    
+        
+        $userId = $request->session()->get('user_id');
+        $shopID = Shop::where('owner_id', $userId)->value('id');
+
         $newData = Product::create([
             'name' => $productData['productName'],
             'description' => $productData['Description'],
             'price' => $productData['Price'],
             'stock' => $productData['Stock'],
-            '   hop_id'=> $productData['shopID']
+            'shop_id'=> $shopID
         ]);
     
-        return redirect()->route('product.getProducts');
+        return redirect()->back();
     }
     
     public function createProduct(Product $product, Request $request){
