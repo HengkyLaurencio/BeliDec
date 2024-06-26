@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" class="{{ session('theme', 'light') === 'dark' ? 'dark' : '' }}">
-
-<head>
-    @include('layouts.head')
-    <style>
+<x-admin-template>
+<style>
         .bg-even {
             background-color: #f1f1f1; 
         }
@@ -15,13 +11,8 @@
             color: white;
         }
     </style>
-</head>
 
-<body class="bg-primary-400 dark:bg-primary-dark">
-
-    @include('layouts.header')
-
-    <main class="px-6 md:px-12 lg:px-24 xl:px-48 py-4">
+    <main class="px-6  py-4">
         <div class="overflow-x-auto">
             <table class="w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
                 <thead class="bg-primary-600 dark:bg-primary-900">
@@ -43,10 +34,10 @@
                         <td class="border-r border-b px-6 py-4">{{ $shop->owner_id }}</td>
                         <td class="border-r border-b px-6 py-4">{{ $shop->description }}</td>
                         <td class="border-r border-b px-6 py-4 text-center">
-                          <a href="{{ route('getHistory') }}">History</a>
+                          <!-- <a href="">History</a> -->
                         </td>
                         <td class="border-r border-b px-6 py-4 text-center">
-                            <a href="{{ route('editShop', $shop->owner_id) }}">Edit</a>
+                            <a href="{{ route('adminEditShop', $shop->owner_id) }}">Edit</a>
                         </td>
                         <td class="px-6 py-4 text-center border-b">
                             <form method="post" action="{{ route('deleteShop', ['shop' => $shop]) }}">
@@ -74,9 +65,4 @@
             @endif
         </div>
     </main>
-
-    @include('layouts.footer')
-
-</body>
-
-</html>
+</x-admin-template  >
