@@ -39,7 +39,7 @@ class ProductController extends Controller
             'description' => $productData['Description'],
             'price' => $productData['Price'],
             'stock' => $productData['Stock'],
-            'shop_id'=> $productData['shopID']
+            '   hop_id'=> $productData['shopID']
         ]);
     
         return redirect()->route('product.getProducts');

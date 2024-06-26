@@ -22,7 +22,9 @@ class ShopsController extends Controller
         if (!$shopData) {
             return response('shop not found', 404);
         }
-        return view('shop.shopid', ['shopData' => $shopData]);
+
+        $productData = Product::where('shop_id', $shopData->id)->get();
+        return view('shop.shopid', ['shopData' => $shopData, 'productData' => $productData]);
     }
 
     public function registerShop()
