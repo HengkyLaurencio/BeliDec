@@ -1,4 +1,4 @@
-<header class="bg-primary-100 py-3 px-28 flex justify-between items-center sticky top-0 z-50">
+<header class="bg-primary-100 py-3 px-28 flex justify-between items-center sticky top-0 z-30">
     <div class="flex-row items-center">
         <a href="{{ route('home') }}" class="flex items-center">
             <div class="bg-primary-400 rounded-full p-2 mr-5">
@@ -10,9 +10,9 @@
         </a>
     </div>
     <div class="flex items-center">
-        <form action="{{ route('register') }}" method="GET"
+        <form action="{{ route('search') }}" method="GET"
             class="bg-primary-500 rounded-full p-2 w-screen max-w-xl flex items-center">
-            <span class="material-symbols-outlined cursor-pointer dark:text-text-200">
+            <span class="material-symbols-outlined justify-center cursor-pointer dark:text-text-200">
                 search
             </span>
             <input type="text" name="query" placeholder="Search the products"
@@ -20,55 +20,66 @@
         </form>
     </div>
     <div class="flex items-center space-x-4">
-        <div class="relative p-2" id="category-menu">
-            <span class="material-symbols-outlined cursor-pointer" id="category-icon">
-                category
-            </span>
-            <div class="absolute hidden bg-primary-500 text-sm text-text-200 dark:bg-primary-500 dark:text-text-200 shadow-lg rounded-md mt-2 w-28 text-center"
-                id="dropdown-menu">
-                <ul>
-                    <li><a href="#"
-                            class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">Category 1</a>
-                    </li>
-                    <li><a href="#"
-                            class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">Category 2</a>
-                    </li>
-                    <li><a href="#"
-                            class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">Category 3</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="p-2 cursor-pointer" id="theme-toggle">
-            <span class="material-symbols-outlined" id="theme-icon">
-            </span>
-        </div>
-        <div class="p-2">
-            @if (Auth::guest())
-                <a href="{{ route('register') }}">
-                    <span class="material-symbols-outlined">
-                        account_circle
+        <div class="flex flex-row items-center justify-center px-3">
+            <div class="px-3">
+                <a href="{{ route('getCartItems') }}" class="flex flex-col justify-center">
+                    <span class="material-symbols-outlined flex justify-center">
+                        shopping_cart
                     </span>
                 </a>
-            @else
-                <div class="relative p-2 " id="account-menu">
-                    <span class="material-symbols-outlined cursor-pointer" id="account-icon">
-                        account_circle
+            </div>
+            <div class="px-3">
+                <a href="{{ route('viewOrder') }}" class="flex flex-col justify-center">
+                    <span class="material-symbols-outlined flex justify-center">
+                        list_alt
                     </span>
-                    <div class="absolute hidden bg-primary-500 text-text-200 text-sm dark:bg-primary-500 dark:text-text-200 shadow-lg rounded-md mt-2 w-32 text-center"
-                        id="dropdown-account-menu">
-                        <ul>
-                            <li><a href="{{route('changepassword')}}"
-                                    class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">Change
-                                    Password
-                                </a>
-                            </li>
-                            <li><a href="{{ route('logout') }}"
-                                    class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">Logout</a>
-                            </li>
-                        </ul>
+                </a>
+            </div>
+            <div class="px-3">
+                <a href="{{ route('index') }}" class="flex flex-col justify-center">
+                    <span class="material-symbols-outlined flex justify-center">
+                        reviews
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-row items-center justify-center">
+            <div class="p-2 flex cursor-pointer" id="theme-toggle">
+                <span class="material-symbols-outlined justify-center" id="theme-icon">
+                </span>
+            </div>
+            <div class="p-2 flex">
+                @if (Auth::guest())
+                    <a href="{{ route('register') }}">
+                        <span class="material-symbols-outlined justify-center">
+                            account_circle
+                        </span>
+                    </a>
+                @else
+                    <div class="relative p-2 flex " id="account-menu">
+                        <span class="material-symbols-outlined justify-center cursor-pointer" id="account-icon">
+                            account_circle
+                        </span>
+                        <div class="absolute hidden bg-primary-500 text-text-200 text-sm dark:bg-primary-500 dark:text-text-200 shadow-lg rounded-md mt-2 w-32 text-center"
+                            id="dropdown-account-menu">
+                            <ul>
+                                <li><a href="{{ route('shopMainDashboard') }}"
+                                        class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">My
+                                        Shop
+                                    </a>
+                                </li>
+                                <li><a href="{{ route('changepassword') }}"
+                                        class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">Change
+                                        Password
+                                    </a>
+                                </li>
+                                <li><a href="{{ route('logout') }}"
+                                        class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+            </div>
             @endif
         </div>
         <div class="p-2">

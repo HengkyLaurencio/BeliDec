@@ -5,8 +5,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\ValidateIsAdmin;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ShopsController;;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ShopsController;;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Middleware\haveShop;
@@ -23,7 +24,7 @@ Route::controller(AuthenticationController::class)->group(function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => [ValidateIsAdmin::class]], function () {
-        Route::prefix('admin')->group(function () { 
+        Route::prefix('admin')->group(function () {
             Route::controller(UserController::class)->group(function () {
                 Route::get('/users', 'getUser')->name('getUser'); 
                 Route::get('/getUser/{id}', 'getUsers')->name('getUsers');
@@ -113,3 +114,5 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 });
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');

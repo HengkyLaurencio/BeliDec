@@ -8,21 +8,20 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 
 class AuthenticationController extends Controller
 {
     public function register()
     {
-        return view("register");
+        return view("authentication.register");
     }
     public function login()
     {
-        return view("login");
+        return view("authentication.login");
     }
     public function changepassword()
     {
-        return view(("changepassword"));
+        return view(("authentication.changepassword"));
     }
     public function registerPost(Request $request): RedirectResponse
     {
@@ -62,7 +61,7 @@ class AuthenticationController extends Controller
         return redirect(route('login'))->with('success', 'Registration Success, login to access application');
     }
 
-    public function loginPost(Request $request): RedirectResponse
+    public function loginPost(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'string', 'email'],
@@ -72,12 +71,12 @@ class AuthenticationController extends Controller
         if (Auth::attempt($credentials)) {
             $userId = User::where('email', $request->email)->value('id');
             $request->session()->put('user_id', $userId);
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('home'))->with('success', 'Login Success');
         }
 
         return redirect()->back()->with('error', 'Incorrect Email or Password.')->withInput();
     }
-    public function changepasswordPost(Request $request): RedirectResponse
+    public function changepasswordPost(Request $request)
     {
         $request->validate([
             'email' => ['required', 'string', 'email'],
