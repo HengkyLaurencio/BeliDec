@@ -11,7 +11,7 @@ class ReviewController extends Controller
 
     public function index(){
         $reviews = Review::latest()->paginate(10);
-        return view('review.index', compact ('reviews'));
+        return view('review.reviewAdmin', compact ('reviews'));
     }
 
     public function getReview($order_item_id){
@@ -39,6 +39,7 @@ class ReviewController extends Controller
             'stars' => $request->stars,
             'comments' => $request->comments,
         ]);
+
         return redirect(route('orderReview'))->with('success', 'Success, Order reviewed!');
 
     }
