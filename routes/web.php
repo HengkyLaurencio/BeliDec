@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::controller(ReviewController::class)->group(function () {
         Route::get('/reviews', 'getReview')->name('index');
         Route::get('/reviews/{order_item_id}', 'getReviewById')->name('createReview'); // Route to display the review form
-        Route::post('/reviews/{order_item_id}', 'getReviewById')->name('createReviews'); // Route to handle form submission
+        Route::post('/reviews/{order_item_id}', 'createReview')->name('createReviews'); // Route to handle form submission
         // Route::delete('/reviews/{order_item_id}', 'deleteReview')->name('deleteReview');
     });
     
