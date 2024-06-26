@@ -57,7 +57,7 @@ class ProductController extends Controller
             'stock' => 'required | integer'
         ]);
         $product->update($productData);
-        return redirect()->route('getProducts')->with('success', 'Item Updated Successfully');
+        return redirect()->back()->with('success', 'Item Updated Successfully');
     }
 
     public function adminEditProduct(Product $product, Request $request){
