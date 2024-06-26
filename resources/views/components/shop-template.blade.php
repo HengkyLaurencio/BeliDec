@@ -69,6 +69,7 @@
         </aside>
         <div class="p-4 xl:ml-80 flex-1">
             <div class="mt-4">
+                @include('layouts.notification')
                 {{$slot}}
             </div>
             <div class="text-blue-gray-600">
