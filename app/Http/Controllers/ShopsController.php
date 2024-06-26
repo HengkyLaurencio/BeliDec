@@ -15,8 +15,9 @@ class ShopsController extends Controller
         return view('shop.getShop', ['shopData' => $shopData]); 
     }
 
-    public function getShops($id) // hrs ad session nnti
+    public function getShops($id, Request $request) // hrs ad session nnti
     {
+
         $shopData = Shop::find($id);
         if (!$shopData) {
             return response('shop not found', 404);
@@ -66,7 +67,7 @@ class ShopsController extends Controller
         return redirect()->route('getShopUser')->with('success', 'Shop created successfully.');
     }
 
-    public function editShop(Shop $shop)
+    public function editShop(Shop $shop) // bikin session 
     {
         return view('shop.updateShops', ['shop' => $shop]);
     }
@@ -80,7 +81,7 @@ class ShopsController extends Controller
     
         $shop->update($shopData);
     
-        return redirect()->route('getShop')->with('success', 'Shop updated successfully.');
+        return redirect()->route('getShopUser')->with('success', 'Shop updated successfully.');
     }
 
     public function deleteShop(Shop $shop) {
