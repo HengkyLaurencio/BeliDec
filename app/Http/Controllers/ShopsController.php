@@ -11,14 +11,22 @@ class ShopsController extends Controller
 
     public function getShop()
     {
-        $shopData = Shop::all();     
-        return view('shop', ['shopData' => $shopData]); 
+        $shopData = Shop::paginate(10);     
+        return view('shop.shop', ['shopData' => $shopData]); 
     }
 
+    public function getShops($id)
+    {
+        $shopData = Shop::find($id);
+        if (!$shopData) {
+            return response('shop not found', 404);
+        }
+        return view('shop.shopid', ['shopData' => $shopData]);
+    }
 
     public function registerShop()
     {
-        return view("createShop");
+        return view("shop.createShop");
     }
 
     public function createShop(Request $request)
@@ -43,13 +51,26 @@ class ShopsController extends Controller
         return redirect()->route('getShop')->with('success', 'Shop created successfully.');
     }
 
-    public function getShops($id)
+    public function editShop(Shop $shop)
     {
-        $shopData = Shop::find($id);
-        if (!$shopData) {
-            return response('shop not found', 404);
-        }
-        return view('shopid', ['shopData' => $shopData]);
+        return view('shop.updateShops', ['shop' => $shop]);
+    }
+
+    public function updateShop(Shop $shop, Request $request)
+    {
+        $shopData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+        ]);
+    
+        $shop->update($shopData);
+    
+        return redirect()->route('getShop')->with('success', 'Shop updated successfully.');
+    }
+
+    public function deleteShop(Shop $shop) {
+        $shop->delete();
+        return redirect()->route('getShop')->with('success', 'Shop successfully deleted.');
     }
 
     public function getHistory(Request $request)
@@ -66,43 +87,6 @@ class ShopsController extends Controller
             }
         }
 
-        return view('getHistory', ['orderData' => $filteredOrderData]);
-    }
-
-    public function editShop($id)
-    {
-        $shopData = Shop::find($id);
-        if (!$shopData) {
-            return response('shop not found', 404);
-        }
-        
-        return view('updateShops', ['shopData' => $shopData]);
-    }
-
-    public function updateShop($id, Request $request)
-    {
-        $shop = Shop::find($id);
-        $shopData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
-        ]);
-    
-        $shop->update($shopData);
-    
-        return redirect()->route('getShop')->with('success', 'Shop updated successfully.');
-    }
-
-    public function deleteShop($id)
-    {
-        $shop = shop::find($id);
-
-        return view('deleteShop', ['shop' => $shop]);
-    }
-
-    public function removeShop($id) {
-        $shop = shop::find($id);
-        $shop->delete();
-
-        return redirect()->route('getShop')->with('success', 'Shop successfully deleted.');
+        return view('shop.getHistory', ['orderData' => $filteredOrderData]);
     }
 }

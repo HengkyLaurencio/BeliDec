@@ -31,7 +31,7 @@
             </ul>
         </div>
     @endif
-        <form method="post" action="{{ route('updateShop', $shopData->owner_id) }}">
+        <form method="post" action="{{ route('updateShop', $shop->owner_id) }}">
             @csrf
             @method('PUT')
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -43,7 +43,7 @@
                 <label for="name" class="mb-3 block text-base font-medium text-[#07074D] dark:text-[#FFFFFF]">
                     Update Shop Name
                 </label>
-                <input type="text" name="name" id="name" placeholder="Enter New Shop Name" value="{{ old('name', $shopData->name ) }}"
+                <input type="text" name="name" id="name" placeholder="Enter New Shop Name" value="{{ old('name', $shop->name ) }}"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
             </div>
 
@@ -51,7 +51,7 @@
                 <label for="description" class="mb-3 block text-base font-medium text-[#07074D] dark:text-[#FFFFFF]">
                     Description
                 </label>
-                <input type="text" name="description" id="description" placeholder="Enter The Desc" value="{{ old ('description', $shopData->description) }}"
+                <input type="text" name="description" id="description" placeholder="Enter The Desc" value="{{ old ('description', $shop->description) }}"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
             </div>
 

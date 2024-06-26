@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" class="{{ session('theme', 'light') === 'dark' ? 'dark' : '' }}">
-<head>
-    @include('layouts.head')
-</head>
-<body class="bg-white dark:bg-gray-700 overflow-hidden">
-    @include('layouts.header')
-    <main class="px-8 py-4">
+<x-admin-template>
+    
+<main class="px-8 py-4 mt-8 mb-52">
         <form method="post" action="{{ route('updateUser', ['user' => $user->id]) }}">
             @csrf
             @method('put')
@@ -52,6 +47,4 @@
             </div>
         </form>
     </main>
-    @include('layouts.footer')
-</body>
-</html>
+</x-admin-template>

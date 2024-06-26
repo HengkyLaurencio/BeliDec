@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ShopsController;
-use App\Http\Controllers\ProductController;;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\AuthenticationController;
 use App\Http\Middleware\ValidateIsAdmin;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShopsController;;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthenticationController;
 
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
@@ -21,6 +21,21 @@ Route::controller(AuthenticationController::class)->group(function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => [ValidateIsAdmin::class]], function () {
+        Route::prefix('admin')->group(function () {
+            Route::controller(UserController::class)->group(function () {
+                Route::get('/getUser', 'getUser')->name('getUser'); 
+                Route::get('/getUser/{id}', 'getUsers')->name('getUsers');
+                Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
+                Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
+                Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
+            });
+
+            
+            //tambahin lagi
+        });
+    });
+
 
     Route::get('/', function () {
         return view('home');
@@ -35,14 +50,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/editproduct/{product}', 'editProduct')->name('editProduct');
         Route::put('/updateproduct/{product}', 'updateProduct')->name('updateProduct');
         Route::delete('/deleteproduct/{product}', 'deleteProduct')->name('deleteProduct');
-    });
-
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/getUser', 'getUser')->name('getUser')->middleware(ValidateIsAdmin::class);
-        Route::get('/getUser/{id}', 'getUsers')->name('getUsers');
-        Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
-        Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
-        Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
     });
 
     Route::controller(CartController::class)->group(function () {
@@ -74,9 +81,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/shop/create', 'createShop')->name('createShop');
         Route::get('/shop/history','getHistory')->name('getHistory');
         Route::get('/shop/{id}', 'getShops')->name('getShops');
-        Route::get('/shop/{id}/edit', 'editShop')->name('editShop');
-        Route::put('/shop/{id}/edit', 'updateShop')->name('updateShop');
-        Route::get('/shop/{id}/delete','deleteShop')->name('deleteShop');
-        Route::delete('/shop/{id}/delete','removeShop')->name('removeShop');
+        Route::get('/shop/{shop}/edit', 'editShop')->name('editShop');
+        Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
+        Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
     });
 });
