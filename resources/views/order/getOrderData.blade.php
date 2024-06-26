@@ -37,7 +37,7 @@
                     @foreach ($orderData as $index => $order)
                     <tr class="{{ $index % 2 == 0 ? 'bg-even' : '' }} hover:bg-primary-100 dark:hover:bg-primary-100">
                         <td class="border-r border-b px-6 py-4">{{ $order->user->username }}</td>
-                        <td class="border-r border-b px-6 py-4">{{ $order->total }}</td>
+                        <td class="border-r border-b px-6 py-4">Rp {{ number_format($order->total, 0, ',', '.') }}</td>
                         <td class="border-r border-b px-6 py-4">{{ $order->status }}</td>
                         <td class="border-r border-b px-6 py-4 text-center">
                             <a href="{{ route('getOrders', ['order_id' => $order->id]) }}">View</a>

@@ -37,7 +37,7 @@
                     <tr class ="bg">
                         <td class="border-r px-6 py-4 text-center">{{ $order->product->name }}</td>
                         <td class="border-r px-6 py-4 text-center">{{ $order->quantity }}</td>
-                        <td class="px-6 py-4 text-center">Rp. {{ number_format($order->price, 0, ',', '.') }}</td>
+                        <td class="px-6 py-4 text-center">Rp {{ number_format($order->price, 0, ',', '.') }}</td>
                         @if($order->order->status === "Completed")
                         <td class="px-6 py-4 text-center border-b">
                             <a href="{{ route('createReview', ['order_item_id' => $order->id]) }}" class="bg-green-500 text-white dark:text-black px-6 py-2 inline-block text-center">
