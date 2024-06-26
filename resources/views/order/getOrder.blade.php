@@ -1,4 +1,9 @@
 <x-admin-template>
+    <style>
+        .bg-even {
+            background-color: #f1f1f1; 
+        }
+    </style>
     @include('layouts.notification')
     <main class="px-6 md:px-12 lg:px-24 xl:px-4 py-4">
         <div class="overflow-x-auto">
