@@ -98,6 +98,6 @@ class OrderController extends Controller
         $userId = $request->session()->get('user_id');
 
         $orderData = Order::where(['user_id' => $userId])->paginate(10);
-        return view('order.getOrder', ['orderData' => $orderData]);
+        return view('order.getOrderData', ['orderData' => $orderData]);
     }
 }

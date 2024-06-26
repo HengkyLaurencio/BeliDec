@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" class="{{ session('theme', 'light') === 'dark' ? 'dark' : '' }}">
-<head>
-    @include('layouts.head')
-</head>
-<body class="bg-white dark:bg-gray-700">
-    @include('layouts.header')
-    <main class="px-8 py-4">
+<x-admin-template>
+    <main class="px-4 py-4 mb-64 mt-8">
         <form method="post" action="{{ route('updateOrder', ['order' => $order->id]) }}">
             @csrf
             @method('put')
@@ -27,13 +21,11 @@
             </table>
             <br>
             <div class="text-end flex flex-row justify-end mb-44">
-                <input type="text" name="status" placeholder="New Status" class="w-200 mx-28 px-8 py-1 border border-gray-300 dark:border-gray-600 rounded-md ">
+                <input type="text" name="status" placeholder="New Status" class="w-200 mx-10 px-6 py-1 border border-gray-300 dark:border-gray-600 rounded-md ">
                 <button type="submit" class="bg-primary-1100 text-[#050303] dark:text-black px-6 py-2 border rounded-md">
                     <b>Update User Data</b>
                 </button>
             </div>
         </form>
     </main>
-    @include('layouts.footer')
-</body>
-</html>
+</x-admin-template>

@@ -22,7 +22,7 @@ Route::controller(AuthenticationController::class)->group(function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => [ValidateIsAdmin::class]], function () {
-        Route::prefix('admin')->group(function () {
+        Route::prefix('admin')->group(function () { 
             Route::controller(UserController::class)->group(function () {
                 Route::get('/getUser', 'getUser')->name('getUser'); 
                 Route::get('/getUser/{id}', 'getUsers')->name('getUsers');
@@ -31,7 +31,14 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
             });
 
-            
+            Route::controller(OrderController::class)->group(function () {
+                Route::get('/order','getOrder')->name('getOrder');
+                Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
+                Route::get('/order/{order}/edit', 'editOrder')->name('editOrder');
+                Route::put('/order/{order}/update', 'updateOrder')->name('updateOrder');
+                Route::delete('/order/{order}', 'deleteOrder')->name('deleteOrder');
+            });
+
             //tambahin lagi
         });
     });
@@ -60,13 +67,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(OrderController::class)->group(function () {
         Route::post('/order/create', 'createOrder')->name('createOrder.post');
-        Route::get('/admin/order','getOrder')->name('getOrder')->middleware(ValidateIsAdmin::class);
         Route::get('/order','viewOrder')->name('viewOrder');
         Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
-        Route::get('/order/{order}/edit', 'editOrder')->name('editOrder');
-        Route::put('/order/{order}/update', 'updateOrder')->name('updateOrder');
-        Route::delete('/order/{order}', 'deleteOrder')->name('deleteOrder');
     });
+
 
     Route::controller(ReviewController::class)->group(function () {
         Route::get('/reviews', 'index')->name('index');

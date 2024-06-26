@@ -19,9 +19,9 @@
             <table class="w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
                 <thead class="bg-primary-600 dark:bg-primary-900">
                     <tr>
-                        <th class="px-6 py-4 text-left border-r border-b">Product Name</th>
-                        <th class="px-6 py-4 text-left border-r border-b">Quantity</th>
-                        <th class="px-6 py-4 text-left border-b">Price</th>
+                        <th class="px-6 py-4 text-center border-r border-b">Product Name</th>
+                        <th class="px-6 py-4 text-center border-r border-b">Quantity</th>
+                        <th class="px-6 py-4 text-center border-b">Price</th>
                     </tr>
                 </thead>
                 <tbody>
