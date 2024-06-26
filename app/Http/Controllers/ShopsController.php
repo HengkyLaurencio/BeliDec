@@ -12,7 +12,7 @@ class ShopsController extends Controller
     public function getShop()
     {
         $shopData = Shop::paginate(10);     
-        return view('adminView.getShop', ['shopData' => $shopData]); 
+        return view('shop.getShop', ['shopData' => $shopData]); 
     }
 
     public function getShops($id)
@@ -21,7 +21,7 @@ class ShopsController extends Controller
         if (!$shopData) {
             return response('shop not found', 404);
         }
-        return view('adminView.getShops', ['shopData' => $shopData]);
+        return view('shop.getShops', ['shopData' => $shopData]);
     }
 
     public function registerShop()
