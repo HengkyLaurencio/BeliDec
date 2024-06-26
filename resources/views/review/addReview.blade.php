@@ -19,7 +19,13 @@
             </div>
         @endif
         <main class="container mx-auto px-4 py-8">
+            
             <h1 class="text-2xl font-bold mb-6 text-center dark:text-gray-300">Add Review</h1>
+            <div class="bg-white dark:bg-gray-700 p-4 rounded mb-6">
+                <h2 class="text-xl font-semibold mb-4">{{ $orderDetail->product->name }}</h2>
+                <p>Quantity: {{ $orderDetail->quantity }}</p>
+                <p>Price: Rp. {{ number_format($orderDetail->product->price, 0, ',', '.') }}</p>
+            </div>
             <form action="{{ route('createReview', ['order_item_id' => $orderDetail->id]) }}" method="POST">
                 @csrf
                 <label for="stars">Stars:</label>

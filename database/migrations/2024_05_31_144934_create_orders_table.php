@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->decimal('total',10,2);
-            $table->enum('status', ['Awaiting Payment', 'Completed', 'Cancelled', 'Reviewed']);
+            $table->enum('status', ['Awaiting Payment', 'Completed', 'Cancelled']);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

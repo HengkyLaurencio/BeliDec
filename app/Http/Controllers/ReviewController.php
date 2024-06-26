@@ -36,9 +36,9 @@ class ReviewController extends Controller
 
     public function createReview($order_item_id, Request $request){
         $user = auth()->user();
-        //dd($request);
-        //$review = Review::where('user_id', $user)->get();
-        
+        // dd($user);
+        // $review = Review::where('user_id', $user)->get();
+        $orderItem = OrderItem::findOrFail($order_item_id);
         
         Review::create([
             'user_id' => $user->id,
@@ -47,8 +47,10 @@ class ReviewController extends Controller
             'comments' => $request->comments,
         ]);
         
+        
         // Redirect back with success message
-        return redirect()->back()->with('success', 'Success, Order reviewed!');
+        return redirect()->route('viewOrder')->with('success', 'Success, Product Reviewed!');
+
     }    
 
     public function deleteReview(Request $request)
