@@ -90,13 +90,12 @@ class OrderController extends Controller
     public function deleteOrder(Order $order)
     {
         $order->delete();
-        return redirect(route('getOrder'));
+        return redirect()->back();
     }
 
     public function viewOrder(Request $request)
     {
         $userId = $request->session()->get('user_id');
-
         $orderData = Order::where(['user_id' => $userId])->paginate(10);
         return view('order.getOrderData', ['orderData' => $orderData]);
     }

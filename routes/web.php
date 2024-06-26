@@ -73,8 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::controller(ReviewController::class)->group(function () {
-        Route::get('/reviews', 'index')->name('index');
-        Route::get('/reviews/{order_item_id}', 'getReview')->name('getReview');
+        Route::get('/reviews', 'getReview')->name('index');
+        // Route::get('/reviews/{order_item_id}', 'getReview')->name('getReview');
         Route::post('/reviews/{order_item_id}', 'createReview')->name('createReview');
         Route::delete('/reviews/{order_item_id}', 'deleteReview')->name('deleteReview');
     });

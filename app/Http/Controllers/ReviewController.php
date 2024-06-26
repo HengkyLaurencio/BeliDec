@@ -11,17 +11,14 @@ class ReviewController extends Controller
 
     public function index(){
         $reviews = Review::latest()->paginate(10);
+        dd ($reviews);
         return view('review.reviewAdmin', compact ('reviews'));
     }
 
-    public function getReview($order_item_id){
-
-        $reviews = Review::all();
-        foreach ($reviews as $review){
-            if ($review->order_item_id == $order_item_id){
-                echo $review.'<br>';
-            }
-        }
+    public function getReview(Request $request){
+        $userId = $request->session()->get('user_id');
+        $reviews = Review::where('user_id', $userId)->get();
+        return view('review.reviewAdmin', compact('reviews'));
     }
 
     public function createReview(Request $request){
