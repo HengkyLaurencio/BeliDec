@@ -65,9 +65,9 @@ class ShopsController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
         ]);
-    
+
         $shop->update($shopData);
-    
+        
         return redirect()->back()->with('success', 'Shop updated successfully.');
     }
 
@@ -112,5 +112,13 @@ class ShopsController extends Controller
 
     public function updateProductShop(Product $product) {
         return view('shop.editProduct', ['product' => $product]);
+    }
+
+    public function adminEditShop(Request $request, Shop $shop) {
+        
+        // $shopId = $request->shopid
+        // $shop = Shop::find($shopId);
+        // // dd($shop);
+        return view('shop.adminEditShop', ['shop' => $shop]);
     }
 }

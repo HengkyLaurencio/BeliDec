@@ -48,7 +48,8 @@ Route::group(['middleware' => ['auth']], function () {
             });
 
             Route::controller(ShopsController::class)->group(function () {
-                Route::get('/shop','getShop')->name('getShop');
+                Route::get('/shops','getShop')->name('getShop');
+                Route::get('/shop/{shop}/edit', 'adminEditShop')->name('adminEditShop');
             });
         });
     });
@@ -100,18 +101,20 @@ Route::group(['middleware' => ['auth']], function () {
         Route::controller(ShopsController::class)->group(function () {
             Route::get('/create', 'registerShop')->name('registerShop');
             Route::post('/create', 'createShop')->name('createShop');
+            Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
+            Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
             
             Route::get('/shop/{id}', 'getShops')->name('getShops');
 
             Route::group(['middleware' => [haveShop::class]], function () {
                 Route::get('/products', 'getProducts')->name('getProductShop');
                 Route::get('/product/{product}/edit', 'updateProductShop')->name('updateProductShop');
-
                 Route::get('/salesHistory','getHistory')->name('getSalesHistory');
                 Route::get('/', 'mainDashboard')->name('shopMainDashboard');
+
                 // Route::get('/', 'editShop')->name('editShop');
-                Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
-                Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
+
+                
             });
         });
     });

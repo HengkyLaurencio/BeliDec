@@ -1,5 +1,4 @@
 <x-admin-template>
-@include('layouts.notification')
 <main class="px-2 md:px-12 lg:px-24 xl:px-32 py-4">
         <div class="overflow-x-auto">
             <table class="w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
