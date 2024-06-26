@@ -54,12 +54,12 @@
                     
                     <div class="mt-auto">
                         <li>
-                            <a class="justify-items-end" href="#">
+                            <a class="justify-items-end" href="{{route('home')}}">
                                 <button class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
                                     <span class="material-symbols-outlined w-5 h-5 text-inherit">
                                         logout
                                     </span>
-                                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">Logout</p>
+                                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">Back Home</p>
                                 </button>
                             </a>
                         </li>

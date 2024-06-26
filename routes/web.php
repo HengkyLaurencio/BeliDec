@@ -10,6 +10,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopsController;;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Middleware\createShop;
 use App\Http\Middleware\haveShop;
 
 Route::controller(AuthenticationController::class)->group(function () {
@@ -100,8 +101,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::prefix('myShop')->group(function () {
         Route::controller(ShopsController::class)->group(function () {
-            Route::get('/create', 'registerShop')->name('registerShop');
+            
+            Route::get('/create', 'registerShop')->name('registerShop')->middleware(createShop::class);
             Route::post('/create', 'createShop')->name('createShop');
+
             Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
             Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
             
