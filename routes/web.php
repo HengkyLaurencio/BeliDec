@@ -55,14 +55,14 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
 
-    Route::get('/', function () {
-        return view('home');
+    Route::get('/home', function () {
+        return route('userProducts');
     })->name('home');
 
     Route::controller(ProductController::class)->group(function () {
         // Route::get('/product', 'getProducts')->name('getProducts');
-        Route::get('/products', 'productsUser')->name('userProducts');
-        Route::get('/products/{id}', 'getProduct')->name('detailProduct');
+        Route::get('/', 'productsUser')->name('userProducts');
+        Route::get('/product/{id}', 'getProduct')->name('detailProduct');
         Route::get('/createproduct', 'createProduct')->name('createProduct');
         Route::post('/newproduct', 'newProduct')->name('newProduct');
         Route::get('/editproduct/{product}', 'editProduct')->name('editProduct');
