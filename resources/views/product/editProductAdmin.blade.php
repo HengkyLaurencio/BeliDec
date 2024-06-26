@@ -1,5 +1,4 @@
 <x-admin-template>
-@include('layouts.notification')
 <main class="px-8 py-4">
         <form method="post" action="{{ route('updateProduct', ['product' => $product->id]) }}" class="product-table">
             @csrf
