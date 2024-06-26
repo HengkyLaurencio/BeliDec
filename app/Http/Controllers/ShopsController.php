@@ -21,7 +21,7 @@ class ShopsController extends Controller
         if (!$shopData) {
             return response('shop not found', 404);
         }
-        return view('shop.shopid', ['shopData' => $shopData]);
+        return view('adminView.getShops', ['shopData' => $shopData]);
     }
 
     public function registerShop()
