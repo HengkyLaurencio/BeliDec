@@ -23,7 +23,7 @@ class OrderController extends Controller
         if (!$orders) {
             return response('Order not found', 404);
         }
-        return view('order.getOrders', compact('orders'));
+        return view('order.getOrders', ['orders' => $orders]);
     }
 
     public function createOrder(Request $request)
@@ -68,7 +68,7 @@ class OrderController extends Controller
             ]);
         }
         CartItem::whereIn('cart_id', $carts->pluck('id'))->delete();
-        return redirect()->route('viewOrder')->with('success', 'Order berhasil dibuat.');
+        return redirect()->route('viewOrder')->with('success', 'Order created.');
     }
 
     public function editOrder(Order $order)
@@ -82,15 +82,24 @@ class OrderController extends Controller
             'status' => 'required|string',
         ]);
 
-        $order->update($validatedData);
-
-        return redirect()->route('getOrder');
+        try {
+            $order->update($validatedData);
+            return redirect()->route('getOrder')->with('success', 'Order data updated successfully!');
+        } catch (\Exception $e) {
+            return redirect()->route('editOrder', ['order' => $order->id])->with('error', 'Status doesn\'t exist');
+        }
     }
 
     public function deleteOrder(Order $order)
     {
         $order->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Delete successfully');
+    }
+
+    public function deleteOrderData(Order $order)
+    {
+        $order->delete();
+        return redirect()->route('getOrders', ['order_id' => $order->id])->with('success', 'Delete successfully');
     }
 
     public function viewOrder(Request $request)
