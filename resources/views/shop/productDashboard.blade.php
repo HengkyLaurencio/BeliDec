@@ -10,6 +10,11 @@
     @endif
 
     <main class="px-6 md:px-12 lg:px-24 xl:px-1 py-10">
+        <div class="text-start mb-4">
+            <a href="{{ route('createProduct') }}" class="bg-primary-1100 text-[#050303] dark:text-black px-6 py-2 border rounded-md">
+                <b>Add New Product</b>
+            </a>
+        </div>
         <div class="overflow-x-auto">
             <table class="w-full bg-primary-dark dark:bg-primary-100 rounded-lg overflow-hidden">
                 <thead class="bg-primary-600 dark:bg-primary-200">
