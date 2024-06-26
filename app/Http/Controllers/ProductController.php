@@ -9,16 +9,16 @@ class ProductController extends Controller
 {
     public function getProducts() {
         $productData = Product::paginate(10);
-        return view('getProducts', ['productData' => $productData]);
+        return view('product.getProductsAdmin', ['productData' => $productData]);
     }
 
     public function productsUser(){
         $productData = Product::paginate(12);
-        return view('userProducts', ['productData' => $productData]);
+        return view('product.userProducts', ['productData' => $productData]);
     }
 
     public function detailProduct(){
-        return view('detailProduct');
+        return view('product.detailProduct');
     }
 
     public function getProduct($id){
@@ -26,7 +26,7 @@ class ProductController extends Controller
         if (!$product) {
             return response('Product not found');
         }
-        return view('getProduct', ['product' => $product]);
+        return view('product.getProduct', ['product' => $product]);
     }
 
     public function newProduct (Request $request) {
@@ -46,11 +46,11 @@ class ProductController extends Controller
             'shop_id'=> $productData['shopID']
         ]);
     
-        return redirect()->route('getProducts');
+        return redirect()->route('product.getProducts');
     }
     
     public function createProduct(Product $product, Request $request){
-        return view('createProduct', ['product' => $product]);
+        return view('product.createProduct', ['product' => $product]);
     }
 
     public function updateProduct(Product $product, Request $request){
@@ -62,17 +62,17 @@ class ProductController extends Controller
         ]);
 
         $product->update($productData);
-        return redirect(route('getProduct'))->with('success', 'Success, Item added into Cart!');
+        return redirect(route('product.getProduct'))->with('success', 'Success, Item added into Cart!');
     }
 
     public function editProduct(Product $product, Request $request){
-        return view('updateProduct', ['product' => $product]);
+        return view('product.updateProduct', ['product' => $product]);
     }
 
     public function deleteProduct (Product $product) {
         
         $product->delete();
-        return redirect()->route('getProducts');
+        return redirect()->route('product.getProducts');
     }
 
 }
