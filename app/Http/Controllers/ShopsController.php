@@ -15,7 +15,7 @@ class ShopsController extends Controller
         return view('shop.getShop', ['shopData' => $shopData]); 
     }
 
-    public function getShops($id)
+    public function getShops($id) // hrs ad session nnti
     {
         $shopData = Shop::find($id);
         if (!$shopData) {
@@ -28,6 +28,15 @@ class ShopsController extends Controller
     {
         $shopData = Shop::paginate(10);     
         return view('shop.getShopUser', ['shopData' => $shopData]); 
+    }
+
+    public function getShopsUser($id)
+    {
+        $shopData = Shop::find($id);
+        if (!$shopData) {
+            return response('shop not found', 404);
+        }
+        return view('shop.getShopsUser', ['shopData' => $shopData]);
     }
 
     public function registerShop()

@@ -31,6 +31,17 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
             });
 
+            Route::controller(ShopsController::class)->group(function () {
+                Route::get('/getShop','getShop')->name('getShop');
+                Route::get('/getShop/{id}', 'getShops')->name('getShops');
+                Route::get('/shop/history','getHistory')->name('getHistory');
+                Route::get('/shop/{shop}/edit', 'editShop')->name('editShop');
+                Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
+                Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
+            });
+
+
+
             
             //tambahin lagi
         });
@@ -76,12 +87,11 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::controller(ShopsController::class)->group(function () {
-        Route::get('/shop','getShop')->name('getShop');
         Route::get('/shop','getShopUser')->name('getShopUser');
         Route::get('/shop/create', 'registerShop')->name('registerShop');
         Route::post('/shop/create', 'createShop')->name('createShop');
         Route::get('/shop/history','getHistory')->name('getHistory');
-        Route::get('/shop/{id}', 'getShops')->name('getShops');
+        Route::get('/shop/{id}', 'getShopsUser')->name('getShopsUser');
         Route::get('/shop/{shop}/edit', 'editShop')->name('editShop');
         Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
         Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');

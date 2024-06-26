@@ -30,7 +30,6 @@
                         <th class="px-6 py-4 text-center border-r border-b">Owner Name</th>
                         <th class="px-6 py-4 text-center border-r border-b">Shop ID</th>
                         <th class="px-6 py-4 text-center border-r border-b">Description</th>
-                        <th class="px-6 py-4 text-center border-r border-b">History</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,11 +37,8 @@
                   <tr class="{{ $index % 2 == 0 ? 'bg-even' : '' }} hover:bg-primary-100 dark:hover:bg-primary-100">
                         <td class="border-r border-b px-6 py-4 text-center">{{ $shop->name }}</td>
                         <td class="border-r border-b px-6 py-4">{{ $shop->user->username }}</td>
-                        <td class="border-r border-b px-6 py-4">{{ $shop->owner_id }}</td>
+                        <td class="border-r text-center border-b px-6 py-4">{{ $shop->owner_id }}</td>
                         <td class="border-r border-b px-6 py-4">{{ $shop->description }}</td>
-                        <td class="border-r border-b px-6 py-4 text-center">
-                          <a href="{{ route('getHistory') }}">History</a>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>
