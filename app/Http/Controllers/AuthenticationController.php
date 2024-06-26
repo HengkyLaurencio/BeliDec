@@ -30,18 +30,17 @@ class AuthenticationController extends Controller
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string', 'min:8'],
             'confirmpassword' => ['required'],
+        ],[
+            'password.min' => 'Password must be more than 8 characters.'
         ]);
 
-        $password = $request->password;
-        $confirmpassword = $request->confirmpassword;
-
         if (User::where('email', $request->email)->exists()) {
-            return redirect()->back()->with('emailError', 'This email is already exist.')->withInput();
+            return redirect()->back()->with('error', 'This email is already exist.')->withInput();
         }
 
-        if ($password != $confirmpassword) {
-            return redirect()->back()->with('confirmError', 'The password confirmation does not match.')->withInput();
-        };
+        if ($request->password != $request->confirmpassword) {
+            return redirect()->back()->with('error', 'The password confirmation does not match.')->withInput();
+        }
 
         $data['username'] = $request->username;
         $data['email'] = $request->email;
@@ -66,6 +65,8 @@ class AuthenticationController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string', 'min:8'],
+        ],[
+            'password.min' => 'Incorrect Email or Password'
         ]);
 
         if (Auth::attempt($credentials)) {

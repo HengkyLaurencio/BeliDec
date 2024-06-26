@@ -38,11 +38,6 @@
                     <button type="submit"
                         class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign
                         in</button>
-                    @if (session('error'))
-                        <div class="text-sm font-medium text-red-600">
-                            {{ session('error') }}
-                        </div>
-                    @endif
                 </div>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             </form>

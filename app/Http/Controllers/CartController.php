@@ -43,7 +43,7 @@ class CartController extends Controller
         }
         return view('cart', compact('cartItemsData'));
     }
-   
+
     public function putItem(Request $request)
     {
         $user_id = auth()->user()->id;

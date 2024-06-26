@@ -5,8 +5,7 @@
 
 <body class="bg-white dark:bg-primary-dark dark:text-text-dark">
     @include('layouts.header')
-    
-    @include('layouts.menu')
+
     <main class="px-28">
       <div class="mt-6 grid grid-cols-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
       @foreach ($productData -> sortBy('id') as $product)
@@ -22,14 +21,14 @@
                       {{$product -> name}}
                     </a>
                   </h3>
-                  
+
                 </div>
                 <p class="text-sm font-medium text-gray-900">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
               </div>
             </div>
-        @endforeach 
+        @endforeach
       <!-- More products... -->
-    </div>  
+    </div>
     <div>
             {{ $productData->links() }}
         </div>
@@ -37,7 +36,7 @@
             <!-- Custom Next Page Button -->
             @if ($productData->hasMorePages())
                 <a href="{{ $productData->nextPageUrl() }}">
-                   
+
                 </a>
             @endif
         </div>

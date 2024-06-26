@@ -4,7 +4,6 @@
 @include('layouts.head')
 
 <body class="bg-white dark:bg-primary-dark dark:text-text-dark">
-    @include('layouts.notification')
     @include('layouts.header')
     @include('layouts.footer')
 </body>
