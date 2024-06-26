@@ -14,15 +14,15 @@ class AuthenticationController extends Controller
 {
     public function register()
     {
-        return view("register");
+        return view("authentication.register");
     }
     public function login()
     {
-        return view("login");
+        return view("authentication.login");
     }
     public function changepassword()
     {
-        return view(("changepassword"));
+        return view("authentication.changepassword");
     }
     public function registerPost(Request $request): RedirectResponse
     {
@@ -50,16 +50,16 @@ class AuthenticationController extends Controller
         $user = User::create($data);
 
         if (!$user) {
-            return redirect(route('register'))->withInput()->with('error', 'Registration Failed, try again.');
+            return redirect(route('authentication.register'))->withInput()->with('error', 'Registration Failed, try again.');
         }
 
         $createCart = Cart::create(['user_id' => $user->id]);
 
         if (!$createCart) {
-            return redirect(route('register'))->withInput()->with('error', 'Cart Failed, try again.');
+            return redirect(route('authentication.register'))->withInput()->with('error', 'Cart Failed, try again.');
         }
 
-        return redirect(route('login'))->with('success', 'Registration Success, login to access application');
+        return redirect(route('authentication.login'))->with('success', 'Registration Success, login to access application');
     }
 
     public function loginPost(Request $request): RedirectResponse
