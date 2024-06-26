@@ -45,7 +45,7 @@
                         <td class="border-r border-b px-6 py-4 text-center">{{ $product->id }}</td>
                         <td class="border-r border-b px-6 py-4 text-center">{{ $product->name }}</td>
                         <td class="border-r border-b px-6 py-4 text-center">{{ $product->description }}</td>
-                        <td class="border-r border-b px-6 py-4 text-center w-48">Rp. {{ number_format($product->price, 0, ',', '.') }}</td> <!-- Adjusted width -->
+                        <td class="border-r border-b px-6 py-4 text-center w-48">Rp {{ number_format($product->price, 0, ',', '.') }}</td> <!-- Adjusted width -->
                         <td class="border-r border-b px-6 py-4 text-center">{{ $product->stock }}</td>
                         <td class="border-r border-b px-6 py-4 text-center">{{ $product->shop_id }}</td>
 

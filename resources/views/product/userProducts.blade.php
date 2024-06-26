@@ -17,7 +17,7 @@
             <div class="mt-4 flex justify-between">
               <div>
                 <h3 class="text-sm text-gray-700">
-                    <a href="{{ route ('detailProduct') }}">
+                    <a href="{{ route ('detailProduct',  ['id' => $product->id]) }}">
                       <span aria-hidden="true" class="absolute inset-0"></span>
                       {{$product -> name}}
                     </a>

@@ -17,16 +17,12 @@ class ProductController extends Controller
         return view('product.userProducts', ['productData' => $productData]);
     }
 
-    public function detailProduct(){
-        return view('product.detailProduct');
-    }
-
     public function getProduct($id){
         $product = Product::find($id);
         if (!$product) {
             return response('Product not found');
         }
-        return view('product.getProduct', ['product' => $product]);
+        return view('product.detailProduct', ['product' => $product]);
     }
 
     public function newProduct (Request $request) {
