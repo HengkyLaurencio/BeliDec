@@ -58,7 +58,11 @@ class ProductController extends Controller
         ]);
 
         $product->update($productData);
-        return redirect(route('product.getProduct'))->with('success', 'Success, Item added into Cart!');
+        return redirect()->back()->with('success', 'Success, Item added into Cart!');
+    }
+
+    public function adminEditProduct(Product $product, Request $request){
+        return view('product.editProductAdmin', ['product' => $product]);
     }
 
     public function editProduct(Product $product, Request $request){
@@ -68,7 +72,7 @@ class ProductController extends Controller
     public function deleteProduct (Product $product) {
         
         $product->delete();
-        return redirect()->route('product.getProducts');
+        return redirect()->back();
     }
 
 }

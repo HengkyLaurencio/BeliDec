@@ -48,7 +48,7 @@ class ShopsController extends Controller
             return redirect()->route('registerShop')->with('error', 'Registration Failed, try again.');
         }
 
-        return redirect()->route('getShop')->with('success', 'Shop created successfully.');
+        return redirect()->route('shopMainDashboard')->with('success', 'Shop created successfully.');
     }
 
     public function editShop(Shop $shop)
@@ -65,7 +65,7 @@ class ShopsController extends Controller
     
         $shop->update($shopData);
     
-        return redirect()->route('getShop')->with('success', 'Shop updated successfully.');
+        return redirect()->back()->with('success', 'Shop updated successfully.');
     }
 
     public function deleteShop(Shop $shop) {
@@ -88,5 +88,13 @@ class ShopsController extends Controller
         }
 
         return view('shop.getHistory', ['orderData' => $filteredOrderData]);
+    }
+
+    public function mainDashboard(Request $request) {
+        $userId = $request->session()->get('user_id');
+        $shopId = Shop::where('owner_id', $userId)->value('id');
+        $shop = Shop::find($shopId);
+        // dd($shop);
+        return view('shop.mainDashboard', ['shop' => $shop]);
     }
 }

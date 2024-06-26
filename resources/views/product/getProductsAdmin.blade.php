@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" class="{{ session('theme', 'light') === 'dark' ? 'dark' : '' }}">
-
-<head>
-    @include('layouts.head')
-    <style>
-        .bg {
-            background-color: #f1f1f1;
-        }
-    </style>
-</head>
-
-<body class="bg-primary-400 dark:bg-primary-dark">
-    @include('layouts.header')
-
-    @if(session('error'))
+<x-admin-template>
+@if(session('error'))
     <div class="bg-red-500 text-white p-4 rounded mb-4 inline-block" >
         {{ session('error') }}
     </div>
@@ -36,7 +22,6 @@
                         <th class="px-6 py-4 text-center border-r border-b">ShopID</th>
                         <th class="px-1 py-1 text-center border-r border-b">Edit</th>
                         <th class="px-6 py-4 text-center border-r">Delete</th>
-                        <th class="px-6 py-4 text-center border-r">Add to cart</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +35,7 @@
                         <td class="border-r border-b px-6 py-4 text-center">{{ $product->shop_id }}</td>
 
                         <td class="px-6 py-4 text-center border-r border-b">
-                            <a href="{{ route('editProduct', ['product' => $product->id]) }}"
+                            <a href="{{ route('adminEditProduct', ['product' => $product->id]) }}"
                                 class="bg-white-800 text-white-500 dark:text-white-300 px-6 py-2">Edit</a>
                         </td>
 
@@ -62,20 +47,6 @@
                                 <button type="submit"
                                     class="bg-primary-1200 rounded-lg dark:text-black px-6 py-2">
                                     Delete
-                                </button>
-                            </form>
-                        </td>
-
-                        <td class="px-6 py-4">
-                            <form method="post"
-                                action="{{ route('putItem', ['cart_id' => $product->cart_id, 'product_id' => $product->id]) }}">
-                                @csrf
-                                @method('POST')
-                                <input type="number" name="quantity" id="quantity" min="1" value="1"
-                                    class="border rounded px-2 py-1">
-                                <button type="submit"
-                                    class="bg-red-500 text-white dark:text-black px-6 py-2">
-                                    Add to Cart
                                 </button>
                             </form>
                         </td>
@@ -97,9 +68,4 @@
             </div>
         </div>
     </main>
-
-    @include('layouts.footer')
-
-</body>
-
-</html>
+</x-admin-template>
