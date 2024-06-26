@@ -13,7 +13,7 @@
 <body class="bg-primary-400 dark:bg-primary-dark">
 
     @include('layouts.header')
-
+    @include('layouts.notification')
     @foreach ($orders as $order)
     <main class="px-6 md:px-12 lg:px-24 xl:px-48 py-4">
         <div class="overflow-x-auto">

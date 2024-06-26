@@ -44,17 +44,14 @@
                         </td>
                         @if ($order->status ===  "Awaiting Payment")
                         <td class="px-6 py-4 text-center border-b">
-                            <form method="post" action="{{ route('deleteOrder', ['order' => $order]) }}">
+                            <form method="post" action="{{ route('deleteOrderData', ['order' => $order]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-text-300 text-[#FFFFFF] dark:text-black px-6 py-2">
+                                <button type="submit" class="bg-text-300 text-[#FFFFFF] dark:text-black px-6 py-2 rounded-lg">
                                     Cancel Order
                                 </button>
                             </form>
                         </td>
-                        
-
-                
                         @endif
                     </tr>
                     @endforeach
