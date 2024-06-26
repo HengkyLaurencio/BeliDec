@@ -5,8 +5,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\ValidateIsAdmin;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ShopsController;;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ShopsController;;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthenticationController;
 
@@ -22,9 +23,9 @@ Route::controller(AuthenticationController::class)->group(function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => [ValidateIsAdmin::class]], function () {
-        Route::prefix('admin')->group(function () { 
+        Route::prefix('admin')->group(function () {
             Route::controller(UserController::class)->group(function () {
-                Route::get('/getUser', 'getUser')->name('getUser'); 
+                Route::get('/getUser', 'getUser')->name('getUser');
                 Route::get('/getUser/{id}', 'getUsers')->name('getUsers');
                 Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
                 Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
@@ -90,3 +91,5 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
     });
 });
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');

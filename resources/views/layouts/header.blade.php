@@ -10,7 +10,7 @@
         </a>
     </div>
     <div class="flex items-center">
-        <form action="{{ route('register') }}" method="GET"
+        <form action="{{ route('search') }}" method="GET"
             class="bg-primary-500 rounded-full p-2 w-screen max-w-xl flex items-center">
             <span class="material-symbols-outlined cursor-pointer dark:text-text-200">
                 search
@@ -58,7 +58,11 @@
                     <div class="absolute hidden bg-primary-500 text-text-200 text-sm dark:bg-primary-500 dark:text-text-200 shadow-lg rounded-md mt-2 w-32 text-center"
                         id="dropdown-account-menu">
                         <ul>
-                            <li><a href="{{route('changepassword')}}"
+                            {{-- <li><a href="{{ route('shopMainDashboard') }}"
+                                    class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">My Shop
+                                </a>
+                            </li> --}}
+                            <li><a href="{{ route('changepassword') }}"
                                     class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">Change
                                     Password
                                 </a>
