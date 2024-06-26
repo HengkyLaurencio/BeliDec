@@ -19,11 +19,11 @@ class OrderController extends Controller
 
     public function getOrders($id)
     {
-        $order = OrderItem::find($id);
-        if (!$order) {
+        $orders = OrderItem::where('order_id',$id)->get();
+        if (!$orders) {
             return response('Order not found', 404);
         }
-        return view('order.getOrders', ['order' => $order]);
+        return view('order.getOrders', compact('orders'));
     }
 
     public function createOrder(Request $request)

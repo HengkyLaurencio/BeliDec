@@ -9,8 +9,8 @@
 <main class="container mx-auto px-4 py-8">
         @if (isset($reviews) && !$reviews->isEmpty())
             <div class="container mx-auto p-4">
-                <h1 class="text-2xl font-bold mb-6 text-center dark:text-gray-300">Reviews</h1>
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                <h1 class="text-2xl font-bold mb-6 text-center dark:text-gray-300">Reviews (Admin View)</h1>
+                <div class="bg-white dark:bg-xgray-800 rounded-lg shadow p-6">
                     <!-- Header Kolom -->
                     <div class="grid grid-cols-6 gap-4 p-4 border-b border-gray-200 dark:border-gray-700">
                         <div class="col-span-2 text-gray-600 dark:text-gray-300">ReviewId</div>

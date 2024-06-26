@@ -52,13 +52,9 @@
                                 </button>
                             </form>
                         </td>
-                        @elseif (($order->status ===  "Completed"))
-                        <td class="px-6 py-4 text-center border-b">
-                                <button href="{{ route ('deleteReview',  ['order_item_id' => $order->id]) }}"type="submit" class="bg-green-500 text-white dark:text-black px-6 py-2">
-                                    Review
-                                </button>                          
-                        </td>
-                    
+                        
+
+                
                         @endif
                     </tr>
                     @endforeach
