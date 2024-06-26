@@ -1,4 +1,4 @@
-<x-admin-template>
+<x-shop-template>
 @if(session('error'))
     <div class="bg-red-500 text-white p-4 rounded mb-4 inline-block" >
         {{ session('error') }}
@@ -19,7 +19,6 @@
                         <th class="px-6 py-4 text-center border-r border-b">Description</th>
                         <th class="px-6 py-4 text-center border-r border-b w-48">Price</th> <!-- Adjusted width -->
                         <th class="px-6 py-4 text-center border-r border-b">Stock</th>
-                        <th class="px-6 py-4 text-center border-r border-b">ShopID</th>
                         <th class="px-1 py-1 text-center border-r border-b">Edit</th>
                         <th class="px-6 py-4 text-center border-r">Delete</th>
                     </tr>
@@ -32,10 +31,9 @@
                         <td class="border-r border-b px-6 py-4 text-center">{{ $product->description }}</td>
                         <td class="border-r border-b px-6 py-4 text-center w-48">Rp {{ number_format($product->price, 0, ',', '.') }}</td> <!-- Adjusted width -->
                         <td class="border-r border-b px-6 py-4 text-center">{{ $product->stock }}</td>
-                        <td class="border-r border-b px-6 py-4 text-center">{{ $product->shop_id }}</td>
 
                         <td class="px-6 py-4 text-center border-r border-b">
-                            <a href="{{ route('adminEditProduct', ['product' => $product->id]) }}"
+                            <a href="{{ route('updateProductShop', ['product' => $product->id]) }}"
                                 class="bg-white-800 text-white-500 dark:text-white-300 px-6 py-2">Edit</a>
                         </td>
 
@@ -68,4 +66,4 @@
             </div>
         </div>
     </main>
-</x-admin-template>
+</x-shop-template>

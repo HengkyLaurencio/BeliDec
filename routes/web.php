@@ -10,6 +10,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopsController;;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Middleware\haveShop;
 
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
@@ -25,9 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => [ValidateIsAdmin::class]], function () {
         Route::prefix('admin')->group(function () {
             Route::controller(UserController::class)->group(function () {
-                Route::get('/getUser', 'getUser')->name('getUser');
+                Route::get('/users', 'getUser')->name('getUser'); 
                 Route::get('/getUser/{id}', 'getUsers')->name('getUsers');
-                Route::get('/getUser/{user}/editUser', 'editUser')->name('editUser');
+                Route::get('/user/{user}/edit', 'editUser')->name('editUser');
                 Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
                 Route::delete('/getUser/{user}/deleteUser', 'deleteUser')->name('deleteUser');
             });
@@ -41,6 +42,14 @@ Route::group(['middleware' => ['auth']], function () {
             });
 
             //tambahin lagi
+            Route::controller(ProductController::class)->group(function () {
+                Route::get('/products', 'getProducts')->name('getProducts');
+                Route::get('/product/{product}/edit', 'adminEditProduct')->name('adminEditProduct');
+            });
+
+            Route::controller(ShopsController::class)->group(function () {
+                Route::get('/shop','getShop')->name('getShop');
+            });
         });
     });
 
@@ -50,7 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('home');
 
     Route::controller(ProductController::class)->group(function () {
-        Route::get('/product', 'getProducts')->name('getProducts');
+        // Route::get('/product', 'getProducts')->name('getProducts');
         Route::get('/products', 'productsUser')->name('userProducts');
         Route::get('/products/{id}', 'getProduct')->name('detailProduct');
         Route::get('/createproduct', 'createProduct')->name('createProduct');
@@ -81,14 +90,28 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::controller(ShopsController::class)->group(function () {
-        Route::get('/shop','getShop')->name('getShop');
-        Route::get('/shop/create', 'registerShop')->name('registerShop');
-        Route::post('/shop/create', 'createShop')->name('createShop');
-        Route::get('/shop/history','getHistory')->name('getHistory');
         Route::get('/shop/{id}', 'getShops')->name('getShops');
-        Route::get('/shop/{shop}/edit', 'editShop')->name('editShop');
-        Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
-        Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
+    });
+
+
+    Route::prefix('myShop')->group(function () {
+        Route::controller(ShopsController::class)->group(function () {
+            Route::get('/create', 'registerShop')->name('registerShop');
+            Route::post('/create', 'createShop')->name('createShop');
+            
+            Route::get('/shop/{id}', 'getShops')->name('getShops');
+
+            Route::group(['middleware' => [haveShop::class]], function () {
+                Route::get('/products', 'getProducts')->name('getProductShop');
+                Route::get('/product/{product}/edit', 'updateProductShop')->name('updateProductShop');
+
+                Route::get('/salesHistory','getHistory')->name('getSalesHistory');
+                Route::get('/', 'mainDashboard')->name('shopMainDashboard');
+                // Route::get('/', 'editShop')->name('editShop');
+                Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
+                Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
+            });
+        });
     });
 });
 
