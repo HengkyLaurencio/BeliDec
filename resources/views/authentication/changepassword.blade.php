@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full bg-white">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Password</title>
-    @vite('resources/css/app.css')
-</head>
+@include('layouts.head')
 
 <body class="h-full">
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -22,7 +17,7 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <form class="space-y-6" action="{{ route('login.post') }}" method="POST">
+            <form class="space-y-6" action="{{ route('changepassword.post') }}" method="POST">
                 @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email

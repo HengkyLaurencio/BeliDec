@@ -1,4 +1,4 @@
-<header class="bg-primary-100 py-3 px-28 flex justify-between items-center sticky top-0 z-50">
+<header class="bg-primary-100 py-3 px-28 flex justify-between items-center sticky top-0 z-30">
     <div class="flex-row items-center">
         <a href="{{ route('home') }}" class="flex items-center">
             <div class="bg-primary-400 rounded-full p-2 mr-5">
