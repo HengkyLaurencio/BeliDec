@@ -56,7 +56,6 @@ class ProductController extends Controller
             'price' => 'required | decimal:2',
             'stock' => 'required | integer'
         ]);
-
         $product->update($productData);
         return redirect()->back()->with('success', 'Success, Item added into Cart!');
     }

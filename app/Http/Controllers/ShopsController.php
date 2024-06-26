@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ShopsController extends Controller
@@ -96,5 +97,18 @@ class ShopsController extends Controller
         $shop = Shop::find($shopId);
         // dd($shop);
         return view('shop.mainDashboard', ['shop' => $shop]);
+    }
+
+    public function getProducts(Request $request) {
+        $userId = $request->session()->get('user_id');
+        $shopId = Shop::where('owner_id', $userId)->value('id');
+
+        $products = Product::where('shop_id', $shopId)->paginate(10);
+        // dd($products);  
+        return view('shop.productDashboard', ['productData' => $products]);
+    }
+
+    public function updateProductShop(Product $product) {
+        return view('shop.editProduct', ['product' => $product]);
     }
 }

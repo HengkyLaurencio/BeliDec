@@ -46,7 +46,9 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/product/{product}/edit', 'adminEditProduct')->name('adminEditProduct');
             });
 
-
+            Route::controller(ShopsController::class)->group(function () {
+                Route::get('/shop','getShop')->name('getShop');
+            });
         });
     });
 
@@ -106,6 +108,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/shop/{id}', 'getShops')->name('getShops');
 
             Route::group(['middleware' => [haveShop::class]], function () {
+                Route::get('/products', 'getProducts')->name('getProductShop');
+                Route::get('/product/{product}/edit', 'updateProductShop')->name('updateProductShop');
+
                 Route::get('/salesHistory','getHistory')->name('getSalesHistory');
                 Route::get('/', 'mainDashboard')->name('shopMainDashboard');
                 // Route::get('/', 'editShop')->name('editShop');
