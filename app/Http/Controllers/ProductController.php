@@ -17,6 +17,10 @@ class ProductController extends Controller
         return view('userProducts', ['productData' => $productData]);
     }
 
+    public function detailProduct(){
+        return view('detailProduct');
+    }
+
     public function getProduct($id){
         $product = Product::find($id);
         if (!$product) {
