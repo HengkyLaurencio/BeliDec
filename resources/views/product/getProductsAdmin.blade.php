@@ -4,16 +4,7 @@
             background-color: #f1f1f1; 
         }
     </style>
-@if(session('error'))
-    <div class="bg-red-500 text-white p-4 rounded mb-4 inline-block" >
-        {{ session('error') }}
-    </div>
-    @elseif (session('success'))
-    <div class="bg-green-500 text-white p-4 rounded mb-4 inline-block">
-        {{ session('success') }}
-    </div>
-    @endif
-
+    @include('layouts.notification')
     <main class="px-6 md:px-12 lg:px-24 xl:px-1 py-10">
         <div class="overflow-x-auto">
             <table class="w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
