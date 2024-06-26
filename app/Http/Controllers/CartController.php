@@ -29,7 +29,7 @@ class CartController extends Controller
 
 
         if (!$cart_id) {
-            return redirect(route('getProducts'))->with('error', 'CartItems doesnt exist!');
+            return redirect(route('userProducts'))->with('error', 'CartItems doesnt exist!');
         }
 
         $cartItemsData = CartItem::where('cart_id', $cart_id)
@@ -39,11 +39,11 @@ class CartController extends Controller
 
         //cek availability
         if (!$exists) {
-            return redirect(route('getProducts'))->with('error', 'CartItems doesnt exist!');
+            return redirect(route('userProducts'))->with('error', 'CartItems doesnt exist!');
         }
         return view('cart', compact('cartItemsData'));
     }
-   
+
     public function putItem(Request $request)
     {
         $user_id = auth()->user()->id;
