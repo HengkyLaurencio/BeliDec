@@ -77,6 +77,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(ShopsController::class)->group(function () {
         Route::get('/shop','getShop')->name('getShop');
+        Route::get('/shop','getShopUser')->name('getShopUser');
         Route::get('/shop/create', 'registerShop')->name('registerShop');
         Route::post('/shop/create', 'createShop')->name('createShop');
         Route::get('/shop/history','getHistory')->name('getHistory');

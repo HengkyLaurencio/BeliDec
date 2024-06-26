@@ -24,6 +24,12 @@ class ShopsController extends Controller
         return view('shop.getShops', ['shopData' => $shopData]);
     }
 
+    public function getShopUser()
+    {
+        $shopData = Shop::paginate(10);     
+        return view('shop.getShopUser', ['shopData' => $shopData]); 
+    }
+
     public function registerShop()
     {
         return view("shop.createShop");
@@ -48,7 +54,7 @@ class ShopsController extends Controller
             return redirect()->route('registerShop')->with('error', 'Registration Failed, try again.');
         }
 
-        return redirect()->route('getShop')->with('success', 'Shop created successfully.');
+        return redirect()->route('getShopUser')->with('success', 'Shop created successfully.');
     }
 
     public function editShop(Shop $shop)
