@@ -43,19 +43,7 @@ class CartController extends Controller
         }
         return view('cart', compact('cartItemsData'));
     }
-    public function getCartItemsHeader($cart_id)
-    {
-        $cartItemsData = CartItem::where('cart_id', $cart_id)
-            ->with('product')
-            ->get();
-        $exists = CartItem::where('cart_id', $cart_id)->exists();
-
-        if (!$exists) {
-            return redirect(route('getProduct'))->with('error', 'CartItems doesnt exist!');
-        }
-        return view('home', compact('cartItemsData'));
-    }
-
+   
     public function putItem(Request $request)
     {
         $user_id = auth()->user()->id;
@@ -66,21 +54,17 @@ class CartController extends Controller
         $product = Product::find($request->product_id);
 
         if ($product->stock < $request->quantity) {
-            return redirect(route('getProduct'))->with('error', 'Stock less than items quantity!');
+            return redirect(route('getProducts'))->with('error', 'Stock less than items quantity!');
+        }else{
+            $cart->products()->create([
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity,
+            ]);
+            
+            
+            
+            return redirect(route('getProducts'))->with('success', 'Item successfully added!');
         }
-
-        $cart->products()->create([
-            'product_id' => $request->product_id,
-            'quantity' => $request->quantity,
-        ]);
-
-        $request->validate([
-            'cart_id' => ['required', 'string'],
-            'product_id' => ['required', 'string'],
-            'quantity' => ['required', 'integer'],
-        ]);
-
-        return redirect(route('getProduct'))->with('success', 'Success, Item added into Cart!');
     }
 
     public function deleteItem(Request $request)
