@@ -17,7 +17,7 @@
     <div class="min-h-screen bg-gray-50/50 flex">
         <aside class="bg-gradient-to-br from-gray-800 to-gray-900 fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl xl:translate-x-0 flex flex-col">
             <div class="relative border-b border-white/20">
-                <a class="flex items-center gap-4 py-6 px-8" href="#/">
+                <a class="flex items-center gap-4 py-6 px-8" href="{{route('shopMainDashboard')}}">
                     <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">Shop Dashboard</h6>
                 </a>
                 <button class="middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-8 max-w-[32px] h-8 max-h-[32px] rounded-lg text-xs text-white hover:bg-white/10 active:bg-white/30 absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden" type="button">
@@ -31,7 +31,7 @@
             <div class="m-4 flex-1">
                 <ul class="mb-4 flex flex-col gap-1 h-full">
                     <li>
-                        <a class="" href="#">
+                        <a class="" href="{{route('getProductShop')}}">
                             <button class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
                                 <span class="material-symbols-outlined w-5 h-5 text-inherit">
                                     inventory_2
@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="" href="#">
+                        <a class="" href="{{route('getSalesHistory')}}">
                             <button class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
                                 <span class="material-symbols-outlined w-5 h-5 text-inherit">
                                     browse_activity
