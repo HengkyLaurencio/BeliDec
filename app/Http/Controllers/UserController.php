@@ -38,7 +38,7 @@ class UserController extends Controller
     
     public function deleteUser (User $user) {
         $user->delete();
-        return redirect(route('getUser'));
+        return redirect(route('getUser'))->with('success', 'Delete successfully');
     }
 
     public function getBalance(Request $request) {

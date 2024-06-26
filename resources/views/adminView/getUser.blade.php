@@ -1,5 +1,5 @@
 <x-admin-template>
-    
+@include('layouts.notification')
 <main class="px-2 md:px-12 lg:px-24 xl:px-32 py-4">
         <div class="overflow-x-auto">
             <table class="w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
@@ -25,7 +25,7 @@
                             <form method="post" action="{{ route('deleteUser', ['user' => $user]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-text-300 text-[#FFFFFF] dark:text-black px-6 py-2">
+                                <button type="submit" class="bg-text-300 text-[#FFFFFF] dark:text-black px-6 py-2 rounded-lg">
                                     Delete
                                 </button>
                             </form>
