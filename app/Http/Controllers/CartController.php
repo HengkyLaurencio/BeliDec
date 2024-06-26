@@ -29,7 +29,7 @@ class CartController extends Controller
 
 
         if (!$cart_id) {
-            return redirect(route('getProducts'))->with('error', 'CartItems doesnt exist!');
+            return redirect()->back()->with('error', 'CartItems doesnt exist!');
         }
 
         $cartItemsData = CartItem::where('cart_id', $cart_id)
@@ -39,7 +39,7 @@ class CartController extends Controller
 
         //cek availability
         if (!$exists) {
-            return redirect(route('getProducts'))->with('error', 'CartItems doesnt exist!');
+            return redirect()->back()->with('error', 'CartItems doesnt exist!');
         }
         return view('cart', compact('cartItemsData'));
     }
@@ -54,7 +54,7 @@ class CartController extends Controller
         $product = Product::find($request->product_id);
 
         if ($product->stock < $request->quantity) {
-            return redirect(route('getProducts'))->with('error', 'Stock less than items quantity!');
+            return redirect()->back()->with('error', 'Stock less than items quantity!');
         }else{
             $cart->products()->create([
                 'product_id' => $request->product_id,
