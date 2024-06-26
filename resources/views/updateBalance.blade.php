@@ -5,11 +5,10 @@
 
 <body class="bg-white dark:bg-primary-dark dark:text-text-dark">
     @include('layouts.header')
-    @include('layouts.menu')
     <main class="px-28">
     <div class="container mx-auto p-4 m-20">
         <h1 class="text-2xl font-bold mb-4">Update Balance</h1>
-        
+
         @if (session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4" role="alert">
                 {{ session('success') }}
