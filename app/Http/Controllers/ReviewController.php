@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use App\Models\OrderItem;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -33,16 +34,19 @@ class ReviewController extends Controller
         return view('review.addReview',  compact('orderDetail'));
     }
 
-    public function createReview($order_item_id){
-        $review = Review::find($order_item_id);
-
+    public function createReview($order_item_id, Request $request){
+        $user = auth()->user();
+        //dd($request);
+        //$review = Review::where('user_id', $user)->get();
+        
+        
         Review::create([
-            'order_item_id' => $review['order_item_id'],
-            'user_id' => $review['user_id'],
-            'stars' => $review['stars'],
-            'comments' => $review['comments'],
+            'user_id' => $user->id,
+            'order_item_id' => $order_item_id,
+            'stars' => $request->stars,
+            'comments' => $request->comments,
         ]);
-    
+        
         // Redirect back with success message
         return redirect()->back()->with('success', 'Success, Order reviewed!');
     }    
