@@ -12,7 +12,7 @@ class ShopsController extends Controller
     public function getShop()
     {
         $shopData = Shop::paginate(10);     
-        return view('shop.shop', ['shopData' => $shopData]); 
+        return view('adminView.getShop', ['shopData' => $shopData]); 
     }
 
     public function getShops($id)
