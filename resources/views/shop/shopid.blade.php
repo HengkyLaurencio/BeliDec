@@ -5,13 +5,13 @@
 
     <body class="bg-white dark:bg-primary-dark dark:text-text-dark">
             @include('layouts.header')
-            @include('layouts.menu')
             
         <section class="text-gray-700 body-font overflow-hidden bg-white"> 
         <div class="container max-w-l p-6 mx-auto space-y-12">
             <div>
                 <h2 class="text-3xl font-bold text-left sm:text-4xl">{{ $shopData -> name}}</h2>
                 <p class="text-xl text-left">{{ $shopData -> description}}</p>
+                <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>
             </div>
                 <div class="px-28">
                 <div class="mt-6 grid grid-cols-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"> 
