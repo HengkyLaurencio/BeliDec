@@ -18,11 +18,11 @@
             </ul>
         </div>
     @endif
-        <form method="POST" action="{{ route('createShop') }}" class="product-table dark:text-text-100">
+        <form method="POST" action="{{ route('createShop') }}" class="shop-table dark:text-text-100">
             @csrf
             @method('POST')
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create Product</h2>
+                <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create Shop</h2>
             </div>
 
             <div class="mb-5">
