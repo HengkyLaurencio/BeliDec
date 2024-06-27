@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => [ValidateIsAdmin::class]], function () {
         Route::prefix('admin')->group(function () {
             Route::controller(UserController::class)->group(function () {
-                Route::get('/users', 'getUser')->name('getUser'); 
+                Route::get('/users', 'getUser')->name('getUser');
                 Route::get('/getUser/{id}', 'getUsers')->name('getUsers');
                 Route::get('/user/{user}/edit', 'editUser')->name('editUser');
                 Route::put('/getUser/{user}/updateUser', 'updateUser')->name('updateUser');
@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
             });
 
             Route::controller(ShopsController::class)->group(function () {
-                Route::get('/shops','getShop')->name('getShop');
+                Route::get('/shops','getShop')->name('getShopAdmin');
                 Route::get('/shop/{shop}/edit', 'adminEditShop')->name('adminEditShop');
                 Route::get('/shop/{shop}/history', 'getHistoryAdmin')->name('getHistoryAdmin');
             });
@@ -57,7 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::controller(ReviewController::class)->group(function () {
                 Route::get('/reviews','getReviewsAdmin')->name('getReviewsAdmin');
             });
-            
+
         });
     });
 
@@ -101,7 +101,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/reviews/{order_item_id}', 'createReview')->name('createReviews'); // Route to handle form submission
         // Route::delete('/reviews/{order_item_id}', 'deleteReview')->name('deleteReview');
     });
-    
+
 
     Route::controller(ShopsController::class)->group(function () {
         Route::get('/shop/{id}', 'getShops')->name('getShops');
@@ -110,13 +110,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::prefix('myShop')->group(function () {
         Route::controller(ShopsController::class)->group(function () {
-            
+
             Route::get('/create', 'registerShop')->name('registerShop')->middleware(createShop::class);
             Route::post('/create', 'createShop')->name('createShop');
 
             Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
             Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
-            
+
 
             Route::group(['middleware' => [haveShop::class]], function () {
                 Route::get('/products', 'getProducts')->name('getProductShop');
@@ -126,7 +126,7 @@ Route::group(['middleware' => ['auth']], function () {
 
                 // Route::get('/', 'editShop')->name('editShop');
 
-                
+
             });
 
             Route::controller(ProductController::class)->group(function () {
