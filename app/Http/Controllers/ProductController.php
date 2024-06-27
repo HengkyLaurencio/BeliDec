@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Shop;
+use App\Models\OrderItem;
+use App\Models\Review;
 
 use Illuminate\Http\Request;
 
@@ -20,10 +22,13 @@ class ProductController extends Controller
 
     public function getProduct($id){
         $product = Product::find($id);
+        $orderitem = OrderItem::find($id);
+
         if (!$product) {
             return response('Product not found');
         }
-        return view('product.detailProduct', ['product' => $product]);
+        
+        return view('product.detailProduct', ['product' => $product, 'orderitem' => $orderitem]);
     }
 
     public function newProduct (Request $request) {
