@@ -118,4 +118,10 @@ class OrderController extends Controller
         $orderData = Order::where(['user_id' => $userId])->paginate(10);
         return view('order.getOrderData', ['orderData' => $orderData]);
     }
+    
+    public function orderDetailAdmin($id) {
+        $orders = OrderItem::where('order_id',$id)->get();
+        
+        return view('order.getOrderDetailAdmin', ['orders' => $orders]);
+    }
 }

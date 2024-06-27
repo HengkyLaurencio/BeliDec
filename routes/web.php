@@ -35,8 +35,8 @@ Route::group(['middleware' => ['auth']], function () {
             });
 
             Route::controller(OrderController::class)->group(function () {
-                Route::get('/order','getOrder')->name('getOrder');
-                Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
+                Route::get('/orders','getOrder')->name('getOrder');
+                Route::get('/order/{order_id}', 'orderDetailAdmin')->name('getOrderDetailAdmin');
                 Route::get('/order/{order}/edit', 'editOrder')->name('editOrder');
                 Route::put('/order/{order}/update', 'updateOrder')->name('updateOrder');
                 Route::delete('/order/{order}', 'deleteOrder')->name('deleteOrder');
@@ -53,6 +53,11 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/shop/{shop}/edit', 'adminEditShop')->name('adminEditShop');
                 Route::get('/shop/{shop}/history', 'getHistoryAdmin')->name('getHistoryAdmin');
             });
+
+            Route::controller(ReviewController::class)->group(function () {
+                Route::get('/reviews','getReviewsAdmin')->name('getReviewsAdmin');
+            });
+            
         });
     });
 
@@ -92,7 +97,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(ReviewController::class)->group(function () {
         Route::get('/reviews', 'getReview')->name('index');
-        Route::get('/reviews/{order_item_id}', 'getReviewById')->name('createReview'); // Route to display the review form
+        Route::get('/reviews/{order_item_id}', 'addReview')->name('createReview'); // Route to display the review form
         Route::post('/reviews/{order_item_id}', 'createReview')->name('createReviews'); // Route to handle form submission
         // Route::delete('/reviews/{order_item_id}', 'deleteReview')->name('deleteReview');
     });
@@ -112,7 +117,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
             Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
             
-            Route::get('/shop/{id}', 'getShops')->name('getShops');
 
             Route::group(['middleware' => [haveShop::class]], function () {
                 Route::get('/products', 'getProducts')->name('getProductShop');

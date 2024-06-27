@@ -78,12 +78,12 @@
                             <button
                                 class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 dark:bg-white dark:text-gray-700 dark:hover:bg-gray-200">Checkout</button>
                         </form>
-
                     </div>
 
                 </div>
             </div>
         @else
+        <div>test</div>
         @endif
 
         <script>
@@ -91,8 +91,8 @@
                 document.documentElement.classList.toggle('dark');
             }
         </script>
-        @include('layouts.footer')
     </main>
+    @include('layouts.footer')
 
 </body>
 

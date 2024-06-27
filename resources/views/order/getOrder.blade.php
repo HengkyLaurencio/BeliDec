@@ -15,7 +15,6 @@
                         <th class="px-6 py-4 text-left border-r border-b">Total</th>
                         <th class="px-6 py-4 text-left border-r border-b">Status</th>
                         <th class="px-6 py-4 text-left border-r border-b">View Order    </th>
-                        <th class="px-6 py-4 border-r border-b">Edit</th>
                         <th class="px-6 py-4 border-b">Delete</th>
                     </tr>
                 </thead>
@@ -24,13 +23,10 @@
                     <tr class="{{ $index % 2 == 0 ? 'bg-even' : '' }} hover:bg-primary-100 dark:hover:bg-primary-100">
                         <td class="border-r border-b px-6 py-4 text-center">{{ $order->id }}</td>
                         <td class="border-r border-b px-6 py-4">{{ $order->user->username }}</td>
-                        <td class="border-r border-b px-6 py-4">{{ Rp {{ number_format($order->total, 0, ',', '.') }} }}</td>
+                        <td class="border-r border-b px-6 py-4">Rp {{ number_format($order->total, 0, ',', '.') }}</td>
                         <td class="border-r border-b px-6 py-4">{{ $order->status }}</td>
                         <td class="border-r border-b px-6 py-4 text-center">
-                            <a href="{{ route('getOrders', ['order_id' => $order->id]) }}">View</a>
-                        </td>
-                        <td class="border-r border-b px-6 py-4 text-center">
-                            <a href="{{ route('editOrder', ['order' => $order->id]) }}">Edit</a>
+                            <a href="{{ route('getOrderDetailAdmin', ['order_id' => $order->id]) }}">View</a>
                         </td>
                         <td class="px-6 py-4 text-center border-b">
                             <form method="post" action="{{ route('deleteOrder', ['order' => $order]) }}">

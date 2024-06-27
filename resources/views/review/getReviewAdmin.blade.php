@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" class="{{ session('theme', 'light') === 'dark' ? 'dark' : '' }}">
-
-@include('layouts.head')
-
-<body class="bg-white dark:bg-primary-dark dark:text-text-dark">
-    @include('layouts.header')
-</body>
-<main class="container mx-auto px-4 py-8">
-        @if (isset($reviews) && !$reviews->isEmpty())
-            <div class="container mx-auto p-4">
-                <h1 class="text-2xl font-bold mb-6 text-center dark:text-gray-300">Reviews (Admin View)</h1>
+<x-admin-template>
+<div class="container mx-auto p-4">
                 <div class="bg-white dark:bg-xgray-800 rounded-lg shadow p-6">
                     <!-- Header Kolom -->
                     <div class="grid grid-cols-6 gap-4 p-4 border-b border-gray-200 dark:border-gray-700">
@@ -43,14 +33,4 @@
                     </div>
                 </div>
             </div>
-        @else
-        @endif
-
-        <script>
-            function toggleDarkMode() {
-                document.documentElement.classList.toggle('dark');
-            }
-        </script>
-        @include('layouts.footer')
-    </main>
-</html>
+</x-admin-template>

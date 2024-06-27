@@ -138,7 +138,6 @@ class ShopsController extends Controller
     }
 
     public function adminEditShop(Request $request, Shop $shop) {
-        
         // $shopId = $request->shopid
         // $shop = Shop::find($shopId);
         // // dd($shop);
