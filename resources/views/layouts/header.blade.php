@@ -16,7 +16,7 @@
                 search
             </span>
             <input type="text" name="query" placeholder="Search the products"
-                class="bg-transparent border-none focus:outline-none ml-3">
+                class=" bg-transparent w-full border-none focus:outline-none ml-3">
         </form>
     </div>
     <div class="flex items-center space-x-4">
@@ -29,11 +29,31 @@
                                         <p class="justify-center py-0 my-0">Rp {{ number_format($balance, 0, ',', '.') }}</p>
             </div>
             <div class="px-3">
-                <a href="{{ route('getCartItems') }}" class="flex flex-col justify-center">
-                    <span class="material-symbols-outlined flex justify-center">
-                        shopping_cart
-                    </span>
-                </a>
+                <div class="p-2 flex">
+                    @if (isset($cartItemsData) && !$cartItemsData == null)
+                        <span class="material-symbols-outlined cursor-pointer" id="cart-icon">
+                            shopping_cart
+                        </span>
+                    @else
+                    <a href="{{ route('getCartItems') }}" class="flex flex-col justify-center">
+                        <span class="material-symbols-outlined flex justify-center">
+                            shopping_cart
+                        </span>
+                    </a>
+                    @endif
+                </div>
+                <div id="cart-list"
+                    class="fixed right-[-700px] top-0 h-full w-2/6 bg-primary-500 dark:bg-primary-dark dark:text-white shadow-lg transition-all duration-300 z-50">
+                    <div class="p-5 flex justify-between items-center border-b">
+                        <h2 class="text-2xl font-semibold">Shopping Cart</h2>
+                        <span class="material-symbols-outlined cursor-pointer" id="close-btn">
+                            close
+                        </span>
+                    </div>
+                    <div class="p-4 overflow-y-auto h-[calc(100vh-4rem)]" id="cart-items">
+                        @include ('layouts.cartHeader')
+                    </div>
+                </div>
             </div>
             <div class="px-3">
                 <a href="{{ route('viewOrder') }}" class="flex flex-col justify-center">
@@ -94,24 +114,6 @@
             </div>
             @endif
         </div>
-        <div class="p-2">
-            @if (isset($cartItemsData) && !$cartItemsData == null)
-                <span class="material-symbols-outlined cursor-pointer" id="cart-icon">
-                    shopping_cart
-                </span>
-            @endif
-        </div>
-        <div id="cart-list"
-            class="fixed right-[-700px] top-0 h-full w-2/6 bg-primary-500 dark:bg-primary-dark dark:text-white shadow-lg transition-all duration-300 z-50">
-            <div class="p-5 flex justify-between items-center border-b">
-                <h2 class="text-2xl font-semibold">Shopping Cart</h2>
-                <span class="material-symbols-outlined cursor-pointer" id="close-btn">
-                    close
-                </span>
-            </div>
-            <div class="p-4" id="cart-items">
-                @include ('layouts.cartHeader')
-            </div>
-        </div>
+
     </div>
 </header>
