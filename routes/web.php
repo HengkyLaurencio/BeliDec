@@ -49,8 +49,8 @@ Route::group(['middleware' => ['auth']], function () {
             });
 
             Route::controller(ShopsController::class)->group(function () {
-                Route::get('/shops','getShop')->name('getShop');
-                Route::get('/shop/{shop}/edit', 'adminEditShop')->name('adminEditShop');
+                Route::get('/shops','getShop')->name('getShopAdmin');
+                Route::get('/shop/{shop}/edit', 'adminEditShodadfp')->name('adminEditShop');
             });
 
             Route::controller(ReviewController::class)->group(function () {
@@ -116,7 +116,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::put('/shop/{shop}/edit', 'updateShop')->name('updateShop');
             Route::delete('/shop/{shop}/delete','deleteShop')->name('deleteShop');
             
-            Route::get('/shop/{id}', 'getShops')->name('getShops');
 
             Route::group(['middleware' => [haveShop::class]], function () {
                 Route::get('/products', 'getProducts')->name('getProductShop');

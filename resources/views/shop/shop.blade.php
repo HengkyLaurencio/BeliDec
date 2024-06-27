@@ -37,7 +37,7 @@
                           <!-- <a href="">History</a> -->
                         </td>
                         <td class="border-r border-b px-6 py-4 text-center">
-                            <a href="{{ route('adminEditShop', $shop->owner_id) }}">Edit</a>
+                            <a href="{{ route('adminEditShop', ['shop' => $shop->id]) }}">Edit</a>
                         </td>
                         <td class="px-6 py-4 text-center border-b">
                             <form method="post" action="{{ route('deleteShop', ['shop' => $shop]) }}">
