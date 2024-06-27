@@ -10,6 +10,7 @@
         <div class="container max-w-l p-6 mx-auto space-y-12">
             <div>
                 <h2 class="text-3xl font-bold text-left sm:text-4xl">{{ $shopData -> name}}</h2>
+                <br>
                 <p class="text-xl text-left">{{ $shopData -> description}}</p>
                 <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>
             </div>
