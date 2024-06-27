@@ -35,7 +35,7 @@ class ProductController extends Controller
         $productData = $request->validate([
             'productName' => ['required', 'string'],
             'Description' => ['required', 'string'],
-            'Price' => ['required', 'decimal:2'],
+            'Price' => ['required', 'decimal:0'],
             'Stock' => ['required', 'integer'],
         ]);
         
@@ -50,7 +50,7 @@ class ProductController extends Controller
             'shop_id'=> $shopID
         ]);
     
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Product Add Successfully');
     }
     
     public function createProduct(Product $product, Request $request){
@@ -61,7 +61,7 @@ class ProductController extends Controller
         $productData = $request->validate([
             'name' => 'required | string',
             'description' => 'required | string',
-            'price' => 'required | decimal:2',
+            'price' => 'required | decimal:0',
             'stock' => 'required | integer'
         ]);
         $product->update($productData);

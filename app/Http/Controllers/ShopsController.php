@@ -120,7 +120,7 @@ class ShopsController extends Controller
         $userId = $request->session()->get('user_id');
         $shopId = Shop::where('owner_id', $userId)->value('id');
         $shop = Shop::find($shopId);
-        // dd($shop);
+        
         return view('shop.mainDashboard', ['shop' => $shop]);
     }
 
