@@ -72,6 +72,11 @@ class AuthenticationController extends Controller
         if (Auth::attempt($credentials)) {
             $userId = User::where('email', $request->email)->value('id');
             $request->session()->put('user_id', $userId);
+
+            if(User::where("id", $userId)->value('is_admin')) {
+                return redirect()->route('getUser')->with('success', 'Login Success');
+            }
+
             return redirect()->intended(route('home'))->with('success', 'Login Success');
         }
 

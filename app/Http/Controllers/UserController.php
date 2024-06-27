@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -41,9 +42,9 @@ class UserController extends Controller
         return redirect(route('getUser'))->with('success', 'Delete successfully');
     }
 
-    public function getBalance(Request $request) {
-        $userId = $request->session()->get('user_id');
-        return User::where('id', $userId)->value('balance');
+    public static function getBalance() {
+        $user = Auth()->user();
+        return $user->balance;
     }
 
     public function viewUpdateBalance(Request $request) {
@@ -56,5 +57,23 @@ class UserController extends Controller
         $userId = $request->session()->get('user_id');
         User::where('id', $userId)->update(['balance' => $request->balance]);
         return redirect()->back();
+    }   
+
+    public function payBalance(Request $request) {
+        $user = Auth()->user();
+        $oldBalance = (float)User::where('id', $user->id)->value('balance');
+        $payment = (float)$request->balance;
+
+        if($oldBalance < $payment) {
+            return redirect()->back()->with('error', 'Your balance not enough');
+        }
+
+        if(!User::where('id', $user->id)->update(['balance' => $oldBalance - $payment])) {
+            return redirect()->back()->with('error', 'Payment fail');
+        }
+        
+        Order::where('id', $request->order_id)->update(['status' => 'Completed']);
+
+        return redirect()->back()->with('success', 'Paymet success');
     }
 }

@@ -11,7 +11,7 @@
     </div>
     <div class="flex items-center">
         <form action="{{ route('search') }}" method="GET"
-            class="bg-primary-500 rounded-full p-2 w-screen max-w-xl flex items-center">
+            class="bg-primary-500 rounded-full p-2 w-screen max-w-lg flex items-center">
             <span class="material-symbols-outlined justify-center cursor-pointer dark:text-text-200">
                 search
             </span>
@@ -21,6 +21,13 @@
     </div>
     <div class="flex items-center space-x-4">
         <div class="flex flex-row items-center justify-center px-3">
+            <div class="px-3 mx-5 flex-row items-center justify-center">
+                @php
+                                        $balance = App\Http\Controllers\UserController::getBalance();
+                                        @endphp
+                                        <p class="justify-center py-0 my-0">Balance </p>
+                                        <p class="justify-center py-0 my-0">Rp {{ number_format($balance, 0, ',', '.') }}</p>
+            </div>
             <div class="px-3">
                 <a href="{{ route('getCartItems') }}" class="flex flex-col justify-center">
                     <span class="material-symbols-outlined flex justify-center">
@@ -63,6 +70,11 @@
                         <div class="absolute hidden bg-primary-500 text-text-200 text-sm dark:bg-primary-500 dark:text-text-200 shadow-lg rounded-md mt-2 w-32 text-center"
                             id="dropdown-account-menu">
                             <ul>
+                                <li>
+                                    <a href="{{route('updateBalance')}}" class="block p-2 hover:bg-primary-600 dark:bg-primary-600 rounded-md">
+                                        Update Balance
+                                    </a>
+                                </li>
                                 <li><a href="{{ route('shopMainDashboard') }}"
                                         class="block p-2 hover:bg-primary-600 dark:hover:bg-primary-600 rounded-md">My
                                         Shop
