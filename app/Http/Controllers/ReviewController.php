@@ -23,9 +23,8 @@ class ReviewController extends Controller
         return view('review.reviewAdmin', compact('reviews'));
     }
 
-    public function getReviewById($order_item_id)
+    public function addReview($order_item_id)
     {
-
         $orderDetail = OrderItem::where('id',$order_item_id)->get()->first();
         
         if (!$orderDetail) {
@@ -36,30 +35,16 @@ class ReviewController extends Controller
 
     public function createReview($order_item_id, Request $request){
         $user = auth()->user();
-        // dd($user);
-        // $review = Review::where('user_id', $user)->get();
-        $orderItem = OrderItem::findOrFail($order_item_id);
-        
         Review::create([
             'user_id' => $user->id,
             'order_item_id' => $order_item_id,
             'stars' => $request->stars,
             'comments' => $request->comments,
         ]);
-
-
         OrderItem::where('id', $order_item_id)->update(['is_review' => True]);
-    
-        
-        // Redirect back with success message
         return redirect()->route('viewOrder')->with('success', 'Success, Product Reviewed!');
 
     }    
 
-    public function deleteReview(Request $request)
-    {
-        $review = Review::find($request->id);
-        $review->delete();
-        return redirect()->route('orderReview')->with('success', 'Success, Review deleted!');
-    }
+    
 }
