@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orderData as $index => $order)
+                    @foreach ($orderData -> sortBy('id') as $index => $order)
                     <tr class="{{ $index % 2 == 0 ? 'bg-even' : '' }} hover:bg-primary-100 dark:hover:bg-primary-100">
                         <td class="border-r border-b px-6 py-4 text-center">{{ $order->id }}</td>
                         <td class="border-r border-b px-6 py-4">{{ $order->user->username }}</td>
