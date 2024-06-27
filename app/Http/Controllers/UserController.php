@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -58,9 +59,21 @@ class UserController extends Controller
         return redirect()->back();
     }   
 
-    public function addBalance(Request $request) {
+    public function payBalance(Request $request) {
         $user = Auth()->user();
-        User::where('id', $user->id)->update(['balance' => $user->balance + $request->balance]);
-        return redirect()->back();
+        $oldBalance = (float)User::where('id', $user->id)->value('balance');
+        $payment = (float)$request->balance;
+
+        if($oldBalance < $payment) {
+            return redirect()->back()->with('error', 'Your balance not enough');
+        }
+
+        if(!User::where('id', $user->id)->update(['balance' => $oldBalance - $payment])) {
+            return redirect()->back()->with('error', 'Payment fail');
+        }
+        
+        Order::where('id', $request->order_id)->update(['status' => 'Completed']);
+
+        return redirect()->back()->with('success', 'Paymet success');
     }
 }
