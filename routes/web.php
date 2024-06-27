@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
 
             Route::controller(OrderController::class)->group(function () {
                 Route::get('/order','getOrder')->name('getOrder');
-                Route::get('/order/{order_id}', 'getOrders')->name('getOrders');
+                Route::get('/order/{order_id}', 'orderDetailAdmin')->name('getOrderDetailAdmin');
                 Route::get('/order/{order}/edit', 'editOrder')->name('editOrder');
                 Route::put('/order/{order}/update', 'updateOrder')->name('updateOrder');
                 Route::delete('/order/{order}', 'deleteOrder')->name('deleteOrder');
