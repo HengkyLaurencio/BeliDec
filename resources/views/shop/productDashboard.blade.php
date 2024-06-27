@@ -1,14 +1,4 @@
 <x-shop-template>
-@if(session('error'))
-    <div class="bg-red-500 text-white p-4 rounded mb-4 inline-block" >
-        {{ session('error') }}
-    </div>
-    @elseif (session('success'))
-    <div class="bg-green-500 text-white p-4 rounded mb-4 inline-block">
-        {{ session('success') }}
-    </div>
-    @endif
-
     <main class="px-6 md:px-12 lg:px-24 xl:px-1 py-10">
         <div class="text-start mb-4">
             <a href="{{ route('createProduct') }}" class="bg-primary-1100 text-[#050303] dark:text-black px-6 py-2 border rounded-md">
