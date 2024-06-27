@@ -7,13 +7,6 @@
         .bg-even {
             background-color: #f1f1f1; 
         }
-        .dark .bg-even {
-            background-color: #282222; 
-            color: white;
-        }
-        .dark {
-            color: white;
-        }
     </style>
 </head>
 
