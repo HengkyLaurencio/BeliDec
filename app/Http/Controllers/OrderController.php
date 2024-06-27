@@ -99,7 +99,7 @@ class OrderController extends Controller
     public function deleteOrderData(Order $order)
     {
         $order->delete();
-        return redirect()->route('getOrders', ['order_id' => $order->id])->with('success', 'Delete successfully');
+        return redirect()->back()->with('success', 'Delete successfully');
     }
 
     public function viewOrder(Request $request)
