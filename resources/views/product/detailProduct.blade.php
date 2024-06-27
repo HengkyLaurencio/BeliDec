@@ -40,7 +40,9 @@
                         <p class="leading-relaxed font-bold">{{$product->shop->name}}</p>
                     </a>
                     <p class="leading-relaxed">{{$product->description}}</p>
-                    <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>
+
+                    <div class="leading-relaxed font-bold my-6">Stock Barang: {{$product->stock}}</div>
+                    <div class="flex mt-6 items-center pb-1 border-b-2 border-gray-200 mb-5"></div>
                     
                     <div class="flex">
                         <span class="title-font font-medium text-2xl text-gray-900">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
