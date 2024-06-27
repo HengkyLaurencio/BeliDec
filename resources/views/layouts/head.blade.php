@@ -11,7 +11,7 @@
 </head>
 
 @if (session('success'))
-    <div id="notification" class="fixed z-50 inset-0">
+    <div id="notification" class="fixed pointer-events-none object-right z-50 inset-0">
         <div class="flex items-start justify-end">
             <div class=" bg-white rounded-lg mt-1 text-left w-80">
                 <div class="flex flex-row">
