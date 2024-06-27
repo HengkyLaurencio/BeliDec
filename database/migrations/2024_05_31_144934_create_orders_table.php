@@ -26,6 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity');
+            $table->boolean('is_review')->default(false);
             $table->decimal('price',12,2);
             $table->timestamps();
 

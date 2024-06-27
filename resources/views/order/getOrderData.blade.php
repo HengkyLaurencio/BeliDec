@@ -7,13 +7,6 @@
         .bg-even {
             background-color: #f1f1f1; 
         }
-        .dark .bg-even {
-            background-color: #282222; 
-            color: white;
-        }
-        .dark {
-            color: white;
-        }
     </style>
 </head>
 
@@ -37,20 +30,31 @@
                     @foreach ($orderData as $index => $order)
                     <tr class="{{ $index % 2 == 0 ? 'bg-even' : '' }} hover:bg-primary-100 dark:hover:bg-primary-100">
                         <td class="border-r border-b px-6 py-4">{{ $order->user->username }}</td>
-                        <td class="border-r border-b px-6 py-4">{{ $order->total }}</td>
+                        <td class="border-r border-b px-6 py-4">Rp {{ number_format($order->total, 0, ',', '.') }}</td>
                         <td class="border-r border-b px-6 py-4">{{ $order->status }}</td>
                         <td class="border-r border-b px-6 py-4 text-center">
                             <a href="{{ route('getOrders', ['order_id' => $order->id]) }}">View</a>
                         </td>
                         @if ($order->status ===  "Awaiting Payment")
-                        <td class="px-6 py-4 text-center border-b">
-                            <form method="post" action="{{ route('deleteOrderData', ['order' => $order]) }}">
+                        <td class="px-3 py-4 text-center border-b flex justify-center flex-row">
+                            <form method="post" class="flex-row" action="{{ route('balance.add', ['balance' => $order->total, 'order_id' => $order->id]) }}">
+                                @csrf
+                                @method('POST')
+                                <button type="submit" class="bg-primary-1100 text-[#FFFFFF] dark:text-black mx-8 px-16 py-2 rounded-lg">
+                                    Pay
+                                </button>
+                            </form>
+                            <form method="post" class="flex-row" action="{{ route('deleteOrderData', ['order' => $order]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-text-300 text-[#FFFFFF] dark:text-black px-6 py-2 rounded-lg">
+                                <button type="submit" class="bg-text-300 text-[#FFFFFF] dark:text-black px-8 py-2 rounded-lg">
                                     Cancel Order
                                 </button>
                             </form>
+                        </td>
+                        @else
+                        <td class="px-6 py-4 text-center border-b">
+
                         </td>
                         @endif
                     </tr>
