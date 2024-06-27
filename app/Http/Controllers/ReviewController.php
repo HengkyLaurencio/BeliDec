@@ -62,4 +62,9 @@ class ReviewController extends Controller
         $review->delete();
         return redirect()->route('orderReview')->with('success', 'Success, Review deleted!');
     }
+
+    public function getReviewsAdmin() {
+        $reviews = Review::all();
+        return view('review.getReviewAdmin', compact('reviews'));
+    }
 }

@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
             });
 
             Route::controller(OrderController::class)->group(function () {
-                Route::get('/order','getOrder')->name('getOrder');
+                Route::get('/orders','getOrder')->name('getOrder');
                 Route::get('/order/{order_id}', 'orderDetailAdmin')->name('getOrderDetailAdmin');
                 Route::get('/order/{order}/edit', 'editOrder')->name('editOrder');
                 Route::put('/order/{order}/update', 'updateOrder')->name('updateOrder');
@@ -52,6 +52,11 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/shops','getShop')->name('getShop');
                 Route::get('/shop/{shop}/edit', 'adminEditShop')->name('adminEditShop');
             });
+
+            Route::controller(ReviewController::class)->group(function () {
+                Route::get('/reviews','getReviewsAdmin')->name('getReviewsAdmin');
+            });
+            
         });
     });
 
