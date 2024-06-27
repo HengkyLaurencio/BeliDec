@@ -14,13 +14,13 @@ class ReviewController extends Controller
     public function index(){
         $reviews = Review::latest()->paginate(10);
 
-        return view('review.reviewAdmin', compact ('reviews'));
+        return view('review.getReview', compact ('reviews'));
     }
 
     public function getReview(Request $request){
         $userId = $request->session()->get('user_id');
         $reviews = Review::where('user_id', $userId)->get();
-        return view('review.reviewAdmin', compact('reviews'));
+        return view('review.getReview', compact('reviews'));
     }
 
     public function getReviewById($order_item_id)
