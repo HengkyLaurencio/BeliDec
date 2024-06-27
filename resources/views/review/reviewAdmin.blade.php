@@ -14,7 +14,6 @@
                     <!-- Header Kolom -->
                     <div class="grid grid-cols-6 gap-4 p-4 border-b border-gray-200 dark:border-gray-700">
                         <div class="col-span-2 text-gray-600 dark:text-gray-300">ReviewId</div>
-                        <div class="text-gray-600 dark:text-gray-300">UserId</div>
                         <div class="text-gray-600 dark:text-gray-300">OrderItemId</div>
                         <div class="text-gray-600 dark:text-gray-300">Stars</div>
                         <div class="text-gray-600 dark:text-gray-300">Comments</div>
@@ -29,9 +28,7 @@
                                         </h2>
                                     </div>
                                 </div>
-                                <div class="text-gray-700 dark:text-gray-200">
-                                    {{ $review->user_id }}
-                                </div>
+                
                                 <div>
                                     {{ $review->order_item_id }}
                                 </div>

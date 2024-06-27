@@ -63,6 +63,12 @@ export default {
         extend: {},
     },
     plugins: [
-        // require('@tailwindcss/forms'),
+        function ({ addVariant }) {
+            addVariant('stars-rating', '& i:hover ~ i')
+          },
+          function ({ addVariant }) {
+            addVariant('current-hover', '& i:hover')
+        },
     ],
+
 }

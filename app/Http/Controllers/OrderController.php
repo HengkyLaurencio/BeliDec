@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\CartItem;
 use App\Models\OrderItem;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,15 +16,24 @@ class OrderController extends Controller
     {
         $orderData = Order::paginate(10);
         return view('order.getOrder', ['orderData' => $orderData]);
+
     }
 
     public function getOrders($id)
     {
         $orders = OrderItem::where('order_id',$id)->get();
-        if (!$orders) {
-            return response('Order not found', 404);
+        // dd($orders);
+        $arr = [];
+        foreach($orders as $order){
+            if (!$orders) {
+                return response('Order not found', 404);
+            }
+            if(Review::where('order_item_id',$order->id)->exists()) {
+                $reviews = Review::where('order_item_id',$order->id)->first();
+                array_push($arr, $reviews);
+            }
         }
-        return view('order.getOrders', ['orders' => $orders]);
+        return view('order.getOrders', ['orders' => $orders, 'arr' => $arr]);
     }
 
     public function createOrder(Request $request)
