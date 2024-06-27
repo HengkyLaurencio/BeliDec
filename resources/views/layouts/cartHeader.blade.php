@@ -32,7 +32,11 @@
         @endforeach
         <div class="flex justify-between items-center mt-4">
             <div class="text-xl font-semibold">Total: Rp. {{ number_format($total, 0, ',', '.') }}</div>
-            <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">Checkout</button>
+            <form action="{{ route('createOrder.post') }}" method="POST">
+                @csrf
+                <button
+                    class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 dark:bg-white dark:text-gray-700 dark:hover:bg-gray-200">Checkout</button>
+            </form>
         </div>
     </div>
 @else

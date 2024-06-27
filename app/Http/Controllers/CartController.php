@@ -39,7 +39,7 @@ class CartController extends Controller
 
         //cek availability
         if (!$exists) {
-            return redirect()->back()->with('error', 'CartItems doesnt exist!');
+            view('cart', ['cartItemsData' => null]);
         }
         return view('cart', compact('cartItemsData'));
     }
