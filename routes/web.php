@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 
+    Route::get('/update-balance', [UserController::class, 'viewUpdateBalance'])->name('updateBalance');
+    Route::post('/update-balance', [UserController::class, 'updateBalance'])->name('balance.update');
 
     Route::get('/home', function () {
         return redirect()->route('userProducts');
