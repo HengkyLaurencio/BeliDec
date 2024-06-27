@@ -46,7 +46,10 @@ class ReviewController extends Controller
             'stars' => $request->stars,
             'comments' => $request->comments,
         ]);
-        
+
+
+        OrderItem::where('id', $order_item_id)->update(['is_review' => True]);
+    
         
         // Redirect back with success message
         return redirect()->route('viewOrder')->with('success', 'Success, Product Reviewed!');

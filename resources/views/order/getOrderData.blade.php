@@ -52,6 +52,10 @@
                                 </button>
                             </form>
                         </td>
+                        @else
+                        <td class="px-6 py-4 text-center border-b">
+
+                        </td>
                         @endif
                     </tr>
                     @endforeach
