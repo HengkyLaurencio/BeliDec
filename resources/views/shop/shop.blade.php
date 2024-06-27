@@ -19,7 +19,7 @@
                     <tr>
                         <th class="px-6 py-4 text-center border-r border-b">Name</th>
                         <th class="px-6 py-4 text-center border-r border-b">Owner Name</th>
-                        <th class="px-6 py-4 text-center border-r border-b">Shop ID</th>
+                        <th class="px-6 py-4 text-center border-r border-b">Owner Shop ID</th>
                         <th class="px-6 py-4 text-center border-r border-b">Description</th>
                         <th class="px-6 py-4 text-center border-r border-b">History</th>
                         <th class="px-6 py-4 border-r border-b">Edit</th>
@@ -34,10 +34,10 @@
                         <td class="border-r border-b px-6 py-4">{{ $shop->owner_id }}</td>
                         <td class="border-r border-b px-6 py-4">{{ $shop->description }}</td>
                         <td class="border-r border-b px-6 py-4 text-center">
-                          <!-- <a href="">History</a> -->
+                            <a href="{{ route('getHistoryAdmin',$shop->id) }}">History</a>
                         </td>
                         <td class="border-r border-b px-6 py-4 text-center">
-                            <a href="{{ route('adminEditShop', $shop->owner_id) }}">Edit</a>
+                            <a href="{{ route('adminEditShop', $shop->id) }}">Edit</a>
                         </td>
                         <td class="px-6 py-4 text-center border-b">
                             <form method="post" action="{{ route('deleteShop', ['shop' => $shop]) }}">

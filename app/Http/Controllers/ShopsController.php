@@ -93,6 +93,29 @@ class ShopsController extends Controller
         return view('shop.getHistory', ['orderData' => $filteredOrderData]);
     }
 
+    public function getHistoryAdmin(Shop $shop)
+    {
+        // $owner = Shop::find($shop);
+        // $orderDatas = OrderItem::all();
+
+        // foreach($orderDatas as $orderData) {
+        //     if($orderData->product->shop_id) {
+        //         $owner = [$orderData];
+        //     }
+        // }
+
+        $orderDatas = OrderItem::all();
+        $filteredOrderData = [];
+        
+        foreach($orderDatas as $orderData) {
+            if($orderData->product->shop_id == $shop->id) {
+                $filteredOrderData[] = $orderData;
+            }
+        }
+
+        return view('shop.getHistoryAdmin', ['orderData' => $filteredOrderData]);
+    }
+
     public function mainDashboard(Request $request) {
         $userId = $request->session()->get('user_id');
         $shopId = Shop::where('owner_id', $userId)->value('id');
