@@ -1,17 +1,17 @@
 <?php
 
+use App\Http\Middleware\haveShop;
+use App\Http\Middleware\createShop;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\ValidateIsAdmin;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShopsController;;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\ShopsController;;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthenticationController;
-use App\Http\Middleware\createShop;
-use App\Http\Middleware\haveShop;
 
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
@@ -49,8 +49,9 @@ Route::group(['middleware' => ['auth']], function () {
             });
 
             Route::controller(ShopsController::class)->group(function () {
-                Route::get('/shops','getShop')->name('getShopAdmin');
-                Route::get('/shop/{shop}/edit', 'adminEditShodadfp')->name('adminEditShop');
+                Route::get('/shops','getShop')->name('getShop');
+                Route::get('/shop/{shop}/edit', 'adminEditShop')->name('adminEditShop');
+                Route::get('/shop/{shop}/history', 'getHistoryAdmin')->name('getHistoryAdmin');
             });
 
             Route::controller(ReviewController::class)->group(function () {
