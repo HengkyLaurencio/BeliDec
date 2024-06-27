@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::controller(ShopsController::class)->group(function () {
+        Route::get('/shop', 'getShop')->name('getShop');
         Route::get('/shop/{id}', 'getShops')->name('getShops');
     });
 

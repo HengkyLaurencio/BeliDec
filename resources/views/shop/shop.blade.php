@@ -17,7 +17,7 @@
             <table class="w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
                 <thead class="bg-primary-600 dark:bg-primary-900">
                     <tr>
-                        <th class="px-6 py-4 text-center border-r border-b">Name</th>
+                        <th class="px-6 py-4 text-center border-r border-b">Shop Name</th>
                         <th class="px-6 py-4 text-center border-r border-b">Owner Name</th>
                         <th class="px-6 py-4 text-center border-r border-b">Owner Shop ID</th>
                         <th class="px-6 py-4 text-center border-r border-b">Description</th>
@@ -40,7 +40,7 @@
                             <a href="{{ route('adminEditShop', $shop->id) }}">Edit</a>
                         </td>
                         <td class="px-6 py-4 text-center border-b">
-                            <form method="post" action="{{ route('deleteShop', ['shop' => $shop]) }}">
+                            <form method="post" action="{{ route('deleteShop', $shop) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-text-300 text-[#FFFFFF] dark:text-black px-6 py-2">
