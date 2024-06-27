@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
-use App\Models\OrderItem;
 use App\Models\Product;
-use Illuminate\Http\Request;    
+use App\Models\OrderItem;
+use Illuminate\Http\Request;
 
 class ShopsController extends Controller
 {
@@ -20,7 +20,7 @@ class ShopsController extends Controller
     {
         $shopData = Shop::find($id);
         if (!$shopData) {
-            return response('shop not found', 404);
+            return redirect()->back()->with('error', 'Shop not founds');
         }
 
         $productData = Product::where('shop_id', $shopData->id)->get();
